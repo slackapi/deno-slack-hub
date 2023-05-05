@@ -1,4 +1,4 @@
-import { ICustomType } from "../../../../../../types/types.ts";
+import { ICustomType } from "../deps.ts";
 
 export type AllowedTypeValue = ICustomType | string;
 export type AllowedTypeValueObject = Record<string, AllowedTypeValue>;

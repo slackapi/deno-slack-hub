@@ -7,9 +7,8 @@ import {
 } from "../template_utils.ts";
 import { assertEquals, assertStringIncludes } from "../../dev_deps.ts";
 import { FunctionRecord } from "../../types.ts";
-import SchemaTypes from "../../../../../../schema_types.ts";
-import SlackTypes from "../../../../../schema_types.ts";
-import { InternalSlackTypes } from "../../../../../types/custom/mod.ts";
+import { Schema } from "../../../../src/deps.ts";
+import { InternalSlackTypes } from "../../../../src/deps.ts";
 
 const DESCRIPTION = "Test the Slack function template";
 const TITLE = "test function";
@@ -62,7 +61,7 @@ Deno.test("renderTypeImports should render all imports provided with slack and p
     type: SLACK_FUNCTION_TYPE,
     input_parameters: [
       {
-        type: SlackTypes.channel_id,
+        type: Schema.slack.types.channel_id,
         name: "channel_id",
         title: "Select a channel",
         is_required: true,
@@ -78,7 +77,7 @@ Deno.test("renderTypeImports should render all imports provided with slack and p
     ],
     output_parameters: [
       {
-        type: SchemaTypes.string,
+        type: Schema.types.string,
         name: "message_ts",
         title: "Message time stamp",
         description: "Message time stamp",
@@ -86,9 +85,9 @@ Deno.test("renderTypeImports should render all imports provided with slack and p
     ],
   };
   const actual = renderTypeImports(dfi);
-  assertStringIncludes(actual, "SchemaTypes");
-  assertStringIncludes(actual, "SlackTypes");
-  assertStringIncludes(actual, "InternalSlackTypes");
+  assertStringIncludes(actual, "Schema.types");
+  assertStringIncludes(actual, "Schema.slack.types");
+  assertStringIncludes(actual, "InternalSchema.slack.types");
 });
 
 Deno.test("renderTypeImports should render imports required for array type", () => {
@@ -100,19 +99,19 @@ Deno.test("renderTypeImports should render imports required for array type", () 
     input_parameters: [],
     output_parameters: [
       {
-        type: SchemaTypes.array,
+        type: Schema.types.array,
         name: "user_ids",
         title: "User Ids",
         description: "User Ids",
         items: {
-          type: SlackTypes.channel_id,
+          type: Schema.slack.types.channel_id,
         },
       },
     ],
   };
   const actual = renderTypeImports(dfi);
-  assertStringIncludes(actual, "SchemaTypes");
-  assertStringIncludes(actual, "SlackTypes");
+  assertStringIncludes(actual, "Schema.types");
+  assertStringIncludes(actual, "Schema.slack.types");
 });
 
 Deno.test("renderTypeImports should render imports required for object type", () => {
@@ -124,21 +123,21 @@ Deno.test("renderTypeImports should render imports required for object type", ()
     input_parameters: [],
     output_parameters: [
       {
-        type: SchemaTypes.object,
+        type: Schema.types.object,
         name: "user_ids",
         title: "User Ids",
         description: "User Ids",
         properties: {
           my_param: {
-            type: SlackTypes.channel_id,
+            type: Schema.slack.types.channel_id,
           },
         },
       },
     ],
   };
   const actual = renderTypeImports(dfi);
-  assertStringIncludes(actual, "SchemaTypes");
-  assertStringIncludes(actual, "SlackTypes");
+  assertStringIncludes(actual, "Schema.types");
+  assertStringIncludes(actual, "Schema.slack.types");
 });
 
 Deno.test("renderTypeImports should render imports required for a nested complex object type", () => {
@@ -150,15 +149,15 @@ Deno.test("renderTypeImports should render imports required for a nested complex
     input_parameters: [],
     output_parameters: [
       {
-        type: SchemaTypes.array,
+        type: Schema.types.array,
         items: {
-          type: SchemaTypes.object,
+          type: Schema.types.object,
           properties: {
             my_slack_type: {
               type: InternalSlackTypes.form_input_object.id,
             },
             my_primitive_type: {
-              type: SlackTypes.channel_id,
+              type: Schema.slack.types.channel_id,
             },
           },
         },
@@ -167,9 +166,9 @@ Deno.test("renderTypeImports should render imports required for a nested complex
     ],
   };
   const actual = renderTypeImports(dfi);
-  assertStringIncludes(actual, "InternalSlackTypes");
-  assertStringIncludes(actual, "SchemaTypes");
-  assertStringIncludes(actual, "SlackTypes");
+  assertStringIncludes(actual, "InternalSchema.slack.types");
+  assertStringIncludes(actual, "Schema.types");
+  assertStringIncludes(actual, "Schema.slack.types");
 });
 
 Deno.test("renderTypeImports should render imports required for primitive & complex types", () => {
@@ -181,27 +180,27 @@ Deno.test("renderTypeImports should render imports required for primitive & comp
     input_parameters: [],
     output_parameters: [
       {
-        type: SchemaTypes.array,
+        type: Schema.types.array,
         items: {
-          type: SchemaTypes.string,
+          type: Schema.types.string,
         },
         name: "user_ids",
       },
       {
-        type: SchemaTypes.object,
+        type: Schema.types.object,
         name: "my_object",
         properties: {
           my_param: {
-            type: SchemaTypes.string,
+            type: Schema.types.string,
           },
         },
       },
       {
-        type: SchemaTypes.string,
+        type: Schema.types.string,
         name: "my_primitive",
       },
     ],
   };
   const actual = renderTypeImports(dfi);
-  assertStringIncludes(actual, "SchemaTypes");
+  assertStringIncludes(actual, "Schema.types");
 });

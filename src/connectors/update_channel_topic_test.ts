@@ -2,76 +2,43 @@
 import { assertEquals, assertExists } from "../../../dev_deps.ts";
 import { DefineWorkflow } from "../../../workflows/mod.ts";
 import { ManifestFunctionSchema } from "../../../manifest/manifest_schema.ts";
-import SchemaTypes from "../../schema_types.ts";
-import SlackTypes from "../schema_types.ts";
+import Schema.types from "../../schema_types.ts";
+import Schema.slack.types from "../schema_types.ts";
 import UpdateChannelTopic from "./update_channel_topic.ts";
 
-Deno.test("UpdateChannelTopic generates valid FunctionManifest", () => {
-  assertEquals(
-    UpdateChannelTopic.definition.callback_id,
-    "slack#/functions/update_channel_topic",
-  );
-  const expected: ManifestFunctionSchema = {
-    source_file: "",
-    title: "Update channel topic",
-    description:
-      "Update the topic of a specific channel. This will work only if this workflow created the channel.",
-    input_parameters: {
-      properties: {
-        channel_id: {
-          type: SlackTypes.channel_id,
-          description: "Search all channels",
-          title: "Select a channel",
-        },
-        topic: {
-          type: SchemaTypes.string,
-          description: "Enter a topic",
-          title: "Add a topic",
-        },
-      },
-      required: ["channel_id", "topic"],
-    },
-    output_parameters: {
-      properties: {
-        topic: {
-          type: SchemaTypes.string,
-          description: "Channel topic",
-          title: "Channel topic",
-        },
-      },
-      required: ["topic"],
-    },
-  };
-  const actual = UpdateChannelTopic.export();
+Deno.test("UpdateChannelTopic generates valid FunctionManifest", () => {assertEquals(UpdateChannelTopic.definition.callback_id, "slack#/functions/update_channel_topic");
+const expected: ManifestFunctionSchema = {source_file: "",
+title: "Update channel topic",
+description: "Update the topic of a specific channel. This will work only if this workflow created the channel.",
+input_parameters: {properties: {channel_id: {type: SlackTypes.channel_id,
+description: "Search all channels",
+title: "Select a channel"},
+topic: {type: SchemaTypes.string,
+description: "Enter a topic",
+title: "Add a topic"}},
+required: ["channel_id","topic"]},
+output_parameters: {properties: {topic: {type: SchemaTypes.string,
+description: "Channel topic",
+title: "Channel topic"}},
+required: ["topic"]}};
+const actual = UpdateChannelTopic.export();
 
-  assertEquals(actual, expected);
-});
+assertEquals(actual, expected);});
 
-Deno.test("UpdateChannelTopic can be used as a Slack function in a workflow step", () => {
-  const testWorkflow = DefineWorkflow({
-    callback_id: "test_UpdateChannelTopic_slack_function",
-    title: "Test UpdateChannelTopic",
-    description: "This is a generated test to test UpdateChannelTopic",
-  });
-  testWorkflow.addStep(UpdateChannelTopic, {
-    channel_id: "test",
-    topic: "test",
-  });
-  const actual = testWorkflow.steps[0].export();
+Deno.test("UpdateChannelTopic can be used as a Slack function in a workflow step", () => {const testWorkflow = DefineWorkflow({callback_id: "test_UpdateChannelTopic_slack_function", 
+title: "Test UpdateChannelTopic", 
+description: "This is a generated test to test UpdateChannelTopic"});
+testWorkflow.addStep(UpdateChannelTopic, {channel_id: "test",
+topic: "test"});
+const actual = testWorkflow.steps[0].export();
 
-  assertEquals(actual.function_id, "slack#/functions/update_channel_topic");
-  assertEquals(actual.inputs, { channel_id: "test", topic: "test" });
-});
+assertEquals(actual.function_id, "slack#/functions/update_channel_topic");
+assertEquals(actual.inputs, {channel_id: "test",
+topic: "test"});});
 
-Deno.test("All outputs of Slack function UpdateChannelTopic should exist", () => {
-  const testWorkflow = DefineWorkflow({
-    callback_id: "test_UpdateChannelTopic_slack_function",
-    title: "Test UpdateChannelTopic",
-    description: "This is a generated test to test UpdateChannelTopic",
-  });
-  const step = testWorkflow.addStep(UpdateChannelTopic, {
-    channel_id: "test",
-    topic: "test",
-  });
-  assertExists(step.outputs.topic);
-});
+Deno.test("All outputs of Slack function UpdateChannelTopic should exist", () => {const testWorkflow = DefineWorkflow({callback_id: "test_UpdateChannelTopic_slack_function", 
+title: "Test UpdateChannelTopic", 
+description: "This is a generated test to test UpdateChannelTopic"});
+const step = testWorkflow.addStep(UpdateChannelTopic, {channel_id: "test",
+topic: "test"});
+assertExists(step.outputs.topic);});

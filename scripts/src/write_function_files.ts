@@ -4,6 +4,8 @@ import SlackFunctionModTemplate from "./templates/template_mod.ts";
 import { getSlackFunctions, greenText, redText } from "./utils.ts";
 import { FunctionRecord } from "./types.ts";
 
+const CONNECTORS_PATH = `${import.meta.url.split("scripts")[0]}src/connectors`;
+console.log(CONNECTORS_PATH);
 const VALID_FILENAME_REGEX = /^[0-9a-zA-Z_\-]+$/;
 
 const slackFunctions: FunctionRecord[] = await getSlackFunctions();
@@ -26,13 +28,17 @@ await Promise.all(
       );
       return;
     }
-    const filename = `../${functionRecord.callback_id}.ts`;
-    const testFilename = `../${functionRecord.callback_id}_test.ts`;
+    const filename = new URL(
+      `${CONNECTORS_PATH}/${functionRecord.callback_id}.ts`,
+    );
+    const testFilename = new URL(
+      `${CONNECTORS_PATH}/${functionRecord.callback_id}_test.ts`,
+    );
 
     const templateString = SlackFunctionTemplate(functionRecord);
     const templateTestString = SlackTestFunctionTemplate(functionRecord);
 
-    await Deno.writeTextFile(filename, templateString);
+    await Deno.writeTextFile(filename, templateString, {});
     await Deno.writeTextFile(testFilename, templateTestString);
   }),
 );
@@ -43,5 +49,5 @@ console.log(
 
 const modString = SlackFunctionModTemplate(slackFunctions);
 
-await Deno.writeTextFile("../mod.ts", modString);
+await Deno.writeTextFile(new URL(`${CONNECTORS_PATH}/mod.ts`), modString);
 console.log("Updated functions module export");

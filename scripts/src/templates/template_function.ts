@@ -1,6 +1,6 @@
-import { isCustomType } from "../../../../../../types/mod.ts";
-import { Schema } from "../deps.ts";
-import { InternalSlackTypes } from "../deps.ts";
+import { isCustomType } from "../deps.ts";
+import { Schema } from "../../../src/deps.ts";
+import { InternalSlackTypes } from "../../../src/deps.ts";
 import {
   FunctionParameter,
   FunctionProperties,
@@ -17,7 +17,7 @@ import { AllowedTypeValue, AllowedTypeValueObject } from "./types.ts";
 
 const typeMap: Record<string, AllowedTypeValueObject> = {
   SchemaTypes: Schema.types,
-  SlackTypes: Schema.slack,
+  SlackTypes: Schema.slack.types,
   InternalSlackTypes,
 };
 
