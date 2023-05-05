@@ -16,6 +16,23 @@ import SendEphemeralMessage from "./send_ephemeral_message.ts";
 import SendMessage from "./send_message.ts";
 import UpdateChannelTopic from "./update_channel_topic.ts";
 
-const SlackFunctions = {AddBookmark,AddChannelManager,AddPin,AddUserToUsergroup,ArchiveChannel,CreateChannel,CreateUsergroup,Delay,InviteUserToChannel,OpenForm,RemoveUserFromUsergroup,ReplyInThread,SendDm,SendEphemeralMessage,SendMessage,UpdateChannelTopic} as const;
+const SlackFunctions = {
+  AddBookmark,
+  AddChannelManager,
+  AddPin,
+  AddUserToUsergroup,
+  ArchiveChannel,
+  CreateChannel,
+  CreateUsergroup,
+  Delay,
+  InviteUserToChannel,
+  OpenForm,
+  RemoveUserFromUsergroup,
+  ReplyInThread,
+  SendDm,
+  SendEphemeralMessage,
+  SendMessage,
+  UpdateChannelTopic,
+} as const;
 
 export default SlackFunctions;

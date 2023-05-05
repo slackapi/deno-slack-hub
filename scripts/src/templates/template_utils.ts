@@ -68,15 +68,15 @@ const extractTypes = (properties: FunctionProperty[]): string[] => {
 export function renderTypeImports(functionRecord: FunctionRecord) {
   const typescript: string[] = [];
   const functionRecordTypes = extractTypes(getParameterList(functionRecord));
-  if (hasTypeObject(functionRecordTypes, Schema.types)) {
-    typescript.push('import Schema.types from "../../schema_types.ts";');
-  }
-  if (hasTypeObject(functionRecordTypes, Schema.slack.types)) {
-    typescript.push('import Schema.slack.types from "../schema_types.ts";');
+  if (
+    hasTypeObject(functionRecordTypes, Schema.types) ||
+    hasTypeObject(functionRecordTypes, Schema.slack.types)
+  ) {
+    typescript.push('import { Schema } from "../deps.ts";');
   }
   if (hasTypeObject(functionRecordTypes, InternalSlackTypes)) {
     typescript.push(
-      'import { InternalSlackTypes } from "../types/custom/mod.ts";',
+      'import { InternalSlackTypes } from "../deps.ts";',
     );
   }
   return typescript.join("\n");

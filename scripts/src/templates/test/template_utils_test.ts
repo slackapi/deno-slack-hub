@@ -85,9 +85,8 @@ Deno.test("renderTypeImports should render all imports provided with slack and p
     ],
   };
   const actual = renderTypeImports(dfi);
-  assertStringIncludes(actual, "Schema.types");
-  assertStringIncludes(actual, "Schema.slack.types");
-  assertStringIncludes(actual, "InternalSchema.slack.types");
+  assertStringIncludes(actual, "Schema");
+  assertStringIncludes(actual, "InternalSlackTypes");
 });
 
 Deno.test("renderTypeImports should render imports required for array type", () => {
@@ -110,8 +109,7 @@ Deno.test("renderTypeImports should render imports required for array type", () 
     ],
   };
   const actual = renderTypeImports(dfi);
-  assertStringIncludes(actual, "Schema.types");
-  assertStringIncludes(actual, "Schema.slack.types");
+  assertStringIncludes(actual, "Schema");
 });
 
 Deno.test("renderTypeImports should render imports required for object type", () => {
@@ -136,8 +134,7 @@ Deno.test("renderTypeImports should render imports required for object type", ()
     ],
   };
   const actual = renderTypeImports(dfi);
-  assertStringIncludes(actual, "Schema.types");
-  assertStringIncludes(actual, "Schema.slack.types");
+  assertStringIncludes(actual, "Schema");
 });
 
 Deno.test("renderTypeImports should render imports required for a nested complex object type", () => {
@@ -166,9 +163,8 @@ Deno.test("renderTypeImports should render imports required for a nested complex
     ],
   };
   const actual = renderTypeImports(dfi);
-  assertStringIncludes(actual, "InternalSchema.slack.types");
-  assertStringIncludes(actual, "Schema.types");
-  assertStringIncludes(actual, "Schema.slack.types");
+  assertStringIncludes(actual, "InternalSlackTypes");
+  assertStringIncludes(actual, "Schema");
 });
 
 Deno.test("renderTypeImports should render imports required for primitive & complex types", () => {
@@ -202,5 +198,5 @@ Deno.test("renderTypeImports should render imports required for primitive & comp
     ],
   };
   const actual = renderTypeImports(dfi);
-  assertStringIncludes(actual, "Schema.types");
+  assertStringIncludes(actual, "Schema");
 });

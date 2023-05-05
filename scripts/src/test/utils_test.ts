@@ -20,9 +20,7 @@ Deno.test("colored text remain consistent", () => {
 });
 
 Deno.test("Non Slack functions should be filtered", async () => {
-  const actual = await getSlackFunctions(
-    "src/schema/slack/functions/_scripts/src/test/data/function.json",
-  );
+  const actual = await getSlackFunctions("scripts/src/test/data/function.json");
   assertEquals(actual.length, 1);
 });
 

@@ -13,7 +13,9 @@ done
 # Writes the function & test files based on a functions.json file existing alongside this script
 deno run --quiet --allow-read --allow-write ./src/write_function_files.ts --CONNECTORS_PATH $CONNECTORS_PATH
 
+cd $PROJECT_DIRECTORY
+
 echo "Formatting Slack function files..."
-deno fmt --quiet ../*.ts
+deno fmt --quiet
 echo "Linting Slack function files..."
-deno lint --quiet ../*.ts
+deno lint --quiet
