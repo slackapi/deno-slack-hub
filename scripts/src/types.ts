@@ -32,7 +32,7 @@ export type FunctionRecord = {
   callback_id: string;
   title: string;
   description: string;
-  app_id?: string;
+  app_id: string;
   input_parameters: FunctionParameter[];
   output_parameters: FunctionParameter[];
   type?: string;

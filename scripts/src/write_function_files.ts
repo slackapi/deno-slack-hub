@@ -1,7 +1,12 @@
 import SlackFunctionTemplate from "./templates/template_function.ts";
 import SlackTestFunctionTemplate from "./templates/test_template.ts";
 import SlackFunctionModTemplate from "./templates/template_mod.ts";
-import { getSlackFunctions, greenText, redText } from "./utils.ts";
+import {
+  getSlackFunctions,
+  greenText,
+  groupSlackFunctions,
+  redText,
+} from "./utils.ts";
 import { FunctionRecord } from "./types.ts";
 import { parse } from "./deps.ts";
 
@@ -16,35 +21,45 @@ const VALID_FILENAME_REGEX = /^[0-9a-zA-Z_\-]+$/;
 
 const slackFunctions: FunctionRecord[] = await getSlackFunctions();
 
+const groupedSlackFunctions: Record<string, FunctionRecord[]> =
+  groupSlackFunctions(slackFunctions);
+
 // Sorting alphabetically cause only a monster would generate these in a random order
 slackFunctions.sort((a, b) => a.callback_id.localeCompare(b.callback_id));
 
 await Promise.all(
-  slackFunctions.map(async (functionRecord: FunctionRecord) => {
-    console.log(
-      `Generating code & tests for Slack function: ${
-        greenText(functionRecord.callback_id)
-      }`,
-    );
-    if (!VALID_FILENAME_REGEX.test(functionRecord.callback_id)) {
-      console.log(
-        `${redText("FAILURE:")} Invalid characters in callback_id: ${
-          redText(functionRecord.callback_id)
-        }`,
-      );
-      return;
-    }
-    const filename =
-      `${flags.CONNECTORS_PATH}/${functionRecord.callback_id}.ts`;
-    const testFilename =
-      `${flags.CONNECTORS_PATH}/${functionRecord.callback_id}_test.ts`;
+  Object.entries(groupedSlackFunctions).map(
+    async ([key, functionRecords]) => {
+      for (const functionRecord of functionRecords) {
+        console.log(
+          `Generating code & tests for Slack function: ${
+            greenText(functionRecord.callback_id)
+          }`,
+        );
+        if (!VALID_FILENAME_REGEX.test(functionRecord.callback_id)) {
+          console.log(
+            `${redText("FAILURE:")} Invalid characters in callback_id: ${
+              redText(functionRecord.callback_id)
+            }`,
+          );
+          return;
+        }
 
-    const templateString = SlackFunctionTemplate(functionRecord);
-    const templateTestString = SlackTestFunctionTemplate(functionRecord);
+        const connectorPath = `${flags.CONNECTORS_PATH}/${key}`;
+        await Deno.mkdir(connectorPath, { recursive: true });
 
-    await Deno.writeTextFile(filename, templateString, {});
-    await Deno.writeTextFile(testFilename, templateTestString);
-  }),
+        const filename = `${connectorPath}/${functionRecord.callback_id}.ts`;
+        const testFilename =
+          `${connectorPath}/${functionRecord.callback_id}_test.ts`;
+
+        const templateString = SlackFunctionTemplate(functionRecord);
+        const templateTestString = SlackTestFunctionTemplate(functionRecord);
+
+        await Deno.writeTextFile(filename, templateString);
+        await Deno.writeTextFile(testFilename, templateTestString);
+      }
+    },
+  ),
 );
 
 console.log(

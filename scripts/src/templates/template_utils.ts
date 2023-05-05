@@ -72,11 +72,11 @@ export function renderTypeImports(functionRecord: FunctionRecord) {
     hasTypeObject(functionRecordTypes, Schema.types) ||
     hasTypeObject(functionRecordTypes, Schema.slack.types)
   ) {
-    typescript.push('import { Schema } from "../deps.ts";');
+    typescript.push('import { Schema } from "../../deps.ts";');
   }
   if (hasTypeObject(functionRecordTypes, InternalSlackTypes)) {
     typescript.push(
-      'import { InternalSlackTypes } from "../deps.ts";',
+      'import { InternalSlackTypes } from "../../deps.ts";',
     );
   }
   return typescript.join("\n");
