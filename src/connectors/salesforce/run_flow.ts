@@ -3,7 +3,7 @@ import { DefineFunction } from "../../deps.ts";
 import { Schema } from "../../deps.ts";
 
 export default DefineFunction({
-  callback_id: "slack#/functions/run_flow",
+  callback_id: "A04T99UKKQE#/functions/run_flow",
   source_file: "",
   title: "Run a Salesforce Flow - Beta",
   description: "Run an Autolaunched Salesforce Flow",

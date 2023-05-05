@@ -3,7 +3,7 @@ import { DefineFunction } from "../../deps.ts";
 import { Schema } from "../../deps.ts";
 
 export default DefineFunction({
-  callback_id: "slack#/functions/create_event",
+  callback_id: "A050C90PUF5#/functions/create_event",
   source_file: "",
   title: "Add a Google Calendar Event - Beta ",
   description:

@@ -3,7 +3,7 @@ import { DefineFunction } from "../../deps.ts";
 import { Schema } from "../../deps.ts";
 
 export default DefineFunction({
-  callback_id: "slack#/functions/create_meeting",
+  callback_id: "A050R5T1K6X#/functions/create_meeting",
   source_file: "",
   title: "Create a meeting",
   description: "Create a scheduled Webex meeting",

@@ -3,7 +3,7 @@ import { DefineFunction } from "../../deps.ts";
 import { Schema } from "../../deps.ts";
 
 export default DefineFunction({
-  callback_id: "slack#/functions/create_issue",
+  callback_id: "A050HLW5TFV#/functions/create_issue",
   source_file: "",
   title: "Create a new issue",
   description: "Create a new GitLab project issue",

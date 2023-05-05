@@ -3,7 +3,7 @@ import { DefineFunction } from "../../deps.ts";
 import { Schema } from "../../deps.ts";
 
 export default DefineFunction({
-  callback_id: "slack#/functions/resolve_incident",
+  callback_id: "A04RSGH23L7#/functions/resolve_incident",
   source_file: "",
   title: "Resolve a Pagerduty Incident",
   description: "This step marks a Pagerduty Incident as resolved",

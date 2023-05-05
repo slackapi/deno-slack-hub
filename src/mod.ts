@@ -1,2 +1,2 @@
-import SlackFunctions from "./connectors/mod.ts";
-export { SlackFunctions };
+import Connectors from "./connectors/mod.ts";
+export { Connectors };

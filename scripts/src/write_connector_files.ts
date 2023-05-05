@@ -1,6 +1,8 @@
-import SlackFunctionTemplate from "./templates/template_function.ts";
-import SlackTestFunctionTemplate from "./templates/test_template.ts";
-import SlackFunctionModTemplate from "./templates/template_mod.ts";
+import SlackFunctionTemplate from "./templates/function.ts";
+import SlackTestFunctionTemplate from "./templates/test.ts";
+import ConnectorModTemplate, {
+  ConnectorsModTemplate,
+} from "./templates/mod.ts";
 import {
   getSlackFunctions,
   greenText,
@@ -29,10 +31,13 @@ slackFunctions.sort((a, b) => a.callback_id.localeCompare(b.callback_id));
 
 await Promise.all(
   Object.entries(groupedSlackFunctions).map(
-    async ([key, functionRecords]) => {
+    async ([namespace, functionRecords]) => {
+      const connectorPath = `${flags.CONNECTORS_PATH}/${namespace}`;
+      await Deno.mkdir(connectorPath, { recursive: true });
+
       for (const functionRecord of functionRecords) {
         console.log(
-          `Generating code & tests for Slack function: ${
+          `Generating code & tests for ${namespace} connector: ${
             greenText(functionRecord.callback_id)
           }`,
         );
@@ -45,9 +50,6 @@ await Promise.all(
           return;
         }
 
-        const connectorPath = `${flags.CONNECTORS_PATH}/${key}`;
-        await Deno.mkdir(connectorPath, { recursive: true });
-
         const filename = `${connectorPath}/${functionRecord.callback_id}.ts`;
         const testFilename =
           `${connectorPath}/${functionRecord.callback_id}_test.ts`;
@@ -58,6 +60,9 @@ await Promise.all(
         await Deno.writeTextFile(filename, templateString);
         await Deno.writeTextFile(testFilename, templateTestString);
       }
+      const modString = ConnectorModTemplate(namespace, functionRecords);
+
+      await Deno.writeTextFile(`${connectorPath}//mod.ts`, modString);
     },
   ),
 );
@@ -66,7 +71,7 @@ console.log(
   `Generated ${slackFunctions.length} Slack functions with their unit tests`,
 );
 
-const modString = SlackFunctionModTemplate(slackFunctions);
+const modString = ConnectorsModTemplate(Object.keys(groupedSlackFunctions));
 
 await Deno.writeTextFile(`${flags.CONNECTORS_PATH}/mod.ts`, modString);
 console.log("Updated functions module export");

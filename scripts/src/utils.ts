@@ -17,7 +17,7 @@ export const greenText = (text: string) => green + text + reset;
 export const yellowText = (text: string) => yellow + text + reset;
 export const redText = (text: string) => red + text + reset;
 
-const APP_ID_TABLE: Record<string, string> = {
+const APP_ID_NAMESPACE_TABLE: Record<string, string> = {
   "A04T99UKKQE": "salesforce",
   "A050HLW5TFV": "gitlab",
   "A04RSGH23L7": "pagerduty",
@@ -37,7 +37,7 @@ export function groupSlackFunctions(
 ): Record<string, FunctionRecord[]> {
   const functionRecordGroups: Record<string, FunctionRecord[]> = {};
   for (const functionRecord of functionRecords) {
-    const key = APP_ID_TABLE[functionRecord.app_id];
+    const key = APP_ID_NAMESPACE_TABLE[functionRecord.app_id];
     if (functionRecordGroups[key]) {
       functionRecordGroups[key].push(functionRecord);
     } else {

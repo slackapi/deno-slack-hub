@@ -3,7 +3,7 @@ import { DefineFunction } from "../../deps.ts";
 import { Schema } from "../../deps.ts";
 
 export default DefineFunction({
-  callback_id: "slack#/functions/update_spreadsheet_row",
+  callback_id: "A04MG80N5CY#/functions/update_spreadsheet_row",
   source_file: "",
   title: "Update a spreadsheet row - Beta",
   description: "This function updates a row in a spreadsheet",

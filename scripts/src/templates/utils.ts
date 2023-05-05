@@ -16,14 +16,24 @@ export function renderFunctionImport(callbackId: string): string {
   return `import ${getFunctionName(callbackId)} from "./${callbackId}.ts";`;
 }
 
+export function renderModuleImport(namespace: string): string {
+  return `import ${
+    getConnectorObjectName(namespace)
+  } from "./${namespace}/mod.ts";`;
+}
+
 export function getFunctionName(callbackId: string): string {
   return pascalCase(callbackId);
+}
+
+export function getConnectorObjectName(namespace: string): string {
+  return pascalCase(namespace);
 }
 
 export function getSlackCallbackId(
   functionRecord: FunctionRecord,
 ): string {
-  return `slack#/functions/${functionRecord.callback_id}`;
+  return `${functionRecord.app_id}#/functions/${functionRecord.callback_id}`;
 }
 
 export function getParameterType(type: AllowedTypeValue): string {

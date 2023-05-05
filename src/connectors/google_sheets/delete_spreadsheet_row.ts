@@ -3,7 +3,7 @@ import { DefineFunction } from "../../deps.ts";
 import { Schema } from "../../deps.ts";
 
 export default DefineFunction({
-  callback_id: "slack#/functions/delete_spreadsheet_row",
+  callback_id: "A04MG80N5CY#/functions/delete_spreadsheet_row",
   source_file: "",
   title: "Delete a spreadsheet row - Beta",
   description: "This function deletes a row from a spreadsheet",

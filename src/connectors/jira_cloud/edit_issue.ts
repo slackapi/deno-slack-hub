@@ -3,7 +3,7 @@ import { DefineFunction } from "../../deps.ts";
 import { Schema } from "../../deps.ts";
 
 export default DefineFunction({
-  callback_id: "slack#/functions/edit_issue",
+  callback_id: "A04T6GE3LEB#/functions/edit_issue",
   source_file: "",
   title: "Jira Cloud - Edit an Issue",
   description:

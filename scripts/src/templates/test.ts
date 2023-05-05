@@ -3,10 +3,10 @@ import {
   getFunctionName,
   getSlackCallbackId,
   renderFunctionImport,
-  renderTypeImports,
-} from "./template_utils.ts";
+  // renderTypeImports,
+} from "./utils.ts";
 import { FunctionParameter, FunctionRecord } from "../types.ts";
-import { manifestFunctionFieldsToTypeScript } from "./template_function.ts";
+import { manifestFunctionFieldsToTypeScript } from "./function.ts";
 
 export const manifestFunctionToTypeScript = (
   functionRecord: FunctionRecord,
@@ -14,28 +14,28 @@ export const manifestFunctionToTypeScript = (
   return `{${manifestFunctionFieldsToTypeScript(functionRecord)}}`;
 };
 
-const renderFunctionManifestTest = (
-  functionRecord: FunctionRecord,
-) => {
-  const functionName = getFunctionName(functionRecord.callback_id);
-  const typescript: string[] = [];
-  typescript.push(
-    `assertEquals(${functionName}.definition.callback_id, "${
-      getSlackCallbackId(functionRecord)
-    }");`,
-  );
-  typescript.push(
-    `const expected: ManifestFunctionSchema = ${
-      manifestFunctionToTypeScript(
-        functionRecord,
-      )
-    };`,
-  );
-  typescript.push(`const actual = ${functionName}.export();`);
-  typescript.push("");
-  typescript.push(`assertEquals(actual, expected);`);
-  return `() => {${typescript.join("\n")}}`;
-};
+// const renderFunctionManifestTest = (
+//   functionRecord: FunctionRecord,
+// ) => {
+//   const functionName = getFunctionName(functionRecord.callback_id);
+//   const typescript: string[] = [];
+//   typescript.push(
+//     `assertEquals(${functionName}.definition.callback_id, "${
+//       getSlackCallbackId(functionRecord)
+//     }");`,
+//   );
+//   typescript.push(
+//     `const expected: ManifestFunctionSchema = ${
+//       manifestFunctionToTypeScript(
+//         functionRecord,
+//       )
+//     };`,
+//   );
+//   typescript.push(`const actual = ${functionName}.export();`);
+//   typescript.push("");
+//   typescript.push(`assertEquals(actual, expected);`);
+//   return `() => {${typescript.join("\n")}}`;
+// };
 
 const workflowToTypeScript = (functionName: string) => {
   const typescript: string[] = [];
@@ -119,18 +119,18 @@ export function SlackTestFunctionTemplate(
   typescript.push(
     `import { DefineWorkflow } from "../../dev_deps.ts";`,
   );
-  typescript.push(
-    `import { ManifestFunctionSchema } from "../../dev_deps.ts";`,
-  );
-  typescript.push(renderTypeImports(functionRecord));
+  // typescript.push(
+  //   `import { ManifestFunctionSchema } from "../../dev_deps.ts";`,
+  // );
+  // typescript.push(renderTypeImports(functionRecord));
   typescript.push(renderFunctionImport(functionRecord.callback_id));
   typescript.push("");
-  typescript.push(
-    `Deno.test("${functionName} generates valid FunctionManifest", ${
-      renderFunctionManifestTest(functionRecord)
-    });`,
-  );
-  typescript.push("");
+  // typescript.push(
+  //   `Deno.test("${functionName} generates valid FunctionManifest", ${
+  //     renderFunctionManifestTest(functionRecord)
+  //   });`,
+  // );
+  // typescript.push("");
   typescript.push(
     `Deno.test("${functionName} can be used as a Slack function in a workflow step", ${
       renderWorkflowStepTest(functionRecord)

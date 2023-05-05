@@ -3,7 +3,7 @@ import { DefineFunction } from "../../deps.ts";
 import { Schema } from "../../deps.ts";
 
 export default DefineFunction({
-  callback_id: "slack#/functions/get_event_link",
+  callback_id: "A050MUYMYFP#/functions/get_event_link",
   source_file: "",
   title: "Get Calendly Meeting Link",
   description: "This step gets a Calendly meeting link by event type",

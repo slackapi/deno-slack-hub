@@ -3,7 +3,7 @@ import { DefineFunction } from "../../deps.ts";
 import { Schema } from "../../deps.ts";
 
 export default DefineFunction({
-  callback_id: "slack#/functions/get_translated_gif",
+  callback_id: "A04U5QUE5EX#/functions/get_translated_gif",
   source_file: "",
   title: "Convert words to GIF",
   description:

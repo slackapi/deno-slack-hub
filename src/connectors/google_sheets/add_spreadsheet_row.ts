@@ -3,7 +3,7 @@ import { DefineFunction } from "../../deps.ts";
 import { Schema } from "../../deps.ts";
 
 export default DefineFunction({
-  callback_id: "slack#/functions/add_spreadsheet_row",
+  callback_id: "A04MG80N5CY#/functions/add_spreadsheet_row",
   source_file: "",
   title: "Add a spreadsheet row - Beta",
   description: "This step adds a new row to a Google sheet",

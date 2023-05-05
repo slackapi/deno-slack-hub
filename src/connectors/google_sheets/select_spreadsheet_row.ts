@@ -3,7 +3,7 @@ import { DefineFunction } from "../../deps.ts";
 import { Schema } from "../../deps.ts";
 
 export default DefineFunction({
-  callback_id: "slack#/functions/select_spreadsheet_row",
+  callback_id: "A04MG80N5CY#/functions/select_spreadsheet_row",
   source_file: "",
   title: "Select a spreadsheet row - Beta",
   description: "This function selects a new from a spreadsheet",
