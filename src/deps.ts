@@ -1,5 +1,18 @@
-export { InternalSlackTypes } from "https://deno.land/x/deno_slack_sdk@2.1.0/schema/slack/types/custom/mod.ts";
+export { InternalSlackTypes } from "../../deno-slack-sdk/src/schema/slack/types/custom/mod.ts";
 export {
   DefineFunction,
   Schema,
-} from "https://deno.land/x/deno_slack_sdk@2.1.0/mod.ts";
+  SlackManifest,
+} from "../../deno-slack-sdk/src/mod.ts";
+export { SlackFunctionDefinition } from "../../deno-slack-sdk/src/functions/mod.ts";
+
+export type { FunctionDefinitionArgs } from "../../deno-slack-sdk/src/functions/types.ts";
+export type {
+  ManifestFunctionParameters,
+  ManifestFunctionSchema,
+} from "../../deno-slack-sdk/src/manifest/manifest_schema.ts";
+export type {
+  ParameterPropertiesDefinition,
+  ParameterSetDefinition,
+  PossibleParameterKeys,
+} from "../../deno-slack-sdk/src/parameters/types.ts";
