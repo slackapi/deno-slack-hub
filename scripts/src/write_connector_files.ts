@@ -1,4 +1,4 @@
-import SlackFunctionTemplate from "./templates/function.ts";
+import SlackFunctionTemplate from "./templates/connector.ts";
 import SlackTestFunctionTemplate from "./templates/test.ts";
 import ConnectorModTemplate, {
   ConnectorsModTemplate,
@@ -68,7 +68,7 @@ await Promise.all(
 );
 
 console.log(
-  `Generated ${slackFunctions.length} Slack functions with their unit tests`,
+  `Generated ${slackFunctions.length} Connectors with their unit tests`,
 );
 
 const modString = ConnectorsModTemplate(Object.keys(groupedSlackFunctions));

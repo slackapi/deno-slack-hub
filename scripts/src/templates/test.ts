@@ -6,7 +6,7 @@ import {
   // renderTypeImports,
 } from "./utils.ts";
 import { FunctionParameter, FunctionRecord } from "../types.ts";
-import { manifestFunctionFieldsToTypeScript } from "./function.ts";
+import { manifestFunctionFieldsToTypeScript } from "./connector.ts";
 
 export const manifestFunctionToTypeScript = (
   functionRecord: FunctionRecord,
