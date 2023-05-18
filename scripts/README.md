@@ -1,4 +1,4 @@
-# Generating Slack function source files
+# Generating connector function source files
 
 This script will generate the necessary function TypeScript files along with
 their tests in the `schema/slack/functions` directory, i.e.
@@ -11,34 +11,21 @@ corresponding test, the tests must be removed manually.
 ## Instructions
 
 1. First, you'll need to grab a payload from `functions.list` and place the
-   response in a `functions.json` file inside of this `_scripts` directory.
+   response in a `functions.json` file inside of this `scripts` directory.
 
-2. With this `scripts` directory as your working directory, run the generate
+2. From the project level directory as your working directory, run the generate
    script:
 
    ```sh
-   > ./generate
+   ./scripts/generate
    ```
 
 3. This will output something like the following:
 
    ```txt
    Cleaning folder directory
-   Generating code & tests for Slack function: add_pin
-   Generating code & tests for Slack function: add_user_to_usergroup
-   Generating code & tests for Slack function: archive_channel
-   Generating code & tests for Slack function: create_channel
-   Generating code & tests for Slack function: create_usergroup
-   Generating code & tests for Slack function: delay
-   Generating code & tests for Slack function: invite_user_to_channel
-   Generating code & tests for Slack function: open_form
-   Generating code & tests for Slack function: remove_user_from_usergroup
-   Generating code & tests for Slack function: reply_in_thread
-   Generating code & tests for Slack function: send_dm
-   Generating code & tests for Slack function: send_ephemeral_message
-   Generating code & tests for Slack function: send_message
-   Generating code & tests for Slack function: update_channel_topic
-   Generated 14 Slack functions with their unit tests
+   ...
+   Generated 19 Connectors with their unit tests
    Updated functions module export
    Formatting Slack function files...
    Linting Slack function files...
