@@ -32,7 +32,7 @@ slackFunctions.sort((a, b) => a.callback_id.localeCompare(b.callback_id));
 await Promise.all(
   Object.entries(groupedSlackFunctions).map(
     async ([namespace, functionRecords]) => {
-      const connectorPath = `${flags.CONNECTORS_PATH}/${namespace}`;
+      const connectorPath = `${flags.CONNECTORS_PATH}/${namespace}/functions`;
       await Deno.mkdir(connectorPath, { recursive: true });
 
       for (const functionRecord of functionRecords) {
