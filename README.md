@@ -61,16 +61,19 @@ const response = AnswerSurveyWorkflow.addStep(
   },
 );
 
-AnswerSurveyWorkflow.addStep(Connectors.GoogleSheets.functions.AddSpreadsheetRow, {
-  google_access_token: {
-    credential_source: "END_USER",
+AnswerSurveyWorkflow.addStep(
+  Connectors.GoogleSheets.functions.AddSpreadsheetRow,
+  {
+    google_access_token: {
+      credential_source: "END_USER",
+    },
+    spreadsheet_id: AnswerSurveyWorkflow.inputs.google_spreadsheet_id,
+    columns: [
+      "=NOW()",
+      response.outputs.fields.impression,
+      response.outputs.fields.comments || "",
+    ],
+    sheet_title: "Responses",
   },
-  spreadsheet_id: AnswerSurveyWorkflow.inputs.google_spreadsheet_id,
-  columns: [
-    "=NOW()",
-    response.outputs.fields.impression,
-    response.outputs.fields.comments || "",
-  ],
-  sheet_title: "Responses",
-});
+);
 ```
