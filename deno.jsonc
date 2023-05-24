@@ -1,27 +1,33 @@
 {
   "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
   "fmt": {
-    "include": [
+    "files": {"include": [
       "src",
       "docs",
       "README.md",
       "scripts",
       ".github",
       "build_npm.ts"
-    ],
-    "semiColons": true,
-    "indentWidth": 2,
-    "lineWidth": 80,
-    "proseWrap": "always",
-    "singleQuote": false,
-    "useTabs": false
+    ]},
+    "options": {
+      "semiColons": true,
+      "indentWidth": 2,
+      "lineWidth": 80,
+      "proseWrap": "always",
+      "singleQuote": false,
+      "useTabs": false
+    }
   },
   "lint": {
-    "include": ["src", "scripts"],
-    "exclude": ["**/*.md"]
+    "files": {
+      "include": ["src", "scripts"],
+      "exclude": ["**/*.md"]
+    },
   },
   "test": {
-    "include": ["src", "scripts"]
+    "files": {
+      "include": ["src", "scripts"]
+    }
   },
   "importMap": "import_map.json",
   "tasks": {
