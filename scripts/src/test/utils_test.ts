@@ -1,5 +1,5 @@
 import {
-  getSlackFunctions,
+  getFunctionRecords,
   greenText,
   isArrayFunctionProperty,
   isObjectFunctionProperty,
@@ -20,8 +20,11 @@ Deno.test("colored text remain consistent", () => {
 });
 
 Deno.test("Non Slack functions should be filtered", async () => {
-  const actual = await getSlackFunctions("scripts/src/test/data/function.json");
+  const actual = await getFunctionRecords(
+    "scripts/src/test/data/function.json",
+  );
   assertEquals(actual.length, 1);
+  assertEquals(actual[0].type, "app");
 });
 
 Deno.test("isObjectFunctionProperty distinguishes ObjectFunctionProperty from FunctionProperty", () => {

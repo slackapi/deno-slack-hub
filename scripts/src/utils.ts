@@ -47,7 +47,7 @@ export function groupSlackFunctions(
   return functionRecordGroups;
 }
 
-export async function getSlackFunctions(
+export async function getFunctionRecords(
   functionsPayloadPath: string = FUNCTIONS_JSON_PATH,
 ): Promise<FunctionRecord[]> {
   const functionsPayload: FunctionsPayload = await Deno.readTextFile(
@@ -67,4 +67,15 @@ export function isArrayFunctionProperty(
   property: FunctionProperty,
 ): property is ArrayFunctionProperty {
   return "items" in property;
+}
+
+export async function writeTextFileInDir(
+  data: string,
+  options: {
+    dir: string;
+    filename: string;
+  },
+) {
+  await Deno.mkdir(options.dir, { recursive: true });
+  await Deno.writeTextFile(`${options.dir}/${options.filename}`, data);
 }

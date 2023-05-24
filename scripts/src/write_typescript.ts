@@ -1,13 +1,14 @@
-import SlackFunctionTemplate from "./templates/connector.ts";
-import SlackTestFunctionTemplate from "./templates/test.ts";
+import FunctionTemplate from "./templates/function.ts";
+import TestFunctionTemplate from "./templates/test.ts";
 import ConnectorModTemplate, {
   ConnectorsModTemplate,
 } from "./templates/mod.ts";
 import {
-  getSlackFunctions,
+  getFunctionRecords,
   greenText,
   groupSlackFunctions,
   redText,
+  writeTextFileInDir,
 } from "./utils.ts";
 import { FunctionRecord } from "./types.ts";
 import { parse } from "./deps.ts";
@@ -21,7 +22,7 @@ const flags = parse(Deno.args, {
 
 const VALID_FILENAME_REGEX = /^[0-9a-zA-Z_\-]+$/;
 
-const slackFunctions: FunctionRecord[] = await getSlackFunctions();
+const slackFunctions: FunctionRecord[] = await getFunctionRecords();
 
 const groupedSlackFunctions: Record<string, FunctionRecord[]> =
   groupSlackFunctions(slackFunctions);
@@ -32,7 +33,7 @@ slackFunctions.sort((a, b) => a.callback_id.localeCompare(b.callback_id));
 await Promise.all(
   Object.entries(groupedSlackFunctions).map(
     async ([namespace, functionRecords]) => {
-      const connectorPath = `${flags.CONNECTORS_PATH}/${namespace}/functions`;
+      const connectorPath = `${flags.CONNECTORS_PATH}/${namespace}`;
       await Deno.mkdir(connectorPath, { recursive: true });
 
       for (const functionRecord of functionRecords) {
@@ -50,19 +51,25 @@ await Promise.all(
           return;
         }
 
-        const filename = `${connectorPath}/${functionRecord.callback_id}.ts`;
-        const testFilename =
-          `${connectorPath}/${functionRecord.callback_id}_test.ts`;
+        const templateString = FunctionTemplate(functionRecord, {
+          depth: 3,
+        });
+        const templateTestString = TestFunctionTemplate(functionRecord, {
+          depth: 3,
+        });
 
-        const templateString = SlackFunctionTemplate(functionRecord);
-        const templateTestString = SlackTestFunctionTemplate(functionRecord);
-
-        await Deno.writeTextFile(filename, templateString);
-        await Deno.writeTextFile(testFilename, templateTestString);
+        await writeTextFileInDir(templateString, {
+          dir: `${connectorPath}/functions`,
+          filename: `${functionRecord.callback_id}.ts`,
+        });
+        await writeTextFileInDir(templateTestString, {
+          dir: `${connectorPath}/functions`,
+          filename: `${functionRecord.callback_id}_test.ts`,
+        });
       }
       const modString = ConnectorModTemplate(namespace, functionRecords);
 
-      await Deno.writeTextFile(`${connectorPath}//mod.ts`, modString);
+      await Deno.writeTextFile(`${connectorPath}/mod.ts`, modString);
     },
   ),
 );

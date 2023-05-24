@@ -1,10 +1,5 @@
 # Maintainers Guide
 
-This document describes tools, tasks and workflow that one needs to be familiar
-with in order to effectively maintain this project. If you use this package
-within your own software as is but don't plan on modifying it, this guide is
-**not** for you.
-
 ## Tools
 
 All you need to work on this project is a recent version of
@@ -23,9 +18,41 @@ All you need to work on this project is a recent version of
 
 ### Generating
 
-```zsh
-bash ./scripts/generate
-```
+This script will generate the necessary function TypeScript files along with
+their tests in the `src/connectors/` directory, i.e.
+`src/connectors/giphy/functions/get_random_gif.ts`,
+`src/connectors/giphy/functions/get_random_gif_test.ts` and
+`src/connectors/giphy/mod.ts`. It will also update the `src/connectors/mod.ts`
+file to import/export all of the defined functions. It will also remove outdated
+function TypeScript files but not their.
+
+#### Instructions
+
+1. First, you'll need to grab a payload from `functions.list`, it must contain
+   all the connectors we want to generate. Place the response in a
+   `functions.json` file inside of this `scripts` directory.
+
+2. From the project level directory, run the generate script:
+
+   ```sh
+   ./scripts/generate
+   ```
+
+3. This will output something like the following:
+
+   ```txt
+   Cleaning folder directory
+   ...
+   Generated 19 Connectors with their unit tests
+   Updated functions module export
+   Formatting Slack function files...
+   Linting Slack function files...
+   ```
+
+If it completes without any linter errors, you should be good to go, with new,
+formatted and linted TypeScript files for all of the Slack functions included in
+your `functions.json` payload. If there are any unexpected linting issues, you
+may need to go into those files and manually resolve any problems.
 
 ### Testing with Deno
 
