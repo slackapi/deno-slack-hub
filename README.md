@@ -61,7 +61,7 @@ const response = AnswerSurveyWorkflow.addStep(
   },
 );
 
-AnswerSurveyWorkflow.addStep(Connectors.GoogleSheets.AddSpreadsheetRow, {
+AnswerSurveyWorkflow.addStep(Connectors.GoogleSheets.functions.AddSpreadsheetRow, {
   google_access_token: {
     credential_source: "END_USER",
   },
