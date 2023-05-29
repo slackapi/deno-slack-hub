@@ -21,7 +21,7 @@ const APP_ID_NAMESPACE_TABLE: Record<string, string> = {
   "A04T99UKKQE": "salesforce",
   "A050HLW5TFV": "gitlab",
   "A04RSGH23L7": "pagerduty",
-  "A0516LWJMFE": "github_enterprise_server_tinyspeck",
+  "A0516LWJMFE": "github_enterprise_server",
   "A04MG80N5CY": "google_sheets",
   "A050MUYMYFP": "calendly",
   "A050QFW22F5": "github",

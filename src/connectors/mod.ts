@@ -2,7 +2,7 @@
 import Salesforce from "./salesforce/mod.ts";
 import Gitlab from "./gitlab/mod.ts";
 import Pagerduty from "./pagerduty/mod.ts";
-import GithubEnterpriseServerTinyspeck from "./github_enterprise_server_tinyspeck/mod.ts";
+import GithubEnterpriseServer from "./github_enterprise_server/mod.ts";
 import GoogleSheets from "./google_sheets/mod.ts";
 import Calendly from "./calendly/mod.ts";
 import Github from "./github/mod.ts";
@@ -16,7 +16,7 @@ const Connectors = {
   Salesforce,
   Gitlab,
   Pagerduty,
-  GithubEnterpriseServerTinyspeck,
+  GithubEnterpriseServer,
   GoogleSheets,
   Calendly,
   Github,
