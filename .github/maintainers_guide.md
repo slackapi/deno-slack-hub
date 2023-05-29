@@ -23,8 +23,7 @@ their tests in the `src/connectors/` directory, i.e.
 `src/connectors/giphy/functions/get_random_gif.ts`,
 `src/connectors/giphy/functions/get_random_gif_test.ts` and
 `src/connectors/giphy/mod.ts`. It will also update the `src/connectors/mod.ts`
-file to import/export all of the defined functions. It will also remove outdated
-function TypeScript files but not their.
+file to import/export all of the defined functions.
 
 #### Instructions
 
