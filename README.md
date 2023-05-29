@@ -16,7 +16,7 @@ Connectors used to build coded workflows for Run on Slack apps using Deno
 
 import this project in your next gen deno project
 
-use the connecotrs in a workflow
+use the connectors in a workflow
 
 ```ts
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
