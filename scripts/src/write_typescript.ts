@@ -14,9 +14,9 @@ import { FunctionRecord } from "./types.ts";
 import { parse } from "./deps.ts";
 
 const flags = parse(Deno.args, {
-  string: ["CONNECTORS_PATH"],
+  string: ["connectors_path"],
   default: {
-    "CONNECTORS_PATH": `./src/connectors`,
+    "connectors_path": `./src/connectors`,
   },
 });
 
@@ -33,7 +33,7 @@ slackFunctions.sort((a, b) => a.callback_id.localeCompare(b.callback_id));
 await Promise.all(
   Object.entries(groupedSlackFunctions).map(
     async ([namespace, functionRecords]) => {
-      const connectorPath = `${flags.CONNECTORS_PATH}/${namespace}`;
+      const connectorPath = `${flags.connectors_path}/${namespace}`;
       await Deno.mkdir(connectorPath, { recursive: true });
 
       for (const functionRecord of functionRecords) {
@@ -80,5 +80,5 @@ console.log(
 
 const modString = ConnectorsModTemplate(Object.keys(groupedSlackFunctions));
 
-await Deno.writeTextFile(`${flags.CONNECTORS_PATH}/mod.ts`, modString);
+await Deno.writeTextFile(`${flags.connectors_path}/mod.ts`, modString);
 console.log("Updated functions module export");

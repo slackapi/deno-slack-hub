@@ -11,7 +11,7 @@ ls -1 -d $CONNECTORS_PATH/* | while read -r filename ; do
 done
 
 # Writes the function & test files based on a functions.json file existing alongside this script
-deno run --quiet --allow-read --allow-write ./src/write_typescript.ts --CONNECTORS_PATH $CONNECTORS_PATH
+deno run --quiet --allow-read --allow-write ./src/write_typescript.ts --connectors_path $CONNECTORS_PATH
 
 cd $PROJECT_DIRECTORY
 
