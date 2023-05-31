@@ -6,9 +6,13 @@ CONNECTORS_PATH=$PROJECT_DIRECTORY/src/connectors
 
 # Clean parent directory of all files ending in .ts
 echo "Cleaning folder directory"
-ls -1 -d $CONNECTORS_PATH/* | while read -r filename ; do
-    rm -rf "$filename"
-done
+{
+    ls -1 -d $CONNECTORS_PATH/* | while read -r filename ; do
+        rm -rf "$filename"
+    done
+} || {
+    echo "Nothing to clean!"
+}
 
 # Writes the function & test files based on a functions.json file existing alongside this script
 deno run --quiet --allow-read --allow-write ./src/write_typescript.ts --connectors_path $CONNECTORS_PATH

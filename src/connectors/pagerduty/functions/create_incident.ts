@@ -4,19 +4,19 @@ import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
   callback_id: "A04RSGH23L7#/functions/create_incident",
-  title: "Create a Pagerduty Incident",
-  description: "This step creates a new Pagerduty Incident",
+  title: "Trigger an incident",
+  description: "Trigger a PagerDuty incident",
   input_parameters: {
     properties: {
       title: {
         type: Schema.types.string,
-        description: "Incident title",
-        title: "Title",
+        description: "Enter incident title...",
+        title: "Incident title",
       },
       details: {
         type: Schema.types.string,
-        description: "Incident details",
-        title: "Details",
+        description: "Enter incident details...",
+        title: "Incident details",
       },
       pagerduty_access_token: {
         type: Schema.slack.types.oauth2,
@@ -26,7 +26,7 @@ export default DefineConnector({
       pagerduty_team_id: {
         type: Schema.types.string,
         description: "PagerDuty Team",
-        title: "PagerDuty Team",
+        title: "Team",
       },
       service_id: {
         type: Schema.types.string,
@@ -42,6 +42,7 @@ export default DefineConnector({
     required: [
       "title",
       "details",
+      "pagerduty_access_token",
       "pagerduty_team_id",
       "service_id",
       "escalation_policy",
@@ -51,13 +52,65 @@ export default DefineConnector({
     properties: {
       incident_id: {
         type: Schema.types.string,
-        description: "Incident id",
-        title: "Incident Id",
+        description: "Incident ID",
+        title: "Incident ID",
       },
       incident_url: {
         type: Schema.types.string,
-        description: "Incident url",
-        title: "Incident url",
+        description: "Incident URL",
+        title: "Incident URL",
+      },
+      incident_title: {
+        type: Schema.types.string,
+        description: "Incident title",
+        title: "Incident title",
+      },
+      incident_details: {
+        type: Schema.types.string,
+        description: "Incident details",
+        title: "Incident details",
+      },
+      escalation_policy: {
+        type: Schema.types.object,
+        description: "Escalation Policy",
+        title: "Escalation policy",
+        properties: {
+          id: { type: Schema.types.string, title: "Escalation policy ID" },
+          summary: {
+            type: Schema.types.string,
+            title: "Escalation policy summary",
+          },
+          html_url: {
+            type: Schema.types.string,
+            title: "Escalation policy URL",
+          },
+        },
+        additionalProperties: true,
+        required: [],
+      },
+      service: {
+        type: Schema.types.object,
+        description: "Service",
+        title: "Service",
+        properties: {
+          id: { type: Schema.types.string, title: "Service ID" },
+          summary: { type: Schema.types.string, title: "Service summary" },
+          html_url: { type: Schema.types.string, title: "Service URL" },
+        },
+        additionalProperties: true,
+        required: [],
+      },
+      team: {
+        type: Schema.types.object,
+        description: "Team",
+        title: "Team",
+        properties: {
+          id: { type: Schema.types.string, title: "Team ID" },
+          summary: { type: Schema.types.string, title: "Team summary" },
+          html_url: { type: Schema.types.string, title: "Team URL" },
+        },
+        additionalProperties: true,
+        required: [],
       },
     },
     required: [],

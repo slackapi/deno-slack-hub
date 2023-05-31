@@ -4,9 +4,8 @@ import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
   callback_id: "A04U5QUE5EX#/functions/get_random_gif",
-  title: "Get a random GIF",
-  description:
-    "Returns a completely random GIF or a random GIF related to the word or phrase entered",
+  title: "Random GIF",
+  description: "Get a random Giphy GIF",
   input_parameters: {
     properties: {
       tag: {
@@ -27,20 +26,14 @@ export default DefineConnector({
       web_url: {
         type: Schema.types.string,
         description: "A link to this GIF on giphy.com",
-        title: "Web URL",
-      },
-      gif_url: {
-        type: Schema.types.string,
-        description:
-          "The URL for the original version of this GIF that can be used for unfurling in Slack",
-        title: "GIF URL",
+        title: "Giphy link",
       },
       title: {
         type: Schema.types.string,
         description: "The title of this GIF",
-        title: "Title",
+        title: "GIF title",
       },
     },
-    required: ["web_url", "gif_url"],
+    required: ["web_url"],
   },
 });

@@ -17,19 +17,39 @@ export const greenText = (text: string) => green + text + reset;
 export const yellowText = (text: string) => yellow + text + reset;
 export const redText = (text: string) => red + text + reset;
 
-const APP_ID_NAMESPACE_TABLE: Record<string, string> = {
-  "A04T99UKKQE": "salesforce",
-  "A050HLW5TFV": "gitlab",
-  "A04RSGH23L7": "pagerduty",
-  "A0516LWJMFE": "github_enterprise_server",
-  "A04MG80N5CY": "google_sheets",
-  "A050MUYMYFP": "calendly",
-  "A050QFW22F5": "github",
-  "A04S9208DRQ": "zoom",
-  "A04T6GE3LEB": "jira_cloud",
-  "A04U5QUE5EX": "giphy",
-  "A050C90PUF5": "google_calendar",
-  "A050R5T1K6X": "webex",
+type ConnectorInfoType = { namespace: string; functions: string[] };
+const APP_ID_NAMESPACE_TABLE: Record<string, ConnectorInfoType> = {
+  "A04T99UKKQE": {
+    namespace: "salesforce",
+    functions: ["create_record", "update_record", "run_flow"],
+  },
+  "A050HLW5TFV": { namespace: "gitlab", functions: ["create_issue"] },
+  "A04RSGH23L7": {
+    namespace: "pagerduty",
+    functions: [
+      "create_incident",
+      "escalate_incident",
+      "add_a_note",
+      "resolve_incident",
+    ],
+  },
+  "A04MG80N5CY": {
+    namespace: "google.sheets",
+    functions: ["add_spreadsheet_row"],
+  },
+  "A050MUYMYFP": { namespace: "calendly", functions: ["get_meeting_link"] },
+  "A050QFW22F5": { namespace: "github", functions: ["create_issue"] },
+  "A04S9208DRQ": { namespace: "zoom", functions: ["create_meeting"] },
+  "A04T6GE3LEB": {
+    namespace: "atlassian.jira",
+    functions: ["create_issue", "edit_issue"],
+  },
+  "A04U5QUE5EX": {
+    namespace: "giphy",
+    functions: ["get_random_gif", "get_translated_gif"],
+  },
+  "A050C90PUF5": { namespace: "google.calendar", functions: [] },
+  "A050R5T1K6X": { namespace: "webex", functions: [] },
 };
 
 export function groupSlackFunctions(
@@ -37,11 +57,17 @@ export function groupSlackFunctions(
 ): Record<string, FunctionRecord[]> {
   const functionRecordGroups: Record<string, FunctionRecord[]> = {};
   for (const functionRecord of functionRecords) {
-    const key = APP_ID_NAMESPACE_TABLE[functionRecord.app_id];
-    if (functionRecordGroups[key]) {
-      functionRecordGroups[key].push(functionRecord);
+    const connectorInfo = APP_ID_NAMESPACE_TABLE[functionRecord.app_id];
+    if (
+      !connectorInfo ||
+      !connectorInfo.functions.includes(functionRecord.callback_id)
+    ) {
+      continue;
+    }
+    if (functionRecordGroups[connectorInfo.namespace]) {
+      functionRecordGroups[connectorInfo.namespace].push(functionRecord);
     } else {
-      functionRecordGroups[key] = [functionRecord];
+      functionRecordGroups[connectorInfo.namespace] = [functionRecord];
     }
   }
   return functionRecordGroups;

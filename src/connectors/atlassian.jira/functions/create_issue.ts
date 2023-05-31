@@ -3,10 +3,10 @@ import { DefineConnector } from "../../../deps.ts";
 import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
-  callback_id: "A04T6GE3LEB#/functions/edit_issue",
-  title: "Jira Cloud - Edit an Issue",
+  callback_id: "A04T6GE3LEB#/functions/create_issue",
+  title: "Jira Cloud - Create an Issue",
   description:
-    "Edit an issue in a Jira Cloud instance right from Slack. Does not support Jira Server.",
+    "Create an issue in a Jira Cloud instance right from Slack. Does not support Jira Server.",
   input_parameters: {
     properties: {
       atlassian_access_token: {
@@ -14,32 +14,36 @@ export default DefineConnector({
         title: "Atlassian Access Token",
       },
       jira_domain: { type: Schema.types.string, title: "Jira Domain" },
-      issue_id: {
+      project: { type: Schema.types.string, title: "Project" },
+      issueType: {
         type: Schema.types.string,
-        description: "Issue ID",
-        title: "Issue ID",
+        description:
+          "Type of issue to create: Bug, Improvement, New Feature, or Epic.",
+        title: "Issue Type",
       },
       summary: {
         type: Schema.types.string,
-        description: "Summary of the bug or issue to edit.",
+        description: "Summary of the bug or issue to create.",
         title: "Summary",
       },
       description: {
         type: Schema.types.string,
-        description: "Description of the bug or issue to edit.",
+        description: "Description of the bug or issue to create.",
         title: "Description",
       },
     },
-    required: ["jira_domain", "issue_id"],
+    required: [
+      "atlassian_access_token",
+      "project",
+      "issueType",
+      "summary",
+      "description",
+    ],
   },
   output_parameters: {
     properties: {
-      status: {
-        type: Schema.types.string,
-        description: "Response Status",
-        title: "Response Status",
-      },
+      issue_key: { type: Schema.types.string, title: "Issue Key" },
     },
-    required: ["status"],
+    required: [],
   },
 });

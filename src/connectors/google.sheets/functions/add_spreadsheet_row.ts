@@ -3,9 +3,9 @@ import { DefineConnector } from "../../../deps.ts";
 import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
-  callback_id: "A04MG80N5CY#/functions/update_spreadsheet_row",
-  title: "Update a spreadsheet row - Beta",
-  description: "This function updates a row in a spreadsheet",
+  callback_id: "A04MG80N5CY#/functions/add_spreadsheet_row",
+  title: "Add a spreadsheet row - Beta",
+  description: "Add a row to a Google Sheets spreadsheet",
   input_parameters: {
     properties: {
       spreadsheet_id: {
@@ -15,24 +15,13 @@ export default DefineConnector({
       },
       sheet_title: {
         type: Schema.types.string,
-        description: "Sheet",
+        description: "Select a sheet",
         title: "Sheet",
       },
-      column_name: {
-        type: Schema.types.string,
-        description: "Sheet",
-        title: "Column Name",
-      },
-      cell_value: {
-        type: Schema.types.string,
-        description: "Cell Search Value",
-        title: "Cell Search Value",
-      },
-      updated_values: {
-        type: Schema.types.array,
-        description: "updated_values",
-        title: "Updated Values",
-        items: { type: Schema.types.string },
+      columns: {
+        type: Schema.types.object,
+        description: "Columns",
+        title: "Columns",
       },
       google_access_token: {
         type: Schema.slack.types.oauth2,
@@ -43,11 +32,23 @@ export default DefineConnector({
     required: [
       "spreadsheet_id",
       "sheet_title",
-      "column_name",
-      "cell_value",
-      "updated_values",
+      "columns",
       "google_access_token",
     ],
   },
-  output_parameters: { properties: {}, required: [] },
+  output_parameters: {
+    properties: {
+      spreadsheet_url: {
+        type: Schema.types.string,
+        description: "Spreadsheet URL",
+        title: "Spreadsheet URL",
+      },
+      spreadsheet_id: {
+        type: Schema.types.string,
+        description: "Spreadsheet ID",
+        title: "Spreadsheet ID",
+      },
+    },
+    required: ["spreadsheet_url", "spreadsheet_id"],
+  },
 });

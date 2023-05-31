@@ -37,5 +37,10 @@ Deno.test("All outputs of Slack function EscalateIncident should exist", () => {
   });
   assertExists(step.outputs.incident_id);
   assertExists(step.outputs.incident_url);
+  assertExists(step.outputs.incident_title);
+  assertExists(step.outputs.incident_details);
   assertExists(step.outputs.assignments);
+  assertExists(step.outputs.escalation_policy);
+  assertExists(step.outputs.service);
+  assertExists(step.outputs.escalation_level);
 });

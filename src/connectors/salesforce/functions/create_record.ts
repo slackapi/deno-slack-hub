@@ -3,29 +3,33 @@ import { DefineConnector } from "../../../deps.ts";
 import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
-  callback_id: "A04T99UKKQE#/functions/run_flow",
-  title: "Run a Flow",
-  description: "Run a Salesforce Flow",
+  callback_id: "A04T99UKKQE#/functions/create_record",
+  title: "Create a record",
+  description: "Create a Salesforce record",
   input_parameters: {
     properties: {
-      flow_name: {
+      salesforce_object_name: {
         type: Schema.types.string,
-        description: "Select a Salesforce flow...",
-        title:
-          "Select a Flow (Only auto-launched flows are currently supported)",
+        description: "Select an option...",
+        title: "Salesforce object",
       },
-      metadata: { type: Schema.types.object, title: "Name" },
+      metadata: {
+        type: Schema.types.object,
+        description: "Select an field",
+        title: "Name",
+      },
       salesforce_access_token: {
         type: Schema.slack.types.oauth2,
         title: "Salesforce Access Token",
       },
     },
-    required: ["flow_name", "metadata", "salesforce_access_token"],
+    required: ["salesforce_object_name", "salesforce_access_token"],
   },
   output_parameters: {
     properties: {
       success: { type: Schema.types.boolean, title: "Response" },
-      flow_name: { type: Schema.types.string, title: "Flow name" },
+      record_id: { type: Schema.types.string, title: "Record ID" },
+      record_url: { type: Schema.types.string, title: "Record URL" },
     },
     required: [],
   },

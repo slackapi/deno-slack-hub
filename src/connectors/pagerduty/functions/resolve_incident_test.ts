@@ -37,6 +37,7 @@ Deno.test("All outputs of Slack function ResolveIncident should exist", () => {
   });
   assertExists(step.outputs.incident_id);
   assertExists(step.outputs.incident_url);
+  assertExists(step.outputs.incident_title);
   assertExists(step.outputs.status);
   assertExists(step.outputs.resolution_note);
   assertExists(step.outputs.last_status_change_by);

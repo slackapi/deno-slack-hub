@@ -24,6 +24,5 @@ Deno.test("All outputs of Slack function GetTranslatedGif should exist", () => {
   });
   const step = testWorkflow.addStep(GetTranslatedGif, { search_term: "test" });
   assertExists(step.outputs.web_url);
-  assertExists(step.outputs.gif_url);
   assertExists(step.outputs.title);
 });

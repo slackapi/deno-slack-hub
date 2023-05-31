@@ -4,18 +4,18 @@ import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
   callback_id: "A04RSGH23L7#/functions/resolve_incident",
-  title: "Resolve a Pagerduty Incident",
-  description: "This step marks a Pagerduty Incident as resolved",
+  title: "Resolve an incident",
+  description: "Resolve a Pagerduty incident",
   input_parameters: {
     properties: {
       incident_id: {
         type: Schema.types.string,
-        description: "Incident id",
-        title: "Incident Id",
+        description: "Enter incident ID...",
+        title: "Incident ID",
       },
       resolution_note: {
         type: Schema.types.string,
-        description: "Resolution note",
+        description: "Enter a resolution note...",
         title: "Resolution note",
       },
       pagerduty_access_token: {
@@ -31,12 +31,17 @@ export default DefineConnector({
       incident_id: {
         type: Schema.types.string,
         description: "Incident id",
-        title: "Incident Id",
+        title: "Incident ID",
       },
       incident_url: {
         type: Schema.types.string,
         description: "Incident url",
-        title: "Incident url",
+        title: "Incident URL",
+      },
+      incident_title: {
+        type: Schema.types.string,
+        description: "Incident title",
+        title: "Incident title",
       },
       status: {
         type: Schema.types.string,
@@ -51,12 +56,12 @@ export default DefineConnector({
       last_status_change_by: {
         type: Schema.types.string,
         description: "Last status change by",
-        title: "Last status change by",
+        title: "Last status change by...",
       },
       last_status_change_at: {
         type: Schema.types.string,
         description: "Last status change at",
-        title: "Last status change at",
+        title: "Last status change at...",
       },
     },
     required: [

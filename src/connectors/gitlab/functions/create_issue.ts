@@ -4,23 +4,23 @@ import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
   callback_id: "A050HLW5TFV#/functions/create_issue",
-  title: "Create a new issue",
-  description: "Create a new GitLab project issue",
+  title: "Create an issue",
+  description: "Create a GitLab issue",
   input_parameters: {
     properties: {
       project_id: {
         type: Schema.types.string,
-        description: "The project where the issue is created",
-        title: "Project ID",
+        description: "The ID of the project where the issue is created",
+        title: "Project",
       },
       title: {
         type: Schema.types.string,
-        description: "The title of the issue",
+        description: "Enter an issue title...",
         title: "Title",
       },
       description: {
         type: Schema.types.string,
-        description: "The description of the issue",
+        description: "Enter a description...",
         title: "Description",
       },
       issue_type: {
@@ -31,23 +31,18 @@ export default DefineConnector({
       },
       labels: {
         type: Schema.types.string,
-        description: "Comma-separated label names for an issue",
-        title: "Labels",
+        description: "A label to apply to the issue",
+        title: "Label",
       },
       milestone_id: {
         type: Schema.types.string,
         description: "The Global ID of a milestone to assign the issue",
         title: "Milestone",
       },
-      due_date: {
-        type: Schema.slack.types.date,
-        description: "The due date",
-        title: "Due date",
-      },
       confidential: {
         type: Schema.types.boolean,
         description:
-          "Set the issue to be confidential and only be visible to team members with at least Reporter access",
+          "Set the issue to be confidential and only be visible to team members with at least reporter access",
         title: "Confidential",
       },
       gitlab_access_token: {
@@ -65,11 +60,6 @@ export default DefineConnector({
           "The issue's internal ID that is unique in the scope of the project",
         title: "Internal issue ID",
       },
-      state: {
-        type: Schema.types.string,
-        description: "The issues current state",
-        title: "State",
-      },
       issue_url: {
         type: Schema.types.string,
         description: "The link to the issue on gitlab.com",
@@ -82,6 +72,6 @@ export default DefineConnector({
         title: "Issue reference",
       },
     },
-    required: ["issue_iid", "state", "issue_url", "issue_reference"],
+    required: ["issue_iid", "issue_url", "issue_reference"],
   },
 });

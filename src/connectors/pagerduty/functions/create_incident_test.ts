@@ -12,6 +12,7 @@ Deno.test("CreateIncident can be used as a Slack function in a workflow step", (
   testWorkflow.addStep(CreateIncident, {
     title: "test",
     details: "test",
+    pagerduty_access_token: "test",
     pagerduty_team_id: "test",
     service_id: "test",
     escalation_policy: "test",
@@ -22,6 +23,7 @@ Deno.test("CreateIncident can be used as a Slack function in a workflow step", (
   assertEquals(actual.inputs, {
     title: "test",
     details: "test",
+    pagerduty_access_token: "test",
     pagerduty_team_id: "test",
     service_id: "test",
     escalation_policy: "test",
@@ -37,10 +39,16 @@ Deno.test("All outputs of Slack function CreateIncident should exist", () => {
   const step = testWorkflow.addStep(CreateIncident, {
     title: "test",
     details: "test",
+    pagerduty_access_token: "test",
     pagerduty_team_id: "test",
     service_id: "test",
     escalation_policy: "test",
   });
   assertExists(step.outputs.incident_id);
   assertExists(step.outputs.incident_url);
+  assertExists(step.outputs.incident_title);
+  assertExists(step.outputs.incident_details);
+  assertExists(step.outputs.escalation_policy);
+  assertExists(step.outputs.service);
+  assertExists(step.outputs.team);
 });

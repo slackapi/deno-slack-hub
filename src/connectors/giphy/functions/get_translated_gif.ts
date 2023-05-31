@@ -4,20 +4,18 @@ import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
   callback_id: "A04U5QUE5EX#/functions/get_translated_gif",
-  title: "Convert words to GIF",
-  description:
-    "GIPHY Translate converts words and phrases to the perfect GIF using GIPHY's special sauce algorithm",
+  title: "Search for a GIF",
+  description: "Search for a Giphy GIF",
   input_parameters: {
     properties: {
       search_term: {
         type: Schema.types.string,
         description: "Search query term or phrase",
-        title: "Search term",
+        title: "Giphy search terms",
       },
       weirdness: {
-        type: Schema.types.integer,
-        description:
-          "Value from 0-10 which makes results weirder as you go up the scale",
+        type: Schema.types.string,
+        description: "From 1 (not very weird) to 10 (very weird)",
         title: "Weirdness",
       },
     },
@@ -28,20 +26,14 @@ export default DefineConnector({
       web_url: {
         type: Schema.types.string,
         description: "A link to this GIF on giphy.com",
-        title: "Web URL",
-      },
-      gif_url: {
-        type: Schema.types.string,
-        description:
-          "The URL for the original version of this GIF that can be used for unfurling in Slack",
-        title: "GIF URL",
+        title: "Giphy link",
       },
       title: {
         type: Schema.types.string,
         description: "The title of this GIF",
-        title: "Title",
+        title: "GIF title",
       },
     },
-    required: ["web_url", "gif_url"],
+    required: ["web_url"],
   },
 });

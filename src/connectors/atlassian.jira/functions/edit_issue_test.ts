@@ -9,11 +9,23 @@ Deno.test("EditIssue can be used as a Slack function in a workflow step", () => 
     title: "Test EditIssue",
     description: "This is a generated test to test EditIssue",
   });
-  testWorkflow.addStep(EditIssue, { jira_domain: "test", issue_id: "test" });
+  testWorkflow.addStep(EditIssue, {
+    atlassian_access_token: "test",
+    jira_domain: "test",
+    issue_id: "test",
+    summary: "test",
+    description: "test",
+  });
   const actual = testWorkflow.steps[0].export();
 
   assertEquals(actual.function_id, "A04T6GE3LEB#/functions/edit_issue");
-  assertEquals(actual.inputs, { jira_domain: "test", issue_id: "test" });
+  assertEquals(actual.inputs, {
+    atlassian_access_token: "test",
+    jira_domain: "test",
+    issue_id: "test",
+    summary: "test",
+    description: "test",
+  });
 });
 
 Deno.test("All outputs of Slack function EditIssue should exist", () => {
@@ -23,8 +35,11 @@ Deno.test("All outputs of Slack function EditIssue should exist", () => {
     description: "This is a generated test to test EditIssue",
   });
   const step = testWorkflow.addStep(EditIssue, {
+    atlassian_access_token: "test",
     jira_domain: "test",
     issue_id: "test",
+    summary: "test",
+    description: "test",
   });
   assertExists(step.outputs.status);
 });

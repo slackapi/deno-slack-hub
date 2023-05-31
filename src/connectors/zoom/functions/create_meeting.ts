@@ -4,69 +4,64 @@ import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
   callback_id: "A04S9208DRQ#/functions/create_meeting",
-  title: "Create a Zoom Meeting",
+  title: "Create a meeting",
   description: "Create a Zoom meeting",
   input_parameters: {
     properties: {
       topic: {
         type: Schema.types.string,
-        description: "Meeting topic",
-        title: "Topic",
+        description: "Enter a meeting title...",
+        title: "Meeting title",
       },
       agenda: {
         type: Schema.types.string,
-        description: "Agenda for the meeting",
+        description: "Enter an agenda...",
         title: "Agenda",
       },
       invitees: {
         type: Schema.types.array,
-        description: "Meeting Invitees",
+        description: "Search all people...",
         title: "Invitees",
         items: { type: Schema.slack.types.user_id },
-      },
-      start_time: {
-        type: Schema.slack.types.timestamp,
-        description: "Start time of the meeting",
-        title: "Start Time",
       },
       zoom_access_token: {
         type: Schema.slack.types.oauth2,
         title: "Zoom access token",
       },
     },
-    required: [],
+    required: ["topic", "invitees", "zoom_access_token"],
   },
   output_parameters: {
     properties: {
       meeting_id: {
         type: Schema.types.number,
         description: "Meeting Id",
-        title: "Meeting Id",
+        title: "Meeting ID",
       },
       topic: {
         type: Schema.types.string,
         description: "Topic of the meeting",
-        title: "Topic",
+        title: "Meeting title",
       },
-      start_time: {
+      agenda: {
         type: Schema.types.string,
-        description: "Start time of the meeting",
-        title: "Start Time",
+        description: "agenda",
+        title: "Agenda",
       },
       host_email: {
         type: Schema.types.string,
         description: "Email of the meeting's host",
-        title: "Host Email",
+        title: "Host email",
       },
       start_url: {
         type: Schema.types.string,
         description: "Start url",
-        title: "Start url",
+        title: "Start URL",
       },
       join_url: {
         type: Schema.types.string,
         description: "Join url",
-        title: "Join url",
+        title: "Join URL",
       },
       invitees: {
         type: Schema.types.array,

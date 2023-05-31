@@ -41,5 +41,6 @@ Deno.test("All outputs of Slack function AddSpreadsheetRow should exist", () => 
     columns: "test",
     google_access_token: "test",
   });
+  assertExists(step.outputs.spreadsheet_url);
   assertExists(step.outputs.spreadsheet_id);
 });

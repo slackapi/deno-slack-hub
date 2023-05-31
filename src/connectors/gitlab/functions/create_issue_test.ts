@@ -39,7 +39,6 @@ Deno.test("All outputs of Slack function CreateIssue should exist", () => {
     gitlab_access_token: "test",
   });
   assertExists(step.outputs.issue_iid);
-  assertExists(step.outputs.state);
   assertExists(step.outputs.issue_url);
   assertExists(step.outputs.issue_reference);
 });

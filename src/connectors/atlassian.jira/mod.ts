@@ -2,6 +2,6 @@
 import CreateIssue from "./functions/create_issue.ts";
 import EditIssue from "./functions/edit_issue.ts";
 
-const JiraCloud = { functions: { CreateIssue, EditIssue } } as const;
+const AtlassianJira = { functions: { CreateIssue, EditIssue } } as const;
 
-export default JiraCloud;
+export default AtlassianJira;

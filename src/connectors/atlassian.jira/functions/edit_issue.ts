@@ -3,10 +3,10 @@ import { DefineConnector } from "../../../deps.ts";
 import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
-  callback_id: "A04T6GE3LEB#/functions/create_issue",
-  title: "Jira Cloud - Create an Issue",
+  callback_id: "A04T6GE3LEB#/functions/edit_issue",
+  title: "Jira Cloud - Edit an Issue",
   description:
-    "Create an issue in a Jira Cloud instance right from Slack. Does not support Jira Server.",
+    "Edit an issue in a Jira Cloud instance right from Slack. Does not support Jira Server.",
   input_parameters: {
     properties: {
       atlassian_access_token: {
@@ -14,30 +14,38 @@ export default DefineConnector({
         title: "Atlassian Access Token",
       },
       jira_domain: { type: Schema.types.string, title: "Jira Domain" },
-      project: { type: Schema.types.string, title: "Project" },
+      issue_id: {
+        type: Schema.types.string,
+        description: "Issue ID",
+        title: "Issue ID",
+      },
       summary: {
         type: Schema.types.string,
-        description: "Summary of the bug or issue to create.",
+        description: "Summary of the bug or issue to edit.",
         title: "Summary",
       },
       description: {
         type: Schema.types.string,
-        description: "Description of the bug or issue to create.",
+        description: "Description of the bug or issue to edit.",
         title: "Description",
       },
-      issueType: {
-        type: Schema.types.string,
-        description:
-          "Type of issue to create: Bug, Improvement, New Feature, or Epic.",
-        title: "Issue Type",
-      },
     },
-    required: [],
+    required: [
+      "atlassian_access_token",
+      "jira_domain",
+      "issue_id",
+      "summary",
+      "description",
+    ],
   },
   output_parameters: {
     properties: {
-      issue_key: { type: Schema.types.string, title: "Issue Key" },
+      status: {
+        type: Schema.types.string,
+        description: "Response Status",
+        title: "Response Status",
+      },
     },
-    required: [],
+    required: ["status"],
   },
 });
