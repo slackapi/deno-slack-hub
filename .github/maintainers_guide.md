@@ -72,7 +72,7 @@ deno task coverage
 Sometimes you may need to test out changes in this SDK with a sample app or
 project.
 
-A modified SDK version can be used by updating the `deno-slack-connectors`
+A modified SDK version can be used by updating the `deno-slack-hub`
 import url in the app's `import_map.json` file.
 
 > After making changes to your imports, you may need to
@@ -89,7 +89,7 @@ of your local `deno-slack-` repo:
   "imports": {
     "deno-slack-sdk/": "https://deno.land/x/deno_slack_sdk@1.5.0/",
     "deno-slack-api/": "https://deno.land/x/deno_slack_api@1.5.0/",
-    "deno-slack-connectors/": "../../tools/deno-slack-connectors/src/"
+    "deno-slack-hub/": "../../tools/deno-slack-hub/src/"
   }
 }
 ```

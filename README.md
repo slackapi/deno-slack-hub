@@ -1,4 +1,4 @@
-# deno-slack-connectors
+# deno-slack-hub
 
 Connectors used to build coded workflows for Run on Slack apps using Deno
 
@@ -10,7 +10,7 @@ use the connectors in a workflow
 
 ```ts
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
-import { Connectors } from "deno-slack-connectors/mod.ts";
+import { Connectors } from "deno-slack-hub/mod.ts";
 
 const AnswerSurveyWorkflow = DefineWorkflow({
   callback_id: "answer_survey",
