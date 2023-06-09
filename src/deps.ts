@@ -1,2 +1,2 @@
-export { DefineConnector } from "https://raw.githubusercontent.com/slackapi/deno-slack-sdk/7b29427cd3ff2b83fdad869e61c5605780c1ea89/src/functions/definitions/mod.ts";
-export { Schema } from "https://raw.githubusercontent.com/slackapi/deno-slack-sdk/7b29427cd3ff2b83fdad869e61c5605780c1ea89/src/mod.ts";
+export { DefineConnector } from "https://deno.land/x/deno_slack_sdk@2.1.4/functions/definitions/mod.ts";
+export { Schema } from "https://deno.land/x/deno_slack_sdk@2.1.4/mod.ts";

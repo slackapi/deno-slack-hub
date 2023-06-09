@@ -29,11 +29,6 @@ export default DefineConnector({
           "The type of issue. Valid options are: issue, incident, & test_case",
         title: "Issue type",
       },
-      labels: {
-        type: Schema.types.string,
-        description: "A label to apply to the issue",
-        title: "Label",
-      },
       milestone_id: {
         type: Schema.types.string,
         description: "The Global ID of a milestone to assign the issue",
@@ -50,7 +45,13 @@ export default DefineConnector({
         title: "GitLab Access Token",
       },
     },
-    required: ["project_id", "title", "issue_type", "gitlab_access_token"],
+    required: [
+      "project_id",
+      "title",
+      "issue_type",
+      "confidential",
+      "gitlab_access_token",
+    ],
   },
   output_parameters: {
     properties: {
@@ -71,7 +72,39 @@ export default DefineConnector({
           "A reference path to the issue in a group/project. Can be used for crosslinking issues.",
         title: "Issue reference",
       },
+      title: {
+        type: Schema.types.string,
+        description: "The title of the issue",
+        title: "Title",
+      },
+      description: {
+        type: Schema.types.string,
+        description: "The description of the issue",
+        title: "Description",
+      },
+      issue_type: {
+        type: Schema.types.string,
+        description: "The type of issue",
+        title: "Issue type",
+      },
+      milestone: {
+        type: Schema.types.string,
+        description: "The milestone the issue is assign to",
+        title: "Milestone",
+      },
+      confidential: {
+        type: Schema.types.boolean,
+        description: "If the issue is confidential",
+        title: "Confidential",
+      },
     },
-    required: ["issue_iid", "issue_url", "issue_reference"],
+    required: [
+      "issue_iid",
+      "issue_url",
+      "issue_reference",
+      "title",
+      "issue_type",
+      "confidential",
+    ],
   },
 });

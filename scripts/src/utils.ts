@@ -38,10 +38,10 @@ const APP_ID_NAMESPACE_TABLE: Record<string, ConnectorInfoType> = {
     functions: ["add_spreadsheet_row"],
   },
   "A050MUYMYFP": { namespace: "calendly", functions: ["get_meeting_link"] },
-  "A050QFW22F5": { namespace: "github", functions: ["create_issue"] },
+  "A050QFW22F5": { namespace: "github.cloud", functions: ["create_issue"] },
   "A04S9208DRQ": { namespace: "zoom", functions: ["create_meeting"] },
   "A04T6GE3LEB": {
-    namespace: "atlassian.jira",
+    namespace: "jira.cloud",
     functions: ["create_issue", "edit_issue"],
   },
   "A04U5QUE5EX": {
@@ -67,6 +67,7 @@ export function groupSlackFunctions(
     if (functionRecordGroups[connectorInfo.namespace]) {
       functionRecordGroups[connectorInfo.namespace].push(functionRecord);
     } else {
+      functionRecord.namespace = connectorInfo.namespace;
       functionRecordGroups[connectorInfo.namespace] = [functionRecord];
     }
   }

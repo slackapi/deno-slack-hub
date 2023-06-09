@@ -11,6 +11,7 @@ Deno.test("UpdateRecord can be used as a Slack function in a workflow step", () 
   });
   testWorkflow.addStep(UpdateRecord, {
     salesforce_object_name: "test",
+    record_id: "test",
     salesforce_access_token: "test",
   });
   const actual = testWorkflow.steps[0].export();
@@ -18,6 +19,7 @@ Deno.test("UpdateRecord can be used as a Slack function in a workflow step", () 
   assertEquals(actual.function_id, "A04T99UKKQE#/functions/update_record");
   assertEquals(actual.inputs, {
     salesforce_object_name: "test",
+    record_id: "test",
     salesforce_access_token: "test",
   });
 });
@@ -30,6 +32,7 @@ Deno.test("All outputs of Slack function UpdateRecord should exist", () => {
   });
   const step = testWorkflow.addStep(UpdateRecord, {
     salesforce_object_name: "test",
+    record_id: "test",
     salesforce_access_token: "test",
   });
   assertExists(step.outputs.code);

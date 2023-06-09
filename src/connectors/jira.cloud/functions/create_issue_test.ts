@@ -11,8 +11,11 @@ Deno.test("CreateIssue can be used as a Slack function in a workflow step", () =
   });
   testWorkflow.addStep(CreateIssue, {
     atlassian_access_token: "test",
+    jira_domain: "test",
     project: "test",
     issueType: "test",
+    priority: "test",
+    assignee: "test",
     summary: "test",
     description: "test",
   });
@@ -21,8 +24,11 @@ Deno.test("CreateIssue can be used as a Slack function in a workflow step", () =
   assertEquals(actual.function_id, "A04T6GE3LEB#/functions/create_issue");
   assertEquals(actual.inputs, {
     atlassian_access_token: "test",
+    jira_domain: "test",
     project: "test",
     issueType: "test",
+    priority: "test",
+    assignee: "test",
     summary: "test",
     description: "test",
   });
@@ -36,10 +42,17 @@ Deno.test("All outputs of Slack function CreateIssue should exist", () => {
   });
   const step = testWorkflow.addStep(CreateIssue, {
     atlassian_access_token: "test",
+    jira_domain: "test",
     project: "test",
     issueType: "test",
+    priority: "test",
+    assignee: "test",
     summary: "test",
     description: "test",
   });
-  assertExists(step.outputs.issue_key);
+  assertExists(step.outputs.issue_id);
+  assertExists(step.outputs.project);
+  assertExists(step.outputs.summary);
+  assertExists(step.outputs.description);
+  assertExists(step.outputs.issue_type);
 });

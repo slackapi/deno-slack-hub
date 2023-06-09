@@ -10,7 +10,7 @@ export default DefineConnector({
     properties: {
       tag: {
         type: Schema.types.string,
-        description: "Filter results by a specified tag",
+        description: "Enter tags...",
         title: "Tag",
       },
       rating: {
@@ -23,17 +23,12 @@ export default DefineConnector({
   },
   output_parameters: {
     properties: {
-      web_url: {
+      gif_title_url: {
         type: Schema.types.string,
-        description: "A link to this GIF on giphy.com",
-        title: "Giphy link",
-      },
-      title: {
-        type: Schema.types.string,
-        description: "The title of this GIF",
-        title: "GIF title",
+        description: "The title and URL for the GIF",
+        title: "Giphy GIF",
       },
     },
-    required: ["web_url"],
+    required: ["gif_title_url"],
   },
 });

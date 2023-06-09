@@ -23,6 +23,5 @@ Deno.test("All outputs of Slack function GetRandomGif should exist", () => {
     description: "This is a generated test to test GetRandomGif",
   });
   const step = testWorkflow.addStep(GetRandomGif, {});
-  assertExists(step.outputs.web_url);
-  assertExists(step.outputs.title);
+  assertExists(step.outputs.gif_title_url);
 });

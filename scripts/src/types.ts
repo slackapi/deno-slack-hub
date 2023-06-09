@@ -33,6 +33,7 @@ export type FunctionRecord = {
   title: string;
   description: string;
   app_id: string;
+  namespace: string;
   input_parameters: FunctionParameter[];
   output_parameters: FunctionParameter[];
   type?: string;

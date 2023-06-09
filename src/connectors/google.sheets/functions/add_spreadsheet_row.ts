@@ -4,7 +4,7 @@ import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
   callback_id: "A04MG80N5CY#/functions/add_spreadsheet_row",
-  title: "Add a spreadsheet row - Beta",
+  title: "Add to spreadsheet",
   description: "Add a row to a Google Sheets spreadsheet",
   input_parameters: {
     properties: {
@@ -25,7 +25,7 @@ export default DefineConnector({
       },
       google_access_token: {
         type: Schema.slack.types.oauth2,
-        description: "Google Credential to use",
+        description: "Which account should we use to write to the spreadsheet?",
         title: "Google Access Token",
       },
     },

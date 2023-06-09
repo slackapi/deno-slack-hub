@@ -5,16 +5,24 @@ import { Schema } from "../../../deps.ts";
 export default DefineConnector({
   callback_id: "A050QFW22F5#/functions/create_issue",
   title: "Create an issue",
-  description: "Creates a new GitHub issue",
+  description: "Create a GitHub issue",
   input_parameters: {
     properties: {
       repository: {
         type: Schema.types.string,
         description: "Select a GitHub repository",
-        title: "Repository",
+        title: "Select a repository",
       },
-      title: { type: Schema.types.string, title: "Title" },
-      description: { type: Schema.types.string, title: "Description" },
+      title: {
+        type: Schema.types.string,
+        description: "Enter an issue title...",
+        title: "Issue title",
+      },
+      description: {
+        type: Schema.types.string,
+        description: "Enter a description...",
+        title: "Description",
+      },
       github_access_token: {
         type: Schema.slack.types.oauth2,
         description: "GitHub Credential to use",
@@ -27,15 +35,25 @@ export default DefineConnector({
     properties: {
       issue_number: {
         type: Schema.types.string,
-        description: "New issue ID",
+        description: "Issue number",
         title: "Issue number",
       },
       issue_url: {
         type: Schema.types.string,
-        description: "New issue URL",
+        description: "Issue URL",
         title: "Issue URL",
       },
+      title: {
+        type: Schema.types.string,
+        description: "Issue title",
+        title: "Issue title",
+      },
+      body: {
+        type: Schema.types.string,
+        description: "Issue description",
+        title: "Description",
+      },
     },
-    required: ["issue_number", "issue_url"],
+    required: ["issue_number", "issue_url", "title", "body"],
   },
 });

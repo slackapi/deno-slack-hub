@@ -72,8 +72,8 @@ deno task coverage
 Sometimes you may need to test out changes in this SDK with a sample app or
 project.
 
-A modified SDK version can be used by updating the `deno-slack-hub`
-import url in the app's `import_map.json` file.
+A modified SDK version can be used by updating the `deno-slack-hub` import url
+in the app's `import_map.json` file.
 
 > After making changes to your imports, you may need to
 > [reload your modules](https://deno.land/manual@v1.29.1/basics/modules/reloading_modules)

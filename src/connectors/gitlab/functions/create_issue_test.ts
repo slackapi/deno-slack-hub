@@ -13,6 +13,7 @@ Deno.test("CreateIssue can be used as a Slack function in a workflow step", () =
     project_id: "test",
     title: "test",
     issue_type: "test",
+    confidential: "test",
     gitlab_access_token: "test",
   });
   const actual = testWorkflow.steps[0].export();
@@ -22,6 +23,7 @@ Deno.test("CreateIssue can be used as a Slack function in a workflow step", () =
     project_id: "test",
     title: "test",
     issue_type: "test",
+    confidential: "test",
     gitlab_access_token: "test",
   });
 });
@@ -36,9 +38,15 @@ Deno.test("All outputs of Slack function CreateIssue should exist", () => {
     project_id: "test",
     title: "test",
     issue_type: "test",
+    confidential: "test",
     gitlab_access_token: "test",
   });
   assertExists(step.outputs.issue_iid);
   assertExists(step.outputs.issue_url);
   assertExists(step.outputs.issue_reference);
+  assertExists(step.outputs.title);
+  assertExists(step.outputs.description);
+  assertExists(step.outputs.issue_type);
+  assertExists(step.outputs.milestone);
+  assertExists(step.outputs.confidential);
 });
