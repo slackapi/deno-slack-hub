@@ -50,8 +50,7 @@ file to import/export all of the defined functions.
 
 If it completes without any linter errors, you should be good to go, with new,
 formatted and linted TypeScript files for all of the Slack functions included in
-your `functions.json` payload. If there are any unexpected linting issues, you
-may need to go into those files and manually resolve any problems.
+your `functions.json` payload.
 
 ### Testing with Deno
 
@@ -81,7 +80,7 @@ in the app's `import_map.json` file.
 
 #### Using local changes
 
-To use your own code as the SDK, change the import url to the `src/` directory
+To use your own code as the HUB, change the import url to the `src/` directory
 of your local `deno-slack-` repo:
 
 ```json
@@ -100,14 +99,15 @@ To test with changes on a remote repo, commit your intended history to a remote
 branch and note the full commit SHA. (e.g.
 `fc0a0a1f0722e28fecb7782513d045522d7c0d6f`).
 
-Then in your sample app's `import_map.json` file, replace the `deno-slack-sdk`
+Then in your sample app's `import_map.json` file, replace the `deno-slack-hub`
 import url with:
 
 ```json
 {
   "imports": {
-    "deno-slack-sdk/": "https://raw.githubusercontent.com/slackapi/deno-slack-sdk/<commit-SHA-goes-here>/src/",
-    "deno-slack-api/": "https://deno.land/x/deno_slack_api@1.5.0/"
+    "deno-slack-hub/": "https://raw.githubusercontent.com/slackapi/deno-slack-hub/<commit-SHA-goes-here>/src/",
+    "deno-slack-sdk/": "https://deno.land/x/deno_slack_sdk@x.x.x/",
+    "deno-slack-api/": "https://deno.land/x/deno_slack_api@x.x.x/"
   }
 }
 ```
@@ -136,13 +136,6 @@ recommended rules.
 
 The list of format options is defined in the `deno.jsonc` file. They closely
 resemble the default values.
-
-### Branches
-
-> Describe any specific branching workflow. For example: `main` is where active
-> development occurs. Long running branches named feature branches are
-> occasionally created for collaboration on a feature that has a large scope
-> (because everyone cannot push commits to another person's open Pull Request)
 
 ## Everything else
 
