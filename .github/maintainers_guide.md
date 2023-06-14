@@ -89,7 +89,7 @@ of your local `deno-slack-` repo:
   "imports": {
     "deno-slack-sdk/": "https://deno.land/x/deno_slack_sdk@1.5.0/",
     "deno-slack-api/": "https://deno.land/x/deno_slack_api@1.5.0/",
-    "deno-slack-hub/": "../../tools/deno-slack-hub/src/"
+    "deno-slack-hub/": "<your-path-to-deno-slack-hub>/src/"
   }
 }
 ```
