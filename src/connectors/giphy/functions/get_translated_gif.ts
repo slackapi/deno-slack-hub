@@ -28,7 +28,12 @@ export default DefineConnector({
         description: "The title and URL for the GIF",
         title: "Giphy GIF",
       },
+      search_term: {
+        type: Schema.types.string,
+        description: "The search term used to find the GIF",
+        title: "Search terms",
+      },
     },
-    required: ["gif_title_url"],
+    required: ["gif_title_url", "search_term"],
   },
 });

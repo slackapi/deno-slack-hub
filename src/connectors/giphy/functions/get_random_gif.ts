@@ -19,7 +19,7 @@ export default DefineConnector({
         title: "Rating",
       },
     },
-    required: [],
+    required: ["rating"],
   },
   output_parameters: {
     properties: {
@@ -27,6 +27,11 @@ export default DefineConnector({
         type: Schema.types.string,
         description: "The title and URL for the GIF",
         title: "Giphy GIF",
+      },
+      tag: {
+        type: Schema.types.string,
+        description: "The tag used to return the GIF",
+        title: "Tag",
       },
     },
     required: ["gif_title_url"],

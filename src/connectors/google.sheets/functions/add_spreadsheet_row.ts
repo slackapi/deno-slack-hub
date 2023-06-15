@@ -25,7 +25,7 @@ export default DefineConnector({
       },
       google_access_token: {
         type: Schema.slack.types.oauth2,
-        description: "Which account should we use to write to the spreadsheet?",
+        description: "Whose account should be adding rows to the spreadsheet?",
         title: "Google Access Token",
       },
     },
