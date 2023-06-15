@@ -1,69 +1,93 @@
-# deno-slack-hub
+<h1 align="center">
+  deno-slack-hub
+  <br>
+</h1>
 
-Connectors used to build coded workflows for Run on Slack apps using Deno
+<h4 align="center">You want to use other peoples code to do your work? I definitely do!</h4>
+
+The hub enables its users to use Slack Connectors in typescript, offloading the
+cost of code maintenance and OAuth management to other developers. Interact with
+`Google`, `Salesforce`, `Github`, `Giphy` ... APIs with a minimal amount of code
+and offload your credential management to Slack.
+
+## Requirements
+
+A recent version of `deno`.
+
+## Versioning
+
+Releases for this repository follow the [SemVer](https://semver.org/) versioning
+scheme. The HUB's contract is determined by the top-level exports from
+`src/mod.ts` and `src/types.ts`. Exports not included in these files are deemed
+internal and any modifications will not be treated as breaking changes. As such,
+internal exports should be treated as unstable and used at your own risk.
 
 ## Usage
 
-import this project in your next gen deno project
+### CLI
 
-use the connectors in a workflow
+Install the Slack CLI by follow [these steps](https://api.slack.com/automation/cli/install)
+
+### Samples
+
+Take a look at some our [sample &
+template](https://api.slack.com/automation/samples) projects to get started with
+the latest version of the [deno-slack-sdk](https://github.com/slackapi/deno-slack-sdk)
+
+### import
+
+Import the hub package in your next gen deno project, we recommend doing this through the
+`import_map.json`.
+
+```json
+{
+  "imports": {
+    "deno-slack-sdk/": "https://deno.land/x/deno_slack_sdk@x.x.x/",
+    "deno-slack-api/": "https://deno.land/x/deno_slack_api@x.x.x/",
+    "deno-slack-hub/": "https://deno.land/x/deno_slack_hub@x.x.x/",
+  }
+}
+```
+
+### Code
+
+Using connectors as a step in a coded workflow
 
 ```ts
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
 import { Connectors } from "deno-slack-hub/mod.ts";
 
-const AnswerSurveyWorkflow = DefineWorkflow({
-  callback_id: "answer_survey",
-  title: "Respond to a survey",
-  description: "Add comments and feedback to a survey",
+const GifWorkflow = DefineWorkflow({
+  callback_id: "post_random_gif",
+  title: "Workflow to post a random gif in a channel",
+  description: "A workflow that post a random gif in the channel it is invoked",
   input_parameters: {
     properties: {
-      interactivity: { type: Schema.slack.types.interactivity },
-      google_spreadsheet_id: {
-        type: Schema.types.string,
-        description: "Spreadsheet ID for storing survey results",
+      channel_id: {
+        type: Schema.slack.types.channel_id,
       },
     },
-    required: [
-      "interactivity",
-      "google_spreadsheet_id",
-    ],
+    required: ["channel_id"],
   },
 });
 
-const response = AnswerSurveyWorkflow.addStep(
-  Schema.slack.functions.OpenForm,
+const getRandomGifStep = GifWorkflow.addStep(
+  Connectors.Giphy.functions.GetRandomGif,
   {
-    title: "Survey your thoughts",
-    description: "What do you think about the topic of this message?",
-    interactivity: AnswerSurveyWorkflow.inputs.interactivity,
-    submit_label: "Share",
-    fields: {
-      elements: [{
-        name: "comments",
-        title: "Comments",
-        type: Schema.types.string,
-        description: "Any additional ideas to share?",
-        long: true,
-      }],
-      required: ["comment"],
-    },
+    rating: "g",
   },
 );
 
-AnswerSurveyWorkflow.addStep(
-  Connectors.GoogleSheets.functions.AddSpreadsheetRow,
-  {
-    google_access_token: {
-      credential_source: "END_USER",
-    },
-    spreadsheet_id: AnswerSurveyWorkflow.inputs.google_spreadsheet_id,
-    columns: [
-      "=NOW()",
-      response.outputs.fields.impression,
-      response.outputs.fields.comments || "",
-    ],
-    sheet_title: "Responses",
-  },
-);
+GifWorkflow.addStep(Schema.slack.functions.SendMessage, {
+  channel_id: GifWorkflow.inputs.channel_id,
+  message: getRandomGifStep.outputs.gif_title_url,
+});
+
+export default GifWorkflow;
 ```
+
+## Contributions
+
+We welcome contributions from everyone! Please check out our
+[Contributor's Guide](.github/CONTRIBUTING.md) for how to contribute in a
+helpful and collaborative way.
