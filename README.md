@@ -1,18 +1,21 @@
 <h1 align="center">
-  deno-slack-hub
+  Deno Slack Hub
   <br>
 </h1>
 
-<h4 align="center">You want to use other peoples code to do your work? I definitely do!</h4>
+<h4 align="center">You want to use other peoples code to do your work?</h4>
 
-The hub enables its users to use Slack Connectors in typescript, offloading the
-cost of code maintenance and OAuth management to other developers. Interact with
-`Google`, `Salesforce`, `Github`, `Giphy` ... APIs with a minimal amount of code
-and offload your credential management to Slack.
+I definitely do! The hub enables its users to use Slack Connectors in
+typescript, offloading the cost of code maintenance and OAuth management to
+other developers. Interact with `Google`, `Salesforce`, `Github`, `Giphy` ...
+APIs with a minimal amount of code and offload your credential management to
+Slack.
 
 ## Requirements
 
-A recent version of `deno`.
+- A recent version of
+  [`deno`](https://deno.com/manual/getting_started/installation).
+- The Slack CLI ([install steps](https://api.slack.com/automation/cli/install))
 
 ## Versioning
 
@@ -24,27 +27,29 @@ internal exports should be treated as unstable and used at your own risk.
 
 ## Usage
 
-### CLI
+### Getting started
 
-Install the Slack CLI by follow [these steps](https://api.slack.com/automation/cli/install)
+Follow our
+[quick start guide for modular slack apps](https://api.slack.com/automation/quickstart)
 
 ### Samples
 
-Take a look at some our [sample &
-template](https://api.slack.com/automation/samples) projects to get started with
-the latest version of the [deno-slack-sdk](https://github.com/slackapi/deno-slack-sdk)
+Take a look at some our
+[sample & template](https://api.slack.com/automation/samples) projects to get
+started with the latest version of the
+[deno-slack-sdk](https://github.com/slackapi/deno-slack-sdk)
 
 ### import
 
-Import the hub package in your next gen deno project, we recommend doing this through the
-`import_map.json`.
+Import the hub package in your next gen deno project, we recommend doing this
+through the `import_map.json`.
 
 ```json
 {
   "imports": {
     "deno-slack-sdk/": "https://deno.land/x/deno_slack_sdk@x.x.x/",
     "deno-slack-api/": "https://deno.land/x/deno_slack_api@x.x.x/",
-    "deno-slack-hub/": "https://deno.land/x/deno_slack_hub@x.x.x/",
+    "deno-slack-hub/": "https://deno.land/x/deno_slack_hub@x.x.x/"
   }
 }
 ```
@@ -91,3 +96,7 @@ export default GifWorkflow;
 We welcome contributions from everyone! Please check out our
 [Contributor's Guide](.github/CONTRIBUTING.md) for how to contribute in a
 helpful and collaborative way.
+
+[![License][license-image]](.LICENSE)
+
+[license-image]: https://img.shields.io/github/license/slackapi/deno-slack-hub

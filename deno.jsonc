@@ -3,7 +3,6 @@
   "fmt": {
     "files": {"include": [
       "src",
-      "docs",
       "README.md",
       "scripts",
       ".github",
@@ -22,7 +21,7 @@
     "files": {
       "include": ["src", "scripts"],
       "exclude": ["**/*.md"]
-    },
+    }
   },
   "test": {
     "files": {
