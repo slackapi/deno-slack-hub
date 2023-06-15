@@ -46,6 +46,9 @@ const propertyToTypeScript = (
   if (property.title) {
     typescript.push(`title: "${property.title}"`);
   }
+  if (property.enum) {
+    typescript.push(`enum: ["${property.enum.join('", "')}"]`);
+  }
   if (isArrayFunctionProperty(property)) {
     typescript.push(`items: ${propertyToTypeScript(property.items)}`);
   }

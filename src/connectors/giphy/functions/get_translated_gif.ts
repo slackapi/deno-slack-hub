@@ -17,6 +17,7 @@ export default DefineConnector({
         type: Schema.types.string,
         description: "From 1 (not very weird) to 10 (very weird)",
         title: "Weirdness",
+        enum: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
       },
     },
     required: ["search_term"],

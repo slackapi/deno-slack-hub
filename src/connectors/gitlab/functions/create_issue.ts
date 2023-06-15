@@ -27,6 +27,7 @@ export default DefineConnector({
         type: Schema.types.string,
         description: "The type of issue. Valid options are: issue or incident",
         title: "Issue type",
+        enum: ["issue", "incident"],
       },
       milestone_id: {
         type: Schema.types.string,

@@ -17,6 +17,7 @@ export default DefineConnector({
         type: Schema.types.string,
         description: "Filter results by a specified rating",
         title: "Rating",
+        enum: ["g", "pg", "pg-13"],
       },
     },
     required: ["rating"],

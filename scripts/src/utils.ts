@@ -87,13 +87,13 @@ export async function getFunctionRecords(
 export function isObjectFunctionProperty(
   property: FunctionProperty,
 ): property is ObjectFunctionProperty {
-  return "properties" in property;
+  return property.type === "object" && "properties" in property;
 }
 
 export function isArrayFunctionProperty(
   property: FunctionProperty,
 ): property is ArrayFunctionProperty {
-  return "items" in property;
+  return property.type === "array" && "items" in property;
 }
 
 export async function writeTextFileInDir(

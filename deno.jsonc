@@ -1,13 +1,15 @@
 {
   "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
   "fmt": {
-    "files": {"include": [
-      "src",
-      "README.md",
-      "scripts",
-      ".github",
-      "build_npm.ts"
-    ]},
+    "files": {
+      "include": [
+        "src",
+        "README.md",
+        "scripts",
+        ".github",
+        "deno.jsonc"
+      ]
+    },
     "options": {
       "semiColons": true,
       "indentWidth": 2,
