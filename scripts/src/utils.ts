@@ -71,6 +71,7 @@ export function groupSlackFunctions(
       functionRecordGroups[connectorInfo.namespace] = [functionRecord];
     }
   }
+
   return functionRecordGroups;
 }
 
