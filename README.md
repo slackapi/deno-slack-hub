@@ -40,7 +40,7 @@ started with the latest version of the
 
 ### import
 
-Import the hub package in your next gen deno project, we recommend doing this
+Import the `deno-slack-hub` package in your next gen Deno project, we recommend doing this
 through the `import_map.json`.
 
 ```json
