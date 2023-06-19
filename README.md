@@ -5,7 +5,7 @@
 
 <h4 align="center">You want to use other peoples code to do your work?</h4>
 
-I definitely do! The hub enables its users to use Slack Connectors in
+We definitely do! The hub enables its users to use Slack Connectors in
 typescript, offloading the cost of code maintenance and OAuth management to
 other developers. Interact with `Google`, `Salesforce`, `Github`, `Giphy` ...
 APIs with a minimal amount of code and offload your credential management to
