@@ -18,6 +18,9 @@ Slack.
 
 ## Versioning
 
+**Disclaimer**: prior to the release of `1.x.x` this package may not adhere to
+[Semantic Versioning](http://semver.org/)
+
 Releases for this repository follow the [SemVer](https://semver.org/) versioning
 scheme. The HUB's contract is determined by the top-level exports from
 `src/mod.ts` and `src/types.ts`. Exports not included in these files are deemed
@@ -38,7 +41,7 @@ Take a look at some our
 started with the latest version of the
 [deno-slack-sdk](https://github.com/slackapi/deno-slack-sdk)
 
-### import
+### Consumption
 
 Import the `deno-slack-hub` package in your next gen Deno project, we recommend doing this
 through the `import_map.json`.
