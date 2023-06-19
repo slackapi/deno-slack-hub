@@ -31,6 +31,7 @@ jobs:
         run: deno task coverage
 
       - name: Upload coverage to CodeCov
+        if: ${{ matrix.deno-version == 'v1.x' }}
         uses: codecov/codecov-action@v3.1.0
         with:
           file: ./lcov.info
