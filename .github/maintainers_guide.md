@@ -195,7 +195,7 @@ To create a new release:
 
 #### Versioning and Tags
 
-**Disclaimer**: prior to the release of `1.x.x` this package will not adhere to
+**Disclaimer**: prior to the release of `1.x.x` this package is considered unstable will not adhere to
 [Semantic Versioning][semver]
 
 This project is versioned using [Semantic Versioning][semver].
