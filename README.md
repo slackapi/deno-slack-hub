@@ -19,8 +19,8 @@ management to Slack.
 
 ## Versioning
 
-**Disclaimer**: prior to the release of `1.x.x` this is considered unstable and package may not adhere to
-[Semantic Versioning](http://semver.org/)
+**Disclaimer**: prior to the release of `1.x.x` this package is considered
+unstable and will not adhere to [Semantic Versioning](http://semver.org/)
 
 Releases for this repository follow the [SemVer](https://semver.org/) versioning
 scheme. The HUB's contract is determined by the top-level exports from
