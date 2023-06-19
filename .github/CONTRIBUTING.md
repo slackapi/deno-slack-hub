@@ -6,6 +6,15 @@ seriously, and expect that you will as well.
 
 There are many ways you can contribute! :heart:
 
+## :microscope: Scope
+
+This project generates the contents of the src folder using the scripts located
+in the `scripts` folder (more info in
+[Maintainer's Guide](./maintainers_guide.md)). For this reason we have a general
+policy of rarely accepting contributions that directly affect the contents of
+the `src` folder. Instead we highly encourage contributions to the `scripts`
+folder which indirectly affect the contents of `src`.
+
 ## :bug: Bug Reports and Fixes
 
 - At this early stage of development we are not accepting bug reports or feature
