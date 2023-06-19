@@ -53,7 +53,7 @@ through the `import_map.json`.
 }
 ```
 
-### Code
+### Using connectors as a step in a coded workflow
 
 Using connectors as a step in a coded workflow
 
