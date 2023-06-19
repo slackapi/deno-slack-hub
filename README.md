@@ -7,8 +7,9 @@
 
 We definitely do! The hub enables its users to use Slack Connectors in
 TypeScript, offloading the cost of code maintenance and OAuth management to
-other developers. Interact with APIs from `Google`, `Salesforce`, `Github`, `Giphy` and more with a minimal amount of code and offload your credential management to
-Slack.
+other developers. Interact with APIs from `Google`, `Salesforce`, `Github`,
+`Giphy` and more with a minimal amount of code and offload your credential
+management to Slack.
 
 ## Requirements
 
@@ -43,8 +44,8 @@ started with the latest version of the
 
 ### Consumption
 
-Import the `deno-slack-hub` package in your next gen Deno project, we recommend doing this
-through the `import_map.json`.
+Import the `deno-slack-hub` package in your next gen Deno project, we recommend
+doing this through the `import_map.json`.
 
 ```json
 {
