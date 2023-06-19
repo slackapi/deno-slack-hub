@@ -29,7 +29,7 @@ internal exports should be treated as unstable and used at your own risk.
 ### Getting started
 
 Follow our
-[quick start guide for modular slack apps](https://api.slack.com/automation/quickstart)
+[quick start guide for modular Slack apps](https://api.slack.com/automation/quickstart)
 
 ### Samples
 
