@@ -19,7 +19,7 @@ management to Slack.
 
 ## Versioning
 
-**Disclaimer**: prior to the release of `1.x.x` this package may not adhere to
+**Disclaimer**: prior to the release of `1.x.x` this is considered unstable and package may not adhere to
 [Semantic Versioning](http://semver.org/)
 
 Releases for this repository follow the [SemVer](https://semver.org/) versioning
