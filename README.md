@@ -101,6 +101,6 @@ We welcome contributions from everyone! Please check out our
 [Contributor's Guide](.github/CONTRIBUTING.md) for how to contribute in a
 helpful and collaborative way.
 
-[![License][license-image]](.LICENSE)
+[![License][license-image]](LICENSE)
 
 [license-image]: https://img.shields.io/github/license/slackapi/deno-slack-hub
