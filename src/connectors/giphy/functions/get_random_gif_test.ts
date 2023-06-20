@@ -9,11 +9,11 @@ Deno.test("GetRandomGif can be used as a Slack function in a workflow step", () 
     title: "Test GetRandomGif",
     description: "This is a generated test to test GetRandomGif",
   });
-  testWorkflow.addStep(GetRandomGif, {});
+  testWorkflow.addStep(GetRandomGif, { rating: "test" });
   const actual = testWorkflow.steps[0].export();
 
   assertEquals(actual.function_id, "A04U5QUE5EX#/functions/get_random_gif");
-  assertEquals(actual.inputs, {});
+  assertEquals(actual.inputs, { rating: "test" });
 });
 
 Deno.test("All outputs of Slack function GetRandomGif should exist", () => {
@@ -22,6 +22,7 @@ Deno.test("All outputs of Slack function GetRandomGif should exist", () => {
     title: "Test GetRandomGif",
     description: "This is a generated test to test GetRandomGif",
   });
-  const step = testWorkflow.addStep(GetRandomGif, {});
+  const step = testWorkflow.addStep(GetRandomGif, { rating: "test" });
   assertExists(step.outputs.gif_title_url);
+  assertExists(step.outputs.tag);
 });

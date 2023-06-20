@@ -46,10 +46,7 @@ export default DefineConnector({
       "jira_domain",
       "project",
       "issueType",
-      "priority",
-      "assignee",
       "summary",
-      "description",
     ],
   },
   output_parameters: {

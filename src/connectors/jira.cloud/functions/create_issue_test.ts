@@ -14,10 +14,7 @@ Deno.test("CreateIssue can be used as a Slack function in a workflow step", () =
     jira_domain: "test",
     project: "test",
     issueType: "test",
-    priority: "test",
-    assignee: "test",
     summary: "test",
-    description: "test",
   });
   const actual = testWorkflow.steps[0].export();
 
@@ -27,10 +24,7 @@ Deno.test("CreateIssue can be used as a Slack function in a workflow step", () =
     jira_domain: "test",
     project: "test",
     issueType: "test",
-    priority: "test",
-    assignee: "test",
     summary: "test",
-    description: "test",
   });
 });
 
@@ -45,10 +39,7 @@ Deno.test("All outputs of Slack function CreateIssue should exist", () => {
     jira_domain: "test",
     project: "test",
     issueType: "test",
-    priority: "test",
-    assignee: "test",
     summary: "test",
-    description: "test",
   });
   assertExists(step.outputs.issue_id);
   assertExists(step.outputs.project);

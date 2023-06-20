@@ -2,15 +2,18 @@ type BaseFunctionProperty = {
   type: string;
   description?: string;
   title?: string;
+  enum?: string[];
 };
 
 export type ObjectFunctionProperty = BaseFunctionProperty & {
+  type: "object";
   properties: FunctionProperties;
   required?: string[];
   additionalProperties?: boolean;
 };
 
 export type ArrayFunctionProperty = BaseFunctionProperty & {
+  type: "array";
   items: FunctionProperty;
 };
 
@@ -29,14 +32,18 @@ export type FunctionParameter = FunctionProperty & {
 };
 
 export type FunctionRecord = {
+  namespace: string;
+  id: string;
   callback_id: string;
   title: string;
   description: string;
-  app_id: string;
-  namespace: string;
+  type: string;
   input_parameters: FunctionParameter[];
   output_parameters: FunctionParameter[];
-  type?: string;
+  app_id: string;
+  date_updated?: number;
+  date_created?: number;
+  date_deleted?: number;
 };
 
 export type FunctionsPayload = {

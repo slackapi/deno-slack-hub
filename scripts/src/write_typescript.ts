@@ -78,7 +78,9 @@ console.log(
   `Generated ${slackFunctions.length} Connectors with their unit tests`,
 );
 
-const modString = ConnectorsModTemplate(Object.keys(groupedSlackFunctions));
+const modString = ConnectorsModTemplate(
+  Object.keys(groupedSlackFunctions).sort(),
+);
 
 await Deno.writeTextFile(`${flags.connectors_path}/mod.ts`, modString);
 console.log("Updated functions module export");

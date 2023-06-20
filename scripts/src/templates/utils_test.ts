@@ -9,6 +9,7 @@ import { assertEquals, assertStringIncludes } from "../dev_deps.ts";
 import { FunctionRecord } from "../types.ts";
 import { Schema } from "../../../src/deps.ts";
 
+const ID = "FnTest";
 const DESCRIPTION = "Test the Slack function template";
 const TITLE = "test function";
 const CALLBACK_ID = "test_function";
@@ -44,6 +45,7 @@ Deno.test("Function import should contain file path", () => {
 Deno.test("getSlackCallbackId should generate the valid slack callback_id", () => {
   const actual = `${APP_ID}#/functions/${CALLBACK_ID}`;
   const expected = getConnectorCallbackId({
+    id: ID,
     callback_id: CALLBACK_ID,
     title: TITLE,
     app_id: APP_ID,
@@ -58,6 +60,7 @@ Deno.test("getSlackCallbackId should generate the valid slack callback_id", () =
 
 Deno.test("renderTypeImports should render all imports provided with slack and primitive types", () => {
   const dfi: FunctionRecord = {
+    id: ID,
     callback_id: CALLBACK_ID,
     title: TITLE,
     description: DESCRIPTION,
@@ -88,6 +91,7 @@ Deno.test("renderTypeImports should render all imports provided with slack and p
 
 Deno.test("renderTypeImports should render imports required for array type", () => {
   const dfi: FunctionRecord = {
+    id: ID,
     callback_id: CALLBACK_ID,
     title: TITLE,
     app_id: APP_ID,
@@ -113,6 +117,7 @@ Deno.test("renderTypeImports should render imports required for array type", () 
 
 Deno.test("renderTypeImports should render imports required for object type", () => {
   const dfi: FunctionRecord = {
+    id: ID,
     callback_id: CALLBACK_ID,
     title: TITLE,
     app_id: APP_ID,
@@ -140,6 +145,7 @@ Deno.test("renderTypeImports should render imports required for object type", ()
 
 Deno.test("renderTypeImports should render imports required for a nested complex object type", () => {
   const dfi: FunctionRecord = {
+    id: ID,
     callback_id: CALLBACK_ID,
     title: TITLE,
     app_id: APP_ID,
@@ -168,6 +174,7 @@ Deno.test("renderTypeImports should render imports required for a nested complex
 
 Deno.test("renderTypeImports should render imports required for primitive & complex types", () => {
   const dfi: FunctionRecord = {
+    id: ID,
     callback_id: CALLBACK_ID,
     title: TITLE,
     app_id: APP_ID,

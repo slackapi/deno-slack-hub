@@ -1,3 +1,4 @@
+import { Schema } from "../../src/deps.ts";
 import {
   ArrayFunctionProperty,
   FunctionProperty,
@@ -71,6 +72,7 @@ export function groupSlackFunctions(
       functionRecordGroups[connectorInfo.namespace] = [functionRecord];
     }
   }
+
   return functionRecordGroups;
 }
 
@@ -87,13 +89,13 @@ export async function getFunctionRecords(
 export function isObjectFunctionProperty(
   property: FunctionProperty,
 ): property is ObjectFunctionProperty {
-  return "properties" in property;
+  return property.type === Schema.types.object && "properties" in property;
 }
 
 export function isArrayFunctionProperty(
   property: FunctionProperty,
 ): property is ArrayFunctionProperty {
-  return "items" in property;
+  return property.type === Schema.types.array && "items" in property;
 }
 
 export async function writeTextFileInDir(
