@@ -44,8 +44,9 @@ started with the latest version of the
 
 ### Consumption
 
-Import the `deno-slack-hub` package in your next gen Deno project, we recommend
-doing this through the `import_map.json`.
+Import the
+[latest version of `deno-slack-hub`](https://deno.land/x/deno_slack_hub) in your
+next gen Deno project, we recommend doing this through the `import_map.json`.
 
 ```json
 {
