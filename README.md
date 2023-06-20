@@ -14,7 +14,7 @@ management to Slack.
 ## Requirements
 
 - A recent version of
-  [`Deno`](https://deno.com/manual/getting_started/installation).
+  [`deno`](https://deno.com/manual/getting_started/installation).
 - The Slack CLI ([install steps](https://api.slack.com/automation/cli/install))
 
 ## Versioning
