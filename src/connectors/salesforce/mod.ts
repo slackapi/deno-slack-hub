@@ -4,7 +4,20 @@ import RunFlow from "./functions/run_flow.ts";
 import UpdateRecord from "./functions/update_record.ts";
 
 const Salesforce = {
-  functions: { CreateRecord, RunFlow, UpdateRecord },
+  functions: {
+    /**
+     * @see The {@link https://api.slack.com/reference/connectors/salesforce/create_record CreateRecord} documentation.
+     */
+    CreateRecord,
+    /**
+     * @see The {@link https://api.slack.com/reference/connectors/salesforce/run_flow RunFlow} documentation.
+     */
+    RunFlow,
+    /**
+     * @see The {@link https://api.slack.com/reference/connectors/salesforce/update_record UpdateRecord} documentation.
+     */
+    UpdateRecord,
+  },
 } as const;
 
 export default Salesforce;

@@ -7,6 +7,36 @@ import {
 } from "./utils.ts";
 import { FunctionRecord } from "../types.ts";
 
+const renderJSdoc = (
+  namespace: string,
+  callback_id: string,
+): string => {
+  const typescript: string[] = [];
+  typescript.push("/**");
+  typescript.push(
+    `* @see The {@link https://api.slack.com/reference/connectors/${namespace}/${callback_id} ${
+      getFunctionName(callback_id)
+    }} documentation.`,
+  );
+  typescript.push("*/");
+  return typescript.join("\n");
+};
+
+const renderFunctions = (
+  namespace: string,
+  functionRecords: FunctionRecord[],
+): string => {
+  const typescript: string[] = [];
+  functionRecords.forEach((functionRecord: FunctionRecord) => {
+    typescript.push(
+      `${renderJSdoc(namespace, functionRecord.callback_id)}\n${
+        getFunctionName(functionRecord.callback_id)
+      }`,
+    );
+  });
+  return `{${typescript.join(",\n")}}`;
+};
+
 export const ConnectorModTemplate = (
   namespace: string,
   functionRecords: FunctionRecord[],
@@ -21,10 +51,9 @@ export const ConnectorModTemplate = (
 
   typescript.push("");
   typescript.push(
-    `const ${objectName} = { functions: {${
-      functionRecords.map((dfi) => `${getFunctionName(dfi.callback_id)}`)
-        .join(",")
-    }}} as const;`,
+    `const ${objectName} = { functions: ${
+      renderFunctions(namespace, functionRecords)
+    }} as const;`,
   );
   typescript.push("");
   typescript.push(`export default ${objectName};`);

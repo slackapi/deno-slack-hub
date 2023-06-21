@@ -2,6 +2,17 @@
 import CreateIssue from "./functions/create_issue.ts";
 import EditIssue from "./functions/edit_issue.ts";
 
-const JiraCloud = { functions: { CreateIssue, EditIssue } } as const;
+const JiraCloud = {
+  functions: {
+    /**
+     * @see The {@link https://api.slack.com/reference/connectors/jira.cloud/create_issue CreateIssue} documentation.
+     */
+    CreateIssue,
+    /**
+     * @see The {@link https://api.slack.com/reference/connectors/jira.cloud/edit_issue EditIssue} documentation.
+     */
+    EditIssue,
+  },
+} as const;
 
 export default JiraCloud;
