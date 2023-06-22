@@ -5,7 +5,24 @@ import EscalateIncident from "./functions/escalate_incident.ts";
 import ResolveIncident from "./functions/resolve_incident.ts";
 
 const Pagerduty = {
-  functions: { AddANote, CreateIncident, EscalateIncident, ResolveIncident },
+  functions: {
+    /**
+     * @see The {@link https://api.slack.com/reference/connectors/pagerduty/add_a_note AddANote} documentation.
+     */
+    AddANote,
+    /**
+     * @see The {@link https://api.slack.com/reference/connectors/pagerduty/create_incident CreateIncident} documentation.
+     */
+    CreateIncident,
+    /**
+     * @see The {@link https://api.slack.com/reference/connectors/pagerduty/escalate_incident EscalateIncident} documentation.
+     */
+    EscalateIncident,
+    /**
+     * @see The {@link https://api.slack.com/reference/connectors/pagerduty/resolve_incident ResolveIncident} documentation.
+     */
+    ResolveIncident,
+  },
 } as const;
 
 export default Pagerduty;
