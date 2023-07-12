@@ -1,5 +1,5 @@
 import { pascalCase } from "../deps.ts";
-import { FunctionProperty, FunctionRecord } from "../types.ts";
+import { FunctionRecord, Property } from "../types.ts";
 import { Schema } from "../../../src/deps.ts";
 import { AllowedTypeValue, AllowedTypeValueObject } from "./types.ts";
 import { isCustomType } from "../deps.ts";
@@ -44,7 +44,7 @@ export function getParameterType(type: AllowedTypeValue): string {
 
 const getParameterList = (
   functionRecord: FunctionRecord,
-): FunctionProperty[] => [
+): Property[] => [
   ...functionRecord.input_parameters,
   ...functionRecord.output_parameters,
 ];
@@ -57,7 +57,7 @@ const hasTypeObject = (
     Object.values(typeObject).map((val) => getParameterType(val)).includes(t)
   );
 
-const extractTypes = (properties: FunctionProperty[]): string[] => {
+const extractTypes = (properties: Property[]): string[] => {
   let types: Set<string> = new Set();
   properties.forEach((property) => {
     types.add(property.type);
