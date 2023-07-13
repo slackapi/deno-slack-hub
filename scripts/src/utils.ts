@@ -2,14 +2,10 @@ import { Schema } from "../../src/deps.ts";
 import {
   ArrayProperty,
   CertifiedApp,
-  FunctionRecord,
-  FunctionsPayload,
   ObjectProperty,
   Property,
 } from "./types.ts";
 import { SlackAPI } from "./deps.ts";
-
-const FUNCTIONS_JSON_PATH = "functions.json";
 
 const green = "\x1b[92m";
 const yellow = "\x1b[38;5;214m";
@@ -36,23 +32,13 @@ export async function fetchCertifiedAppsSchema(): Promise<CertifiedApp[]> {
   return appsCertifiedSchemaList.apps as CertifiedApp[];
 }
 
-export async function getFunctionRecords(
-  functionsPayloadPath: string = FUNCTIONS_JSON_PATH,
-): Promise<FunctionRecord[]> {
-  const functionsPayload: FunctionsPayload = await Deno.readTextFile(
-    functionsPayloadPath,
-  ).then(JSON.parse);
-
-  return functionsPayload.functions.filter((fn) => fn.type == "app");
-}
-
-export function isObjectFunctionProperty(
+export function isObjectProperty(
   property: Property,
 ): property is ObjectProperty {
   return property.type === Schema.types.object && "properties" in property;
 }
 
-export function isArrayFunctionProperty(
+export function isArrayProperty(
   property: Property,
 ): property is ArrayProperty {
   return property.type === Schema.types.array && "items" in property;
