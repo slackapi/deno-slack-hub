@@ -30,7 +30,7 @@ export default DefineConnector({
     properties: {
       incident_id: {
         type: Schema.types.string,
-        description: "Incident ID",
+        description: "Incident id",
         title: "Incident ID",
       },
       incident_url: {
