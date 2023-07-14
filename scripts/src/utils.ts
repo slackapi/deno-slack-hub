@@ -2,6 +2,7 @@ import { Schema } from "../../src/deps.ts";
 import {
   ArrayProperty,
   CertifiedApp,
+  FunctionRecord,
   ObjectProperty,
   Property,
 } from "./types.ts";
@@ -16,9 +17,11 @@ export const greenText = (text: string) => green + text + reset;
 export const yellowText = (text: string) => yellow + text + reset;
 export const redText = (text: string) => red + text + reset;
 
+const VALID_FILENAME_REGEX = /^[0-9a-zA-Z_\-]+$/;
+
 const client = SlackAPI("");
 
-export async function fetchCertifiedAppsSchema(): Promise<CertifiedApp[]> {
+export async function fetchCertifiedApps(): Promise<CertifiedApp[]> {
   const appsCertifiedSchemaList = await client.apiCall(
     "apps.certified.schema.list",
   );
@@ -53,4 +56,8 @@ export async function writeTextFileInDir(
 ) {
   await Deno.mkdir(options.dir, { recursive: true });
   await Deno.writeTextFile(`${options.dir}/${options.filename}`, data);
+}
+
+export function isFunctionRecordValid(functionRecord: FunctionRecord): boolean {
+  return VALID_FILENAME_REGEX.test(functionRecord.callback_id);
 }

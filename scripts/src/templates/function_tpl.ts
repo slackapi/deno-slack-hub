@@ -153,5 +153,3 @@ export function FunctionTemplate(
 
   return typescript.join("\n");
 }
-
-export default FunctionTemplate;

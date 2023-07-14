@@ -1,7 +1,8 @@
 import {
-  fetchCertifiedAppsSchema,
+  fetchCertifiedApps,
   greenText,
   isArrayProperty,
+  isFunctionRecordValid,
   isObjectProperty,
   redText,
   yellowText,
@@ -10,13 +11,19 @@ import {
   assert,
   assertEquals,
   assertExists,
+  assertFalse,
   assertIsError,
   assertTrue,
   IsExact,
   isHttpError,
   MockFetch,
 } from "./dev_deps.ts";
-import { ArrayProperty, ObjectProperty, Property } from "./types.ts";
+import {
+  ArrayProperty,
+  FunctionRecord,
+  ObjectProperty,
+  Property,
+} from "./types.ts";
 
 Deno.test("colored text remain consistent", () => {
   assertEquals("\x1b[92mtest\x1b[0m", greenText("test"));
@@ -54,7 +61,7 @@ Deno.test(`${isArrayProperty.name} distinguishes ArrayProperty from Property`, (
   assertEquals(true, isArrayProperty(property));
 });
 
-Deno.test(`${fetchCertifiedAppsSchema.name}`, async (test) => {
+Deno.test(`${fetchCertifiedApps.name}`, async (test) => {
   MockFetch.install();
 
   const expectedCause = "not found";
@@ -74,7 +81,7 @@ Deno.test(`${fetchCertifiedAppsSchema.name}`, async (test) => {
       );
     });
 
-    const actual = await fetchCertifiedAppsSchema();
+    const actual = await fetchCertifiedApps();
 
     assertEquals(1, actual.length);
     const actualApp = actual[0];
@@ -100,7 +107,7 @@ Deno.test(`${fetchCertifiedAppsSchema.name}`, async (test) => {
     });
 
     try {
-      await fetchCertifiedAppsSchema();
+      await fetchCertifiedApps();
       assertTrue(false, "There was no error thrown");
     } catch (error) {
       assertIsError(error);
@@ -120,11 +127,36 @@ Deno.test(`${fetchCertifiedAppsSchema.name}`, async (test) => {
     });
 
     try {
-      await fetchCertifiedAppsSchema();
+      await fetchCertifiedApps();
       assertTrue(false, "There was no error thrown");
     } catch (error) {
       assertTrue(isHttpError(error));
       assertExists(error.message);
     }
+  });
+});
+
+Deno.test(`${isFunctionRecordValid.name}`, async (test) => {
+  const functionRecord: FunctionRecord = {
+    id: "",
+    callback_id: "",
+    title: "",
+    description: "",
+    type: "",
+    input_parameters: [],
+    output_parameters: [],
+    app_id: "",
+  };
+
+  await test.step("should return true when function record valid", () => {
+    functionRecord.callback_id = "Test_callBack";
+
+    assertTrue(isFunctionRecordValid(functionRecord));
+  });
+
+  await test.step("should return false when function record invalid", () => {
+    functionRecord.callback_id = "$$:Invalid";
+
+    assertFalse(isFunctionRecordValid(functionRecord));
   });
 });
