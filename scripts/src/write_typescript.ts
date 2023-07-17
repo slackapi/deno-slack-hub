@@ -1,86 +1,145 @@
-import FunctionTemplate from "./templates/function.ts";
-import TestFunctionTemplate from "./templates/test.ts";
-import ConnectorModTemplate, {
+import {
+  ConnectorModTemplate,
   ConnectorsModTemplate,
+  FunctionTemplate,
+  TestFunctionTemplate,
 } from "./templates/mod.ts";
 import {
-  getFunctionRecords,
+  fetchCertifiedApps,
   greenText,
-  groupSlackFunctions,
+  isFunctionRecordValid,
   redText,
   writeTextFileInDir,
 } from "./utils.ts";
-import { FunctionRecord } from "./types.ts";
+import { CertifiedApp, FunctionRecord } from "./types.ts";
 import { parse } from "./deps.ts";
 
-const flags = parse(Deno.args, {
-  string: ["connectors_path"],
-  default: {
-    "connectors_path": `./src/connectors`,
-  },
-});
+try {
+  const flags = parse(Deno.args, {
+    string: ["connectors_path"],
+    default: {
+      "connectors_path": `./src/connectors`,
+    },
+  });
 
-const VALID_FILENAME_REGEX = /^[0-9a-zA-Z_\-]+$/;
+  const certifiedApps: CertifiedApp[] = await fetchCertifiedApps();
 
-const slackFunctions: FunctionRecord[] = await getFunctionRecords();
+  for (const certifiedApp of certifiedApps) {
+    const connectorPath = `${flags.connectors_path}/${certifiedApp.namespace}`;
 
-const groupedSlackFunctions: Record<string, FunctionRecord[]> =
-  groupSlackFunctions(slackFunctions);
+    console.log(
+      `Generating typescript files for functions defined by: ${
+        greenText(certifiedApp.namespace)
+      }`,
+    );
 
-// Sorting alphabetically cause only a monster would generate these in a random order
-slackFunctions.sort((a, b) => a.callback_id.localeCompare(b.callback_id));
-
-await Promise.all(
-  Object.entries(groupedSlackFunctions).map(
-    async ([namespace, functionRecords]) => {
-      const connectorPath = `${flags.connectors_path}/${namespace}`;
-      await Deno.mkdir(connectorPath, { recursive: true });
-
-      for (const functionRecord of functionRecords) {
-        console.log(
-          `Generating code & tests for ${namespace} connector: ${
-            greenText(functionRecord.callback_id)
-          }`,
-        );
-        if (!VALID_FILENAME_REGEX.test(functionRecord.callback_id)) {
-          console.log(
-            `${redText("FAILURE:")} Invalid characters in callback_id: ${
-              redText(functionRecord.callback_id)
-            }`,
+    const validFunctions = await certifiedApp.functions.reduce<
+      Promise<FunctionRecord[]>
+    >(
+      async (validFunctionRecords, functionRecord) => {
+        if (!isFunctionRecordValid(functionRecord)) {
+          console.warn(
+            `${
+              redText("FAILURE:")
+            } Invalid characters in callback_id: ${functionRecord.callback_id}`,
           );
-          return;
+          return validFunctionRecords;
         }
 
-        const templateString = FunctionTemplate(functionRecord, {
-          depth: 3,
-        });
-        const templateTestString = TestFunctionTemplate(functionRecord, {
-          depth: 3,
-        });
+        await writeFunctionFile(
+          functionRecord,
+          `${connectorPath}/functions`,
+        );
+        await writeTestFile(
+          functionRecord,
+          `${connectorPath}/functions`,
+        );
 
-        await writeTextFileInDir(templateString, {
-          dir: `${connectorPath}/functions`,
-          filename: `${functionRecord.callback_id}.ts`,
-        });
-        await writeTextFileInDir(templateTestString, {
-          dir: `${connectorPath}/functions`,
-          filename: `${functionRecord.callback_id}_test.ts`,
-        });
-      }
-      const modString = ConnectorModTemplate(namespace, functionRecords);
+        (await validFunctionRecords).push(functionRecord);
+        return validFunctionRecords;
+      },
+      Promise.resolve([]),
+    );
 
-      await Deno.writeTextFile(`${connectorPath}/mod.ts`, modString);
-    },
-  ),
-);
+    await writeModFile(certifiedApp.namespace, validFunctions, connectorPath);
+  }
 
-console.log(
-  `Generated ${slackFunctions.length} Connectors with their unit tests`,
-);
+  await writePackageModFile(certifiedApps, flags.connectors_path);
+} catch (error) {
+  console.error(redText("FATAL"), error);
+  Deno.exit(1);
+}
 
-const modString = ConnectorsModTemplate(
-  Object.keys(groupedSlackFunctions).sort(),
-);
+async function writeFunctionFile(
+  functionRecord: FunctionRecord,
+  directory: string,
+) {
+  console.log(
+    `Writing function code for: ${greenText(functionRecord.callback_id)}`,
+  );
 
-await Deno.writeTextFile(`${flags.connectors_path}/mod.ts`, modString);
-console.log("Updated functions module export");
+  const templateString = FunctionTemplate(functionRecord, {
+    depth: 3,
+  });
+
+  await writeTextFileInDir(templateString, {
+    dir: directory,
+    filename: `${functionRecord.callback_id}.ts`,
+  });
+}
+
+async function writeTestFile(
+  functionRecord: FunctionRecord,
+  directory: string,
+) {
+  console.log(
+    `Writing test code for: ${greenText(functionRecord.callback_id)}`,
+  );
+
+  const templateTestString = TestFunctionTemplate(functionRecord, {
+    depth: 3,
+  });
+
+  await writeTextFileInDir(templateTestString, {
+    dir: directory,
+    filename: `${functionRecord.callback_id}_test.ts`,
+  });
+}
+
+async function writeModFile(
+  namespace: string,
+  functionRecords: FunctionRecord[],
+  directory: string,
+) {
+  const filename = "mod.ts";
+  console.log(
+    `Writing ${filename} code for: ${greenText(namespace)}`,
+  );
+
+  const modString = ConnectorModTemplate(
+    namespace,
+    functionRecords,
+  );
+
+  await writeTextFileInDir(modString, {
+    dir: directory,
+    filename,
+  });
+}
+
+async function writePackageModFile(
+  certifiedApps: CertifiedApp[],
+  directory: string,
+) {
+  const filename = "mod.ts";
+  console.log(
+    `Writing package level ${filename} code!`,
+  );
+
+  const modString = ConnectorsModTemplate(certifiedApps);
+
+  await writeTextFileInDir(modString, {
+    dir: directory,
+    filename,
+  });
+}

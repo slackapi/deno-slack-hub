@@ -4,10 +4,9 @@ import {
   getFunctionName,
   renderFunctionImport,
   renderRelativePath,
-  // renderTypeImports,
 } from "./utils.ts";
 import { FunctionParameter, FunctionRecord } from "../types.ts";
-import { manifestFunctionFieldsToTypeScript } from "./function.ts";
+import { manifestFunctionFieldsToTypeScript } from "./function_tpl.ts";
 
 export const manifestFunctionToTypeScript = (
   functionRecord: FunctionRecord,
@@ -88,6 +87,7 @@ const renderOutputExistenceTest = (functionRecord: FunctionRecord) => {
 type TestFunctionTemplateOptions = {
   depth: number;
 };
+
 export function TestFunctionTemplate(
   functionRecord: FunctionRecord,
   options: TestFunctionTemplateOptions = {
@@ -127,5 +127,3 @@ export function TestFunctionTemplate(
 
   return typescript.join("\n");
 }
-
-export default TestFunctionTemplate;

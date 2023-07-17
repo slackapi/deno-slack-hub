@@ -1,0 +1,93 @@
+{
+  "ok": true,
+  "apps": [
+    {
+      "id": "A04RSGH23L7",
+      "name": "PagerDuty",
+      "namespace": "pagerduty",
+      "description": "PagerDuty Steps for Workflow Builder",
+      "long_description": "",
+      "url": "",
+      "support_url": "",
+      "functions": [
+        {
+          "id": "Fn04SWQPSU0G",
+          "callback_id": "escalate_incident",
+          "title": "Change escalation level",
+          "description": "Change escalation level of a PagerDuty incident",
+          "type": "app",
+          "input_parameters": [
+            {
+              "type": "string",
+              "name": "incident_id",
+              "description": "Enter incident ID...",
+              "title": "Incident ID",
+              "is_required": true
+            },
+            {
+              "type": "slack#/types/credential/oauth2",
+              "name": "pagerduty_access_token",
+              "description": "Pagerduty access token",
+              "title": "PagerDuty access token",
+              "is_required": true,
+              "oauth2_provider_key": "pagerduty",
+              "require_end_user_auth": true
+            },
+            {
+              "type": "object",
+              "name": "escalation_policy",
+              "description": "Escalation Policy",
+              "title": "Escalation policy",
+              "is_required": false,
+              "properties": {
+                "id": { "type": "string", "title": "Escalation policy ID" },
+                "summary": {
+                  "type": "string",
+                  "title": "Escalation policy summary"
+                },
+                "html_url": {
+                  "type": "string",
+                  "title": "Escalation policy URL"
+                }
+              }
+            }
+          ],
+          "output_parameters": [
+            {
+              "type": "#/types/assignment",
+              "name": "assignment",
+              "description": "Assignment",
+              "title": "Assignment",
+              "is_required": false
+            }
+          ],
+          "app_id": "A04RSGH23L7",
+          "date_created": 1677826676,
+          "date_updated": 1687759384,
+          "date_deleted": 0
+        }
+      ],
+      "types": {
+        "assignment": {
+          "type": "object",
+          "properties": {
+            "at": { "type": "string" },
+            "assignee": { "type": "#/types/resource" }
+          },
+          "additionalProperties": true
+        },
+        "resource": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string", "title": "ID" },
+            "self": { "type": "string", "title": "API URL" },
+            "type": { "type": "string", "title": "Type" },
+            "summary": { "type": "string", "title": "Summary" },
+            "html_url": { "type": "string", "title": "URL" }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

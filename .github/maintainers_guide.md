@@ -43,30 +43,26 @@ file to import/export all of the defined functions.
 
 #### Instructions
 
-1. First, you'll need to grab a payload from `functions.list`, it must contain
-   all the connectors we want to generate. Place the response in a
-   `functions.json` file inside of this `scripts` directory.
-
-2. From the project level directory, run the generate script:
+1. From the project level directory, run the generate script:
 
    ```sh
    ./scripts/generate
    ```
 
-3. This will output something like the following:
+   This will fetch the latest connector data from Slack and generate the
+   typescript files.
+
+2. This will output something like the following:
 
    ```txt
    Cleaning folder directory
    ...
-   Generated 19 Connectors with their unit tests
-   Updated functions module export
    Formatting Slack function files...
    Linting Slack function files...
    ```
 
 If it completes without any linter errors, you should be good to go, with new,
-formatted and linted TypeScript files for all of the Slack functions included in
-your `functions.json` payload.
+formatted and linted TypeScript files for all of the connectors on slack.
 
 ### Testing
 

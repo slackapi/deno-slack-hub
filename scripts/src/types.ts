@@ -1,38 +1,35 @@
-type BaseFunctionProperty = {
+type BaseProperty = {
   type: string;
   description?: string;
   title?: string;
   enum?: string[];
 };
 
-export type ObjectFunctionProperty = BaseFunctionProperty & {
+export type ObjectProperty = BaseProperty & {
   type: "object";
-  properties: FunctionProperties;
+  properties: {
+    [key: string]: Property;
+  };
   required?: string[];
   additionalProperties?: boolean;
 };
 
-export type ArrayFunctionProperty = BaseFunctionProperty & {
+export type ArrayProperty = BaseProperty & {
   type: "array";
-  items: FunctionProperty;
+  items: Property;
 };
 
-export type FunctionProperty =
-  | BaseFunctionProperty
-  | ObjectFunctionProperty
-  | ArrayFunctionProperty;
+export type Property =
+  | BaseProperty
+  | ObjectProperty
+  | ArrayProperty;
 
-export type FunctionProperties = {
-  [key: string]: FunctionProperty;
-};
-
-export type FunctionParameter = FunctionProperty & {
+export type FunctionParameter = Property & {
   name: string;
   is_required?: boolean;
 };
 
 export type FunctionRecord = {
-  namespace: string;
   id: string;
   callback_id: string;
   title: string;
@@ -49,4 +46,18 @@ export type FunctionRecord = {
 export type FunctionsPayload = {
   ok: boolean;
   functions: FunctionRecord[];
+};
+
+export type CertifiedApp = {
+  id: string;
+  name: string;
+  namespace: string;
+  description: string;
+  long_description: string;
+  url: string;
+  support_url: string;
+  functions: FunctionRecord[];
+  types: {
+    [key: string]: Property;
+  };
 };

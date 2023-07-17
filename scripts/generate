@@ -15,7 +15,7 @@ echo "Cleaning folder directory"
 }
 
 # Writes the function & test files based on a functions.json file existing alongside this script
-deno run --quiet --allow-read --allow-write ./src/write_typescript.ts --connectors_path $CONNECTORS_PATH
+deno run --quiet --allow-read --allow-write --allow-net ./src/write_typescript.ts --connectors_path $CONNECTORS_PATH
 
 cd $PROJECT_DIRECTORY
 
