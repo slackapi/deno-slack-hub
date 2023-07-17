@@ -62,8 +62,7 @@ file to import/export all of the defined functions.
    ```
 
 If it completes without any linter errors, you should be good to go, with new,
-formatted and linted TypeScript files for all of the Slack functions included in
-your `functions.json` payload.
+formatted and linted TypeScript files for all of the connectors on slack.
 
 ### Testing
 
