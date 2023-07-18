@@ -38,13 +38,14 @@ jobs:
         run: ./scripts/generate
       
       - name: Commit changes
+        id: commit
         continue-on-error: true
         run: |
             git checkout -b $BRANCH_NAME
-            git commit -a -m "Latest generated changes"
+            git commit -a -m "Automated commit: Latest generated changes from schedule action"
 
       - name: Create Pull Request
-        if: ${{ success() }}
+        if: ${{ steps.commit.outcome == 'success' }}
         run: |
             git push --set-upstream origin $BRANCH_NAME
             gh pr create -r "slackapi/denosaurs" --label "enhancement" --title "Latest generated changes" --body \
