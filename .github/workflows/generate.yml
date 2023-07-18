@@ -1,0 +1,56 @@
+name: Generate
+
+on:
+  schedule:
+    # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+    # Runs every Monday at 00:00
+    - cron:  '0 0 * * 1'
+
+jobs:
+  generate:
+    permissions:
+        contents: write
+        pull-requests: write
+    runs-on: ubuntu-latest
+    env:
+      # the version of deno used by Run on Slack (v1.31.1)
+      deno-version: v1.31.1
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v3
+
+      - name: Setup Deno ${{ env.deno-version }}
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: ${{ env.deno-version }}
+      
+      - name: Setup Git config
+        run: |
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+
+      - name: Set BRANCH_NAME
+        # example: BRANCH_NAME=generate_2023-07-18_18-09
+        run: echo "BRANCH_NAME=generate_$(date +"%Y-%m-%d_%H-%M")" >> $GITHUB_ENV
+
+      - name: Run generation script
+        run: ./scripts/generate
+      
+      - name: Commit changes
+        continue-on-error: true
+        run: |
+            git checkout -b $BRANCH_NAME
+            git commit -a -m "Latest generated changes"
+
+      - name: Create Pull Request
+        if: ${{ success() }}
+        run: |
+            git push --set-upstream origin $BRANCH_NAME
+            gh pr create -r "slackapi/denosaurs" --label "enhancement" --title "Latest generated changes" --body \
+            "## 🚀 Automated Pull Request: Coded-Connectors Update
+            This PR brings the latest changes to coded-connectors, fueled by Slack's latest data. Developers can now access the newest features effortlessly.
+
+            *Github-Actions* 🤖"
+        env:
+           GH_TOKEN: ${{ github.token }}
