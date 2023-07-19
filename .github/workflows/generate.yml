@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # the version of deno used by Run on Slack (v1.31.1)
-      deno-version: v1.31.1
+      deno-version: v1.31.1 # TODO source this dynamicly from https://api.slack.com/slackcli/metadata.json
 
     steps:
       - name: Setup repo
