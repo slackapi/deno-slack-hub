@@ -49,7 +49,7 @@ jobs:
         if: ${{ steps.commit.outcome == 'success' }}
         run: |
             git push --set-upstream origin $BRANCH_NAME
-            gh pr create -r "@slackapi/denosaurs" --label "enhancement" --title "Latest generated changes" --body \
+            gh pr create --label "enhancement" --title "Latest generated changes" --body \
             "## 🚀 Automated Pull Request: Coded-Connectors Update
             This PR brings the latest changes to coded-connectors, fueled by Slack's latest data. Developers can now access the newest features effortlessly.
 
