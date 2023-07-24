@@ -20,7 +20,7 @@ export default DefineConnector({
         title: "Salesforce Access Token",
       },
     },
-    required: ["flow_name", "metadata", "salesforce_access_token"],
+    required: ["flow_name", "salesforce_access_token"],
   },
   output_parameters: {
     properties: {
