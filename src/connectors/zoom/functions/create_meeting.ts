@@ -35,7 +35,7 @@ export default DefineConnector({
     properties: {
       meeting_id: {
         type: Schema.types.number,
-        description: "Meeting Id",
+        description: "Meeting ID",
         title: "Meeting ID",
       },
       topic: {
