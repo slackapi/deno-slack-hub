@@ -11,7 +11,6 @@ Deno.test("RunFlow can be used as a Slack function in a workflow step", () => {
   });
   testWorkflow.addStep(RunFlow, {
     flow_name: "test",
-    metadata: "test",
     salesforce_access_token: "test",
   });
   const actual = testWorkflow.steps[0].export();
@@ -19,7 +18,6 @@ Deno.test("RunFlow can be used as a Slack function in a workflow step", () => {
   assertEquals(actual.function_id, "A04T99UKKQE#/functions/run_flow");
   assertEquals(actual.inputs, {
     flow_name: "test",
-    metadata: "test",
     salesforce_access_token: "test",
   });
 });
@@ -32,7 +30,6 @@ Deno.test("All outputs of Slack function RunFlow should exist", () => {
   });
   const step = testWorkflow.addStep(RunFlow, {
     flow_name: "test",
-    metadata: "test",
     salesforce_access_token: "test",
   });
   assertExists(step.outputs.success);

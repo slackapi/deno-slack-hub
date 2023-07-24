@@ -48,7 +48,22 @@ export default DefineConnector({
         description: "Spreadsheet ID",
         title: "Spreadsheet ID",
       },
+      timestamp_started: {
+        type: Schema.slack.types.timestamp,
+        description: "Time when step started",
+        title: "Time when step started",
+      },
+      timestamp_completed: {
+        type: Schema.slack.types.timestamp,
+        description: "Time when step ended",
+        title: "Time when step ended",
+      },
     },
-    required: ["spreadsheet_url", "spreadsheet_id"],
+    required: [
+      "spreadsheet_url",
+      "spreadsheet_id",
+      "timestamp_started",
+      "timestamp_completed",
+    ],
   },
 });
