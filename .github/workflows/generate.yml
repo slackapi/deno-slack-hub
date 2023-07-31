@@ -43,7 +43,7 @@ jobs:
         continue-on-error: true
         run: |
             git checkout -b $BRANCH_NAME
-            (( $(git diff --stat | awk 'BEGIN { files_changed = 0 } { files_changed += $1 } END { print files_changed }') > 1 )) || { echo "0 or 1 files changed. Do not commit."; exit 1; }
+            [[ $(git diff --name-only) == "src/connectors/mod.ts" ]] && { echo "No real changes. Do not commit."; exit 1; }
             git commit -a -m "Automated commit: Latest generated changes from schedule action"
 
       - name: Create Pull Request
