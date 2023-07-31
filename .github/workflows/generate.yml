@@ -56,8 +56,8 @@ jobs:
 
             GitHub prevents [triggering a workflow from a workflow](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow), the **checks** on this pull request will not be triggered automatically :sweat_smile:
             To trigger the **checks** on this pull request:
-            1. `close the pull request`
-            2. `reopen the pull request`
+            1. close the pull request
+            2. reopen the pull request
 
             *Github-Actions* 🤖"
         env:
