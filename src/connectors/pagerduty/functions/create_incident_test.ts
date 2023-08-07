@@ -13,7 +13,6 @@ Deno.test("CreateIncident can be used as a Slack function in a workflow step", (
     title: "test",
     details: "test",
     pagerduty_access_token: "test",
-    pagerduty_team_id: "test",
     service_id: "test",
     escalation_policy: "test",
   });
@@ -24,7 +23,6 @@ Deno.test("CreateIncident can be used as a Slack function in a workflow step", (
     title: "test",
     details: "test",
     pagerduty_access_token: "test",
-    pagerduty_team_id: "test",
     service_id: "test",
     escalation_policy: "test",
   });
@@ -40,7 +38,6 @@ Deno.test("All outputs of Slack function CreateIncident should exist", () => {
     title: "test",
     details: "test",
     pagerduty_access_token: "test",
-    pagerduty_team_id: "test",
     service_id: "test",
     escalation_policy: "test",
   });

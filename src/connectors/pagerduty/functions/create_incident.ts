@@ -23,11 +23,6 @@ export default DefineConnector({
         description: "Pagerduty access token",
         title: "PagerDuty access token",
       },
-      pagerduty_team_id: {
-        type: Schema.types.string,
-        description: "PagerDuty Team",
-        title: "Team",
-      },
       service_id: {
         type: Schema.types.string,
         description: "PagerDuty Service",
@@ -43,7 +38,6 @@ export default DefineConnector({
       "title",
       "details",
       "pagerduty_access_token",
-      "pagerduty_team_id",
       "service_id",
       "escalation_policy",
     ],
