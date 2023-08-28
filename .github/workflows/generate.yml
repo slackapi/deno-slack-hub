@@ -44,7 +44,8 @@ jobs:
         run: |
             git checkout -b $BRANCH_NAME
             [[ $(git diff --name-only) == "src/connectors/mod.ts" ]] && { echo "No real changes. Do not commit."; exit 1; }
-            git commit -a -m "Automated commit: Latest generated changes from schedule action"
+            git add --all
+            git commit -m "Automated commit: Latest generated changes from schedule action"
 
       - name: Create Pull Request
         if: ${{ steps.commit.outcome == 'success' }}
