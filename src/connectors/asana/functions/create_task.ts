@@ -5,7 +5,6 @@ import { Schema } from "../../../deps.ts";
 export default DefineConnector({
   callback_id: "A05KUFPF86S#/functions/create_task",
   title: "Create a task",
-  description: "Creates a task in selected workspace",
   input_parameters: {
     properties: {
       workspace_gid: { type: Schema.types.string, title: "Workspace" },
@@ -44,7 +43,13 @@ export default DefineConnector({
         title: "Asana Access Token",
       },
     },
-    required: ["workspace_gid", "project", "assignee", "name"],
+    required: [
+      "workspace_gid",
+      "project",
+      "assignee",
+      "name",
+      "asana_access_token",
+    ],
   },
   output_parameters: {
     properties: {

@@ -9,11 +9,19 @@ Deno.test("UpdateTask can be used as a Slack function in a workflow step", () =>
     title: "Test UpdateTask",
     description: "This is a generated test to test UpdateTask",
   });
-  testWorkflow.addStep(UpdateTask, { workspace_gid: "test", task_gid: "test" });
+  testWorkflow.addStep(UpdateTask, {
+    workspace_gid: "test",
+    task_gid: "test",
+    asana_access_token: "test",
+  });
   const actual = testWorkflow.steps[0].export();
 
   assertEquals(actual.function_id, "A05KUFPF86S#/functions/update_task");
-  assertEquals(actual.inputs, { workspace_gid: "test", task_gid: "test" });
+  assertEquals(actual.inputs, {
+    workspace_gid: "test",
+    task_gid: "test",
+    asana_access_token: "test",
+  });
 });
 
 Deno.test("All outputs of Slack function UpdateTask should exist", () => {
@@ -25,6 +33,7 @@ Deno.test("All outputs of Slack function UpdateTask should exist", () => {
   const step = testWorkflow.addStep(UpdateTask, {
     workspace_gid: "test",
     task_gid: "test",
+    asana_access_token: "test",
   });
   assertExists(step.outputs.assignee);
   assertExists(step.outputs.task_name);

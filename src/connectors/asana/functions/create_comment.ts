@@ -5,7 +5,6 @@ import { Schema } from "../../../deps.ts";
 export default DefineConnector({
   callback_id: "A05KUFPF86S#/functions/create_comment",
   title: "Comment on a task",
-  description: "Comment on a task in a selected workspace",
   input_parameters: {
     properties: {
       workspace_gid: { type: Schema.types.string, title: "Workspace" },
@@ -21,7 +20,12 @@ export default DefineConnector({
         title: "Asana Access Token",
       },
     },
-    required: ["workspace_gid", "task_gid", "comment_text"],
+    required: [
+      "workspace_gid",
+      "task_gid",
+      "comment_text",
+      "asana_access_token",
+    ],
   },
   output_parameters: {
     properties: {

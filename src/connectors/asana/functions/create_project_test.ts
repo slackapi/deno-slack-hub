@@ -13,6 +13,7 @@ Deno.test("CreateProject can be used as a Slack function in a workflow step", ()
     workspace_gid: "test",
     team: "test",
     project_name: "test",
+    asana_access_token: "test",
   });
   const actual = testWorkflow.steps[0].export();
 
@@ -21,6 +22,7 @@ Deno.test("CreateProject can be used as a Slack function in a workflow step", ()
     workspace_gid: "test",
     team: "test",
     project_name: "test",
+    asana_access_token: "test",
   });
 });
 
@@ -34,6 +36,7 @@ Deno.test("All outputs of Slack function CreateProject should exist", () => {
     workspace_gid: "test",
     team: "test",
     project_name: "test",
+    asana_access_token: "test",
   });
   assertExists(step.outputs.team);
   assertExists(step.outputs.workspace);

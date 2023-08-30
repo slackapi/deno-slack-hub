@@ -5,7 +5,6 @@ import { Schema } from "../../../deps.ts";
 export default DefineConnector({
   callback_id: "A05KUFPF86S#/functions/update_task",
   title: "Update a task",
-  description: "Updates a given task in a selected workspace",
   input_parameters: {
     properties: {
       workspace_gid: {
@@ -40,7 +39,7 @@ export default DefineConnector({
         title: "Asana Access Token",
       },
     },
-    required: ["workspace_gid", "task_gid"],
+    required: ["workspace_gid", "task_gid", "asana_access_token"],
   },
   output_parameters: {
     properties: {

@@ -14,6 +14,7 @@ Deno.test("CreateTask can be used as a Slack function in a workflow step", () =>
     project: "test",
     assignee: "test",
     name: "test",
+    asana_access_token: "test",
   });
   const actual = testWorkflow.steps[0].export();
 
@@ -23,6 +24,7 @@ Deno.test("CreateTask can be used as a Slack function in a workflow step", () =>
     project: "test",
     assignee: "test",
     name: "test",
+    asana_access_token: "test",
   });
 });
 
@@ -37,6 +39,7 @@ Deno.test("All outputs of Slack function CreateTask should exist", () => {
     project: "test",
     assignee: "test",
     name: "test",
+    asana_access_token: "test",
   });
   assertExists(step.outputs.assignee);
   assertExists(step.outputs.task_name);

@@ -13,6 +13,7 @@ Deno.test("CreateComment can be used as a Slack function in a workflow step", ()
     workspace_gid: "test",
     task_gid: "test",
     comment_text: "test",
+    asana_access_token: "test",
   });
   const actual = testWorkflow.steps[0].export();
 
@@ -21,6 +22,7 @@ Deno.test("CreateComment can be used as a Slack function in a workflow step", ()
     workspace_gid: "test",
     task_gid: "test",
     comment_text: "test",
+    asana_access_token: "test",
   });
 });
 
@@ -34,6 +36,7 @@ Deno.test("All outputs of Slack function CreateComment should exist", () => {
     workspace_gid: "test",
     task_gid: "test",
     comment_text: "test",
+    asana_access_token: "test",
   });
   assertExists(step.outputs.task_name);
   assertExists(step.outputs.comment_text);
