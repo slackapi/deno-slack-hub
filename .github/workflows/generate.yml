@@ -43,7 +43,7 @@ jobs:
         continue-on-error: true
         run: |
             git checkout -b $BRANCH_NAME
-            [[ $(git ls-files --other --modified --exclude-standard) == "src/connectors/mod.ts" ]] && { echo "No real changes. Do not commit."; exit 1; }
+            [[ $(git diff --name-only) == "src/connectors/mod.ts" ]] && { echo "No real changes. Do not commit."; exit 1; }
             git add --all
             git commit -m "Automated commit: Latest generated changes from schedule action"
 
