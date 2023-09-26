@@ -4,7 +4,7 @@ import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
   callback_id: "A04T6GE3LEB#/functions/edit_issue",
-  title: "Edit an Issue",
+  title: "Edit an issue",
   description: "Edit a JIRA Cloud issue",
   input_parameters: {
     properties: {
@@ -31,12 +31,12 @@ export default DefineConnector({
       },
       summary: {
         type: Schema.types.string,
-        description: "Summary of the bug or issue ...",
+        description: "Summary of the bug or issue...",
         title: "Summary",
       },
       description: {
         type: Schema.types.string,
-        description: "Description of the bug or issue ...",
+        description: "Description of the bug or issue...",
         title: "Description",
       },
     },

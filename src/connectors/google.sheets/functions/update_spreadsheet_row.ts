@@ -28,11 +28,7 @@ export default DefineConnector({
         description: "Add a value",
         title: "Cell value to find",
       },
-      updated_values: {
-        type: Schema.types.object,
-        description: "updated_values",
-        title: "Updated Values",
-      },
+      updated_values: { type: Schema.types.object, title: "Updated Values" },
       google_access_token: {
         type: Schema.slack.types.oauth2,
         description: "Which account should we use to write to the spreadsheet?",
