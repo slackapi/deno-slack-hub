@@ -44,5 +44,10 @@ export default DefineConnector({
       "google_access_token",
     ],
   },
-  output_parameters: { properties: {}, required: [] },
+  output_parameters: {
+    properties: {
+      column_values: { type: Schema.types.object, title: "Column values" },
+    },
+    required: ["column_values"],
+  },
 });
