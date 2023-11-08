@@ -33,7 +33,7 @@ export default DefineConnector({
         title: "Google access token",
       },
     },
-    required: ["tasklist_id", "title", "notes", "due", "google_access_token"],
+    required: ["tasklist_id", "title", "notes", "google_access_token"],
   },
   output_parameters: {
     properties: {

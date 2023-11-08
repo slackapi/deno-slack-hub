@@ -13,7 +13,6 @@ Deno.test("InsertTask can be used as a Slack function in a workflow step", () =>
     tasklist_id: "test",
     title: "test",
     notes: "test",
-    due: "test",
     google_access_token: "test",
   });
   const actual = testWorkflow.steps[0].export();
@@ -23,7 +22,6 @@ Deno.test("InsertTask can be used as a Slack function in a workflow step", () =>
     tasklist_id: "test",
     title: "test",
     notes: "test",
-    due: "test",
     google_access_token: "test",
   });
 });
@@ -38,7 +36,6 @@ Deno.test("All outputs of Slack function InsertTask should exist", () => {
     tasklist_id: "test",
     title: "test",
     notes: "test",
-    due: "test",
     google_access_token: "test",
   });
   assertExists(step.outputs.title);
