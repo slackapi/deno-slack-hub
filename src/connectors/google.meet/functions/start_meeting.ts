@@ -20,7 +20,7 @@ export default DefineConnector({
       name: {
         type: Schema.types.string,
         description: "A unique server-generated ID for the meeting space",
-        title: "Name",
+        title: "Meeting ID",
       },
       meeting_link: {
         type: Schema.types.string,
