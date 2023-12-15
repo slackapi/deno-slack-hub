@@ -5,7 +5,6 @@ import { Schema } from "../../../deps.ts";
 export default DefineConnector({
   callback_id: "A05A1NP97K6#/functions/start_meeting",
   title: "Start a meeting - BETA",
-  description: "Creates a Google Meet link instantly",
   input_parameters: {
     properties: {
       google_access_token: {
