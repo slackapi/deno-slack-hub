@@ -26,5 +26,6 @@ Deno.test("All outputs of Slack function CreateEvent should exist", () => {
     start_time: "test",
     end_time: "test",
   });
+  assertExists(step.outputs.event_id);
   assertExists(step.outputs.event_link);
 });
