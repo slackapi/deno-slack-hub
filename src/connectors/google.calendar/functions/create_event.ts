@@ -36,8 +36,8 @@ export default DefineConnector({
       },
       summary: {
         type: Schema.types.string,
-        description: "Summary of event",
-        title: "Summary",
+        description: "Event title",
+        title: "Title",
       },
       location: {
         type: Schema.types.string,
@@ -54,6 +54,11 @@ export default DefineConnector({
   },
   output_parameters: {
     properties: {
+      event_id: {
+        type: Schema.types.string,
+        description: "Calendar event ID",
+        title: "Event ID",
+      },
       event_link: {
         type: Schema.types.string,
         description: "Calendar event link",
