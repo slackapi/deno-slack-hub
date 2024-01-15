@@ -110,6 +110,10 @@ const Connectors = {
   Smartrecruiters,
   Smartsheet,
   Snyk,
+  /**
+   * @deprecated Snyk should be used in favor of Synk (Synk will be removed in next release)
+   */
+  Synk: Snyk,
   Surveymonkey,
   Travisci,
   Twilio,
