@@ -5,7 +5,7 @@ import { Schema } from "../../../deps.ts";
 export default DefineConnector({
   callback_id: "A05T70HT5E1#/functions/get_form_insights",
   title: "Get form insights",
-  description: "Retrieve form summary (works with Buisness or higher plans)",
+  description: "Retrieve form summary (works with Business or higher plans)",
   input_parameters: {
     properties: {
       form_id: {
