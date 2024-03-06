@@ -11,7 +11,20 @@ Deno.test("SendEmail can be used as a Slack function in a workflow step", () => 
   });
   testWorkflow.addStep(SendEmail, {
     subject: "test",
-    email_body: "test",
+    email_body: [{
+			type: "rich_text",
+			elements: [
+				{
+					type: "rich_text_section",
+					elements: [
+						{
+							type: "text",
+							text: "Hello there, I am a basic rich text block!"
+						}
+					]
+				}
+			]
+		}],
     google_access_token: "test",
   });
   const actual = testWorkflow.steps[0].export();
