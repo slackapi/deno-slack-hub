@@ -40,6 +40,7 @@ export default DefineConnector({
         description: "Description of the bug or issue...",
         title: "Description",
       },
+      custom_fields: { type: Schema.types.object, title: "Additional inputs" },
     },
     required: [
       "atlassian_access_token",
