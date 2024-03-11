@@ -16,8 +16,8 @@ export default DefineConnector({
       project: { type: Schema.types.string, title: "Project" },
       issue_id: {
         type: Schema.types.string,
-        description: "Issue ID",
-        title: "Issue ID",
+        description: "Search issue",
+        title: "Issue key",
       },
       priority: {
         type: Schema.types.string,
@@ -39,6 +39,7 @@ export default DefineConnector({
         description: "Description of the bug or issue...",
         title: "Description",
       },
+      custom_fields: { type: Schema.types.object, title: "Additional inputs" },
     },
     required: [
       "atlassian_access_token",
