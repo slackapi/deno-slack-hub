@@ -41,6 +41,7 @@ Deno.test("All outputs of Slack function CreateTask should exist", () => {
     name: "test",
     asana_access_token: "test",
   });
+  assertExists(step.outputs.task_gid);
   assertExists(step.outputs.assignee);
   assertExists(step.outputs.task_name);
   assertExists(step.outputs.start_at);
