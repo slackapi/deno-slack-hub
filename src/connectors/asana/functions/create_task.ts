@@ -53,6 +53,7 @@ export default DefineConnector({
   },
   output_parameters: {
     properties: {
+      task_gid: { type: Schema.types.string, title: "Task ID" },
       assignee: {
         type: Schema.types.string,
         description: "The name of the user assigned to the task",
