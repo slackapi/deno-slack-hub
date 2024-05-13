@@ -33,6 +33,11 @@ export default DefineConnector({
         title: "Teams",
         items: { type: Schema.types.string },
       },
+      customer_impact_summary: {
+        type: Schema.types.string,
+        description: "Enter text",
+        title: "Customer impact summary",
+      },
     },
     required: ["name"],
   },
