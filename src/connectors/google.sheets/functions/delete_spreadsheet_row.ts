@@ -34,13 +34,7 @@ export default DefineConnector({
         title: "Google Access Token",
       },
     },
-    required: [
-      "spreadsheet_id",
-      "sheet",
-      "column_name",
-      "cell_value",
-      "google_access_token",
-    ],
+    required: ["spreadsheet_id", "sheet", "column_name", "google_access_token"],
   },
   output_parameters: { properties: {}, required: [] },
 });

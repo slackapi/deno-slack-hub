@@ -41,5 +41,6 @@ Deno.test("All outputs of Slack function UpdateTask should exist", () => {
   assertExists(step.outputs.due_at);
   assertExists(step.outputs.description);
   assertExists(step.outputs.created_at);
+  assertExists(step.outputs.completed);
   assertExists(step.outputs.permalink_url);
 });

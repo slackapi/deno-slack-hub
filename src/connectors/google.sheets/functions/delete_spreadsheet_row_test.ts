@@ -13,7 +13,6 @@ Deno.test("DeleteSpreadsheetRow can be used as a Slack function in a workflow st
     spreadsheet_id: "test",
     sheet: "test",
     column_name: "test",
-    cell_value: "test",
     google_access_token: "test",
   });
   const actual = testWorkflow.steps[0].export();
@@ -26,7 +25,6 @@ Deno.test("DeleteSpreadsheetRow can be used as a Slack function in a workflow st
     spreadsheet_id: "test",
     sheet: "test",
     column_name: "test",
-    cell_value: "test",
     google_access_token: "test",
   });
 });

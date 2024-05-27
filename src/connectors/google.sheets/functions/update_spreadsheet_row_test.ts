@@ -13,7 +13,6 @@ Deno.test("UpdateSpreadsheetRow can be used as a Slack function in a workflow st
     spreadsheet_id: "test",
     sheet_title: "test",
     column_name: "test",
-    cell_value: "test",
     updated_values: "test",
     google_access_token: "test",
   });
@@ -27,7 +26,6 @@ Deno.test("UpdateSpreadsheetRow can be used as a Slack function in a workflow st
     spreadsheet_id: "test",
     sheet_title: "test",
     column_name: "test",
-    cell_value: "test",
     updated_values: "test",
     google_access_token: "test",
   });
@@ -43,7 +41,6 @@ Deno.test("All outputs of Slack function UpdateSpreadsheetRow should exist", () 
     spreadsheet_id: "test",
     sheet_title: "test",
     column_name: "test",
-    cell_value: "test",
     updated_values: "test",
     google_access_token: "test",
   });

@@ -58,6 +58,7 @@ export default DefineConnector({
         description: "Time when step ended",
         title: "Time when step ended",
       },
+      column_values: { type: Schema.types.object, title: "Column values" },
     },
     required: [
       "spreadsheet_url",
