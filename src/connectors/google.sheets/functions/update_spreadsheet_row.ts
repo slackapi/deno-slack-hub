@@ -39,7 +39,6 @@ export default DefineConnector({
       "spreadsheet_id",
       "sheet_title",
       "column_name",
-      "cell_value",
       "updated_values",
       "google_access_token",
     ],

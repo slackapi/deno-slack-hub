@@ -33,6 +33,7 @@ export default DefineConnector({
         description: "Enter text",
         title: "New description",
       },
+      completed: { type: Schema.types.boolean, title: "Mark complete" },
       asana_access_token: {
         type: Schema.slack.types.oauth2,
         description: "Asana credential to use",
@@ -72,6 +73,11 @@ export default DefineConnector({
         type: Schema.types.string,
         description: "The datetime the task was created at",
         title: "Created at",
+      },
+      completed: {
+        type: Schema.types.boolean,
+        description: "Indicates task completion status",
+        title: "Is Task Completed",
       },
       permalink_url: {
         type: Schema.types.string,
