@@ -36,5 +36,24 @@ export default DefineConnector({
     },
     required: ["spreadsheet_id", "sheet", "column_name", "google_access_token"],
   },
-  output_parameters: { properties: {}, required: [] },
+  output_parameters: {
+    properties: {
+      spreadsheet_url: {
+        type: Schema.types.string,
+        description: "Spreadsheet URL",
+        title: "Spreadsheet URL",
+      },
+      timestamp_started: {
+        type: Schema.slack.types.timestamp,
+        description: "Time when step started",
+        title: "Time when step started",
+      },
+      timestamp_completed: {
+        type: Schema.slack.types.timestamp,
+        description: "Time when step ended",
+        title: "Time when step ended",
+      },
+    },
+    required: ["spreadsheet_url", "timestamp_started", "timestamp_completed"],
+  },
 });

@@ -4,9 +4,21 @@ import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
   callback_id: "A05A1NP97K6#/functions/start_meeting",
-  title: "Start a meeting - BETA",
+  title: "Start a meeting",
   input_parameters: {
     properties: {
+      access_type: {
+        type: Schema.types.string,
+        description: "Access type",
+        title: "Access type",
+        enum: ["OPEN", "TRUSTED", "RESTRICTED"],
+      },
+      entry_point_access: {
+        type: Schema.types.string,
+        description: "Entry point access",
+        title: "Entry point access",
+        enum: ["ALL", "CREATOR_APP_ONLY"],
+      },
       google_access_token: {
         type: Schema.slack.types.oauth2,
         title: "Google Access Token",
