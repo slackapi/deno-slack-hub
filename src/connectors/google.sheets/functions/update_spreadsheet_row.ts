@@ -46,7 +46,27 @@ export default DefineConnector({
   output_parameters: {
     properties: {
       column_values: { type: Schema.types.object, title: "Column values" },
+      spreadsheet_url: {
+        type: Schema.types.string,
+        description: "Spreadsheet URL",
+        title: "Spreadsheet URL",
+      },
+      timestamp_started: {
+        type: Schema.slack.types.timestamp,
+        description: "Time when step started",
+        title: "Time when step started",
+      },
+      timestamp_completed: {
+        type: Schema.slack.types.timestamp,
+        description: "Time when step ended",
+        title: "Time when step ended",
+      },
     },
-    required: ["column_values"],
+    required: [
+      "column_values",
+      "spreadsheet_url",
+      "timestamp_started",
+      "timestamp_completed",
+    ],
   },
 });
