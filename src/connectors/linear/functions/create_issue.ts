@@ -42,7 +42,7 @@ export default DefineConnector({
         title: "Linear access token",
       },
     },
-    required: ["team_id", "title", "description", "linear_access_token"],
+    required: ["team_id", "title", "linear_access_token"],
   },
   output_parameters: {
     properties: {

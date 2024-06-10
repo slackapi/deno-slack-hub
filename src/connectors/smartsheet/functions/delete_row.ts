@@ -3,27 +3,23 @@ import { DefineConnector } from "../../../deps.ts";
 import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
-  callback_id: "A05SEF35LQY#/functions/add_row",
-  title: "Add a row to a Smartsheet",
+  callback_id: "A05SEF35LQY#/functions/delete_row",
+  title: "Delete a row from Smartsheet",
   input_parameters: {
     properties: {
       sheet: {
         type: Schema.types.object,
-        description: "Select a smartsheet",
+        description: "Select a Smartsheet",
         title: "Smartsheet",
       },
-      columns: {
-        type: Schema.types.object,
-        description: "Columns",
-        title: "Columns",
-      },
+      select_row: { type: Schema.types.string, title: "Select a row" },
       smartsheet_access_token: {
         type: Schema.slack.types.oauth2,
         description: "Which account should we use to fetch Smartsheets?",
         title: "Smartsheet Access Token",
       },
     },
-    required: ["sheet", "columns", "smartsheet_access_token"],
+    required: ["sheet", "select_row", "smartsheet_access_token"],
   },
   output_parameters: {
     properties: {
@@ -37,7 +33,6 @@ export default DefineConnector({
         description: "Smartsheet ID",
         title: "Smartsheet ID",
       },
-      row_id: { type: Schema.types.string, title: "Row ID" },
     },
     required: ["smartsheet_url", "sheet_id"],
   },

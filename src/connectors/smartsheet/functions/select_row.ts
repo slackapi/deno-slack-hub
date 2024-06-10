@@ -3,19 +3,19 @@ import { DefineConnector } from "../../../deps.ts";
 import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
-  callback_id: "A05SEF35LQY#/functions/add_row",
-  title: "Add a row to a Smartsheet",
+  callback_id: "A05SEF35LQY#/functions/select_row",
+  title: "Select a Smartsheet row",
   input_parameters: {
     properties: {
       sheet: {
         type: Schema.types.object,
-        description: "Select a smartsheet",
+        description: "Select a Smartsheet",
         title: "Smartsheet",
       },
-      columns: {
-        type: Schema.types.object,
-        description: "Columns",
-        title: "Columns",
+      select_row: {
+        type: Schema.types.string,
+        description: "Search a row with cell value",
+        title: "Select a row",
       },
       smartsheet_access_token: {
         type: Schema.slack.types.oauth2,
@@ -23,7 +23,7 @@ export default DefineConnector({
         title: "Smartsheet Access Token",
       },
     },
-    required: ["sheet", "columns", "smartsheet_access_token"],
+    required: ["sheet", "select_row", "smartsheet_access_token"],
   },
   output_parameters: {
     properties: {
@@ -37,8 +37,19 @@ export default DefineConnector({
         description: "Smartsheet ID",
         title: "Smartsheet ID",
       },
-      row_id: { type: Schema.types.string, title: "Row ID" },
+      row: {
+        type: Schema.types.object,
+        description: "Row",
+        title: "Row",
+        properties: {
+          id: { type: Schema.types.integer, title: "Row ID" },
+          rowNumber: { type: Schema.types.integer, title: "Row number" },
+        },
+        additionalProperties: true,
+        required: [],
+      },
+      column_values: { type: Schema.types.object, title: "Column values" },
     },
-    required: ["smartsheet_url", "sheet_id"],
+    required: ["smartsheet_url", "sheet_id", "row", "column_values"],
   },
 });

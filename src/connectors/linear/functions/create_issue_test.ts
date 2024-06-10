@@ -12,7 +12,6 @@ Deno.test("CreateIssue can be used as a Slack function in a workflow step", () =
   testWorkflow.addStep(CreateIssue, {
     team_id: "test",
     title: "test",
-    description: "test",
     linear_access_token: "test",
   });
   const actual = testWorkflow.steps[0].export();
@@ -21,7 +20,6 @@ Deno.test("CreateIssue can be used as a Slack function in a workflow step", () =
   assertEquals(actual.inputs, {
     team_id: "test",
     title: "test",
-    description: "test",
     linear_access_token: "test",
   });
 });
@@ -35,7 +33,6 @@ Deno.test("All outputs of Slack function CreateIssue should exist", () => {
   const step = testWorkflow.addStep(CreateIssue, {
     team_id: "test",
     title: "test",
-    description: "test",
     linear_access_token: "test",
   });
   assertExists(step.outputs.issue_id);
