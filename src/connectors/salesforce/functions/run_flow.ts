@@ -26,6 +26,7 @@ export default DefineConnector({
     properties: {
       success: { type: Schema.types.boolean, title: "Response" },
       flow_name: { type: Schema.types.string, title: "Flow name" },
+      result: { type: Schema.types.object, title: "Flow outputs" },
     },
     required: [],
   },

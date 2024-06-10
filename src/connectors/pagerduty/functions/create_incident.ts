@@ -18,6 +18,11 @@ export default DefineConnector({
         description: "Enter incident details...",
         title: "Incident details",
       },
+      priority_id: {
+        type: Schema.types.string,
+        description: "Priority",
+        title: "Priority",
+      },
       pagerduty_access_token: {
         type: Schema.slack.types.oauth2,
         description: "Pagerduty access token",

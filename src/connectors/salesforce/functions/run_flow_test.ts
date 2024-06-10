@@ -34,4 +34,5 @@ Deno.test("All outputs of Slack function RunFlow should exist", () => {
   });
   assertExists(step.outputs.success);
   assertExists(step.outputs.flow_name);
+  assertExists(step.outputs.result);
 });

@@ -37,4 +37,5 @@ Deno.test("All outputs of Slack function AddRow should exist", () => {
   });
   assertExists(step.outputs.smartsheet_url);
   assertExists(step.outputs.sheet_id);
+  assertExists(step.outputs.row_id);
 });
