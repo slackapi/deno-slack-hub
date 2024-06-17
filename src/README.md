@@ -20,9 +20,6 @@ Slack.
 
 ## Versioning
 
-**Disclaimer**: prior to the release of `1.x.x` this package is considered
-unstable and will not adhere to [Semantic Versioning](http://semver.org/)
-
 Releases for this repository follow the [SemVer](https://semver.org/) versioning
 scheme. The HUB's contract is determined by the top-level exports from
 `src/mod.ts` and `src/types.ts`. Exports not included in these files are deemed
