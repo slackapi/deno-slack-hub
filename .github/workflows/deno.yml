@@ -32,6 +32,6 @@ jobs:
 
       - name: Upload coverage to CodeCov
         if: ${{ matrix.deno-version == 'v1.x' }}
-        uses: codecov/codecov-action@v4.4.1
+        uses: codecov/codecov-action@v4.5.0
         with:
           file: ./lcov.info
