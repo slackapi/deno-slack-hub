@@ -14,7 +14,6 @@ Deno.test("EditIssue can be used as a Slack function in a workflow step", () => 
     jira_domain: "test",
     project: "test",
     issue_id: "test",
-    summary: "test",
   });
   const actual = testWorkflow.steps[0].export();
 
@@ -24,7 +23,6 @@ Deno.test("EditIssue can be used as a Slack function in a workflow step", () => 
     jira_domain: "test",
     project: "test",
     issue_id: "test",
-    summary: "test",
   });
 });
 
@@ -39,11 +37,11 @@ Deno.test("All outputs of Slack function EditIssue should exist", () => {
     jira_domain: "test",
     project: "test",
     issue_id: "test",
-    summary: "test",
   });
   assertExists(step.outputs.response);
   assertExists(step.outputs.project);
   assertExists(step.outputs.issue_id);
+  assertExists(step.outputs.issue_url);
   assertExists(step.outputs.summary);
   assertExists(step.outputs.description);
 });
