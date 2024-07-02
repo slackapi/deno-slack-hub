@@ -41,7 +41,7 @@ export default DefineConnector({
       },
       target_key: {
         type: Schema.types.array,
-        description: "Enter text",
+        description: "Please add one or more target keys",
         title: "Target key",
         items: { type: Schema.types.string },
       },

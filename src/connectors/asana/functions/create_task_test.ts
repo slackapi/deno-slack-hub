@@ -12,7 +12,6 @@ Deno.test("CreateTask can be used as a Slack function in a workflow step", () =>
   testWorkflow.addStep(CreateTask, {
     workspace_gid: "test",
     project: "test",
-    assignee: "test",
     name: "test",
     asana_access_token: "test",
   });
@@ -22,7 +21,6 @@ Deno.test("CreateTask can be used as a Slack function in a workflow step", () =>
   assertEquals(actual.inputs, {
     workspace_gid: "test",
     project: "test",
-    assignee: "test",
     name: "test",
     asana_access_token: "test",
   });
@@ -37,7 +35,6 @@ Deno.test("All outputs of Slack function CreateTask should exist", () => {
   const step = testWorkflow.addStep(CreateTask, {
     workspace_gid: "test",
     project: "test",
-    assignee: "test",
     name: "test",
     asana_access_token: "test",
   });

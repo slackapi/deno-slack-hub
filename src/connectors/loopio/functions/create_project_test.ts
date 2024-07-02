@@ -12,6 +12,7 @@ Deno.test("CreateProject can be used as a Slack function in a workflow step", ()
   testWorkflow.addStep(CreateProject, {
     project_name: "test",
     company_name: "test",
+    owner: "test",
     due_date: "test",
     project_type: "test",
   });
@@ -21,6 +22,7 @@ Deno.test("CreateProject can be used as a Slack function in a workflow step", ()
   assertEquals(actual.inputs, {
     project_name: "test",
     company_name: "test",
+    owner: "test",
     due_date: "test",
     project_type: "test",
   });
@@ -35,6 +37,7 @@ Deno.test("All outputs of Slack function CreateProject should exist", () => {
   const step = testWorkflow.addStep(CreateProject, {
     project_name: "test",
     company_name: "test",
+    owner: "test",
     due_date: "test",
     project_type: "test",
   });
