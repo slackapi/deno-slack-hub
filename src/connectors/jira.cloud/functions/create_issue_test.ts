@@ -42,6 +42,7 @@ Deno.test("All outputs of Slack function CreateIssue should exist", () => {
     summary: "test",
   });
   assertExists(step.outputs.issue_id);
+  assertExists(step.outputs.issue_url);
   assertExists(step.outputs.project);
   assertExists(step.outputs.summary);
   assertExists(step.outputs.description);

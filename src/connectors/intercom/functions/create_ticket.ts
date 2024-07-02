@@ -39,6 +39,7 @@ export default DefineConnector({
   output_parameters: {
     properties: {
       ticket_id: { type: Schema.types.string, title: "Ticket ID" },
+      ticket_url: { type: Schema.types.string, title: "Ticket URL" },
       title: { type: Schema.types.string, title: "Title" },
       description: { type: Schema.types.string, title: "Description" },
       ticket_type: {

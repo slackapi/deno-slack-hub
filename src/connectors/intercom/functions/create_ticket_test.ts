@@ -42,6 +42,7 @@ Deno.test("All outputs of Slack function CreateTicket should exist", () => {
     intercom_access_token: "test",
   });
   assertExists(step.outputs.ticket_id);
+  assertExists(step.outputs.ticket_url);
   assertExists(step.outputs.title);
   assertExists(step.outputs.description);
   assertExists(step.outputs.ticket_type);

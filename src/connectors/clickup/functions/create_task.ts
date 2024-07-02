@@ -4,7 +4,7 @@ import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
   callback_id: "A05S54578AE#/functions/create_task",
-  title: "Create a task",
+  title: "Create a task in a folder",
   input_parameters: {
     properties: {
       team_id: { type: Schema.types.string, title: "Team" },

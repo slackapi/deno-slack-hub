@@ -41,13 +41,7 @@ export default DefineConnector({
       },
       custom_fields: { type: Schema.types.object, title: "Additional inputs" },
     },
-    required: [
-      "atlassian_access_token",
-      "jira_domain",
-      "project",
-      "issue_id",
-      "summary",
-    ],
+    required: ["atlassian_access_token", "jira_domain", "project", "issue_id"],
   },
   output_parameters: {
     properties: {
@@ -66,6 +60,7 @@ export default DefineConnector({
         description: "Issue ID",
         title: "Issue ID",
       },
+      issue_url: { type: Schema.types.string, title: "Issue URL" },
       summary: {
         type: Schema.types.string,
         description: "Summary",

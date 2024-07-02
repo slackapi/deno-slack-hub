@@ -4,7 +4,7 @@ import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
   callback_id: "A05RF94AFB3#/functions/create_feature_flag",
-  title: "Create a feature flag",
+  title: "Create a boolean feature flag",
   input_parameters: {
     properties: {
       project_key: {

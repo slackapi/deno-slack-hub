@@ -9,7 +9,6 @@ export default DefineConnector({
     properties: {
       workspace_gid: { type: Schema.types.string, title: "Workspace" },
       project: { type: Schema.types.string, title: "Project" },
-      assignee_section: { type: Schema.types.string, title: "Section" },
       assignee: {
         type: Schema.slack.types.user_id,
         description: "Select a user",
@@ -43,13 +42,7 @@ export default DefineConnector({
         title: "Asana Access Token",
       },
     },
-    required: [
-      "workspace_gid",
-      "project",
-      "assignee",
-      "name",
-      "asana_access_token",
-    ],
+    required: ["workspace_gid", "project", "name", "asana_access_token"],
   },
   output_parameters: {
     properties: {

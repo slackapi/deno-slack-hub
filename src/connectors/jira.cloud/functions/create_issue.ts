@@ -12,7 +12,7 @@ export default DefineConnector({
         type: Schema.slack.types.oauth2,
         title: "Atlassian Access Token",
       },
-      jira_domain: { type: Schema.types.string, title: "Jira Domain" },
+      jira_domain: { type: Schema.types.string, title: "Jira domain" },
       project: { type: Schema.types.string, title: "Project" },
       issueType: {
         type: Schema.types.string,
@@ -57,6 +57,7 @@ export default DefineConnector({
         description: "Issue ID",
         title: "Issue ID",
       },
+      issue_url: { type: Schema.types.string, title: "Issue URL" },
       project: {
         type: Schema.types.string,
         description: "Project",
