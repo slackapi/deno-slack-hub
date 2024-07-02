@@ -34,7 +34,13 @@ export default DefineConnector({
         enum: ["RFP", "RFI", "DDQ", "SQ", "PP", "OTHER"],
       },
     },
-    required: ["project_name", "company_name", "due_date", "project_type"],
+    required: [
+      "project_name",
+      "company_name",
+      "owner",
+      "due_date",
+      "project_type",
+    ],
   },
   output_parameters: {
     properties: {

@@ -35,13 +35,13 @@ export default DefineConnector({
       },
       notify_teams: {
         type: Schema.types.array,
-        description: "Please select an option",
+        description: "Please select one or many teams",
         title: "Notify team",
         items: { type: Schema.types.string },
       },
       notify_members: {
         type: Schema.types.array,
-        description: "Enter user IDs",
+        description: "Please select one or many members",
         title: "Notify reviewers",
         items: { type: Schema.types.string },
       },

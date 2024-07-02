@@ -81,6 +81,11 @@ export default DefineConnector({
         description: "Priority of the issue",
         title: "Priority",
       },
+      issue_url: {
+        type: Schema.types.string,
+        description: "URL of the issue",
+        title: "Issue URL",
+      },
     },
     required: [],
   },

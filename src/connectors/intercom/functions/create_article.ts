@@ -53,6 +53,7 @@ export default DefineConnector({
       description: { type: Schema.types.string, title: "Description" },
       body: { type: Schema.types.string, title: "Body" },
       state: { type: Schema.types.string, title: "State" },
+      article_url: { type: Schema.types.string, title: "Article URL" },
     },
     required: [],
   },
