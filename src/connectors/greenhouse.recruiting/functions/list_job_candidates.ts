@@ -7,7 +7,7 @@ export default DefineConnector({
   title: "List job candidates",
   description: "List all candidates for a job request",
   input_parameters: {
-    properties: { job_id: { type: Schema.types.string, title: "Job" } },
+    properties: { job_id: { type: Schema.types.integer, title: "Job" } },
     required: ["job_id"],
   },
   output_parameters: {

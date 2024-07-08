@@ -7,17 +7,17 @@ export default DefineConnector({
   title: "Hire Application",
   input_parameters: {
     properties: {
-      candidate_id: { type: Schema.types.string, title: "Candidate email" },
-      application_id: { type: Schema.types.string, title: "Application" },
-      close_reason_id: { type: Schema.types.string, title: "Close reason" },
+      candidate_id: { type: Schema.types.integer, title: "Candidate email" },
+      application_id: { type: Schema.types.integer, title: "Application" },
+      close_reason_id: { type: Schema.types.integer, title: "Close reason" },
     },
     required: ["candidate_id", "application_id", "close_reason_id"],
   },
   output_parameters: {
     properties: {
-      id: { type: Schema.types.string, title: "Application ID" },
+      id: { type: Schema.types.integer, title: "Application ID" },
       status: { type: Schema.types.string, title: "Status" },
-      candidate_id: { type: Schema.types.string, title: "Candidate ID" },
+      candidate_id: { type: Schema.types.integer, title: "Candidate ID" },
     },
     required: [],
   },

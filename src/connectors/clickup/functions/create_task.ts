@@ -7,10 +7,10 @@ export default DefineConnector({
   title: "Create a task in a folder",
   input_parameters: {
     properties: {
-      team_id: { type: Schema.types.string, title: "Team" },
-      space_id: { type: Schema.types.string, title: "Space" },
-      folder_id: { type: Schema.types.string, title: "Folder" },
-      list_id: { type: Schema.types.string, title: "List" },
+      team_id: { type: Schema.types.integer, title: "Team" },
+      space_id: { type: Schema.types.integer, title: "Space" },
+      folder_id: { type: Schema.types.integer, title: "Folder" },
+      list_id: { type: Schema.types.integer, title: "List" },
       name: {
         type: Schema.types.string,
         description: "Enter text",
@@ -29,7 +29,7 @@ export default DefineConnector({
       assignees: {
         type: Schema.types.array,
         title: "Assignee",
-        items: { type: Schema.types.string },
+        items: { type: Schema.types.integer },
       },
       start_date: { type: Schema.slack.types.timestamp, title: "Start at" },
       due_date: { type: Schema.slack.types.timestamp, title: "Due at" },

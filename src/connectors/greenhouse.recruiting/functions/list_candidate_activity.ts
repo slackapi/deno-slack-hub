@@ -8,7 +8,7 @@ export default DefineConnector({
   description: "Retrieve a candidate activity feed",
   input_parameters: {
     properties: {
-      candidate_id: { type: Schema.types.string, title: "Candidate email" },
+      candidate_id: { type: Schema.types.integer, title: "Candidate email" },
     },
     required: ["candidate_id"],
   },
