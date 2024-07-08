@@ -17,8 +17,8 @@ export default DefineConnector({
         description: "Enter text",
         title: "New requester email",
       },
-      assignee_id: { type: Schema.types.string, title: "New assignee" },
-      group_id: { type: Schema.types.string, title: "New group" },
+      assignee_id: { type: Schema.types.integer, title: "New assignee" },
+      group_id: { type: Schema.types.integer, title: "New group" },
       add_followers: {
         type: Schema.types.array,
         description: "Enter internal agent emails to be added",

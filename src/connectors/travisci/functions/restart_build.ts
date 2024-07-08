@@ -14,7 +14,7 @@ export default DefineConnector({
         title: "Branch",
       },
       build_id: {
-        type: Schema.types.string,
+        type: Schema.types.integer,
         description: "Select a build ID",
         title: "Build ID",
       },
@@ -23,7 +23,7 @@ export default DefineConnector({
   },
   output_parameters: {
     properties: {
-      build_id: { type: Schema.types.string, title: "Build ID" },
+      build_id: { type: Schema.types.integer, title: "Build ID" },
       branch: { type: Schema.types.string, title: "Branch" },
       repository: { type: Schema.types.string, title: "Repository" },
       build_url: { type: Schema.types.string, title: "Build URL" },

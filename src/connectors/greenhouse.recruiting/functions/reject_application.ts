@@ -7,10 +7,10 @@ export default DefineConnector({
   title: "Reject Application",
   input_parameters: {
     properties: {
-      candidate_id: { type: Schema.types.string, title: "Candidate email" },
-      application_id: { type: Schema.types.string, title: "Application" },
+      candidate_id: { type: Schema.types.integer, title: "Candidate email" },
+      application_id: { type: Schema.types.integer, title: "Application" },
       rejection_reason_id: {
-        type: Schema.types.string,
+        type: Schema.types.integer,
         title: "Rejection reason",
       },
       notes: { type: Schema.types.string, title: "Notes" },
@@ -19,9 +19,9 @@ export default DefineConnector({
   },
   output_parameters: {
     properties: {
-      id: { type: Schema.types.string, title: "Application ID" },
+      id: { type: Schema.types.integer, title: "Application ID" },
       status: { type: Schema.types.string, title: "Status" },
-      candidate_id: { type: Schema.types.string, title: "Candidate ID" },
+      candidate_id: { type: Schema.types.integer, title: "Candidate ID" },
     },
     required: [],
   },
