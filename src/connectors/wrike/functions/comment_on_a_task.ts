@@ -7,7 +7,11 @@ export default DefineConnector({
   title: "Comment on a task",
   input_parameters: {
     properties: {
-      task: { type: Schema.types.string, title: "Task" },
+      task: {
+        type: Schema.types.string,
+        description: "Enter task ID, or search task name",
+        title: "Task",
+      },
       text: {
         type: Schema.types.string,
         description: "Enter text",

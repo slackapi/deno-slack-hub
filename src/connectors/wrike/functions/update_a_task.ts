@@ -7,7 +7,11 @@ export default DefineConnector({
   title: "Update a task",
   input_parameters: {
     properties: {
-      task: { type: Schema.types.string, title: "Task" },
+      task: {
+        type: Schema.types.string,
+        description: "Enter task ID, or search task name",
+        title: "Task",
+      },
       status: {
         type: Schema.types.string,
         title: "Status",
