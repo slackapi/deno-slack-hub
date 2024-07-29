@@ -17,6 +17,12 @@ export default DefineConnector({
         description: "Enter text",
         title: "Email body",
       },
+      html: {
+        type: Schema.types.boolean,
+        description:
+          "Select this if your content looks like this: <b>This text is bold</b>",
+        title: "Email body contains HTML text formatting",
+      },
       recipients: {
         type: Schema.types.array,
         description: "Search all people...",
