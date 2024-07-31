@@ -37,4 +37,5 @@ Deno.test("All outputs of Slack function CreateBoard should exist", () => {
   });
   assertExists(step.outputs.board_id);
   assertExists(step.outputs.board_name);
+  assertExists(step.outputs.board_url);
 });

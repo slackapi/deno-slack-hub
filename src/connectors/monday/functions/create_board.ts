@@ -33,6 +33,7 @@ export default DefineConnector({
     properties: {
       board_id: { type: Schema.types.string, title: "Board ID" },
       board_name: { type: Schema.types.string, title: "Board name" },
+      board_url: { type: Schema.types.string, title: "Board URL" },
     },
     required: [],
   },
