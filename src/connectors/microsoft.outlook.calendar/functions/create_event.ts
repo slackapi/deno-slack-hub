@@ -26,6 +26,12 @@ export default DefineConnector({
         title: "Attendees",
         items: { type: Schema.slack.types.user_id },
       },
+      additional_attendees: {
+        type: Schema.types.array,
+        description: "Enter email addresses",
+        title: "Additional attendees",
+        items: { type: Schema.types.string },
+      },
     },
     required: [
       "event_title",
