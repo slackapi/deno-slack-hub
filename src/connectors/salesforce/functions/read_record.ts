@@ -13,11 +13,7 @@ export default DefineConnector({
         description: "Salesforce Object",
         title: "Salesforce object",
       },
-      record_id: {
-        type: Schema.types.string,
-        description: "Ex: 1000000000Abcd",
-        title: "Record ID",
-      },
+      record_id: { type: Schema.types.string, title: "Record" },
       salesforce_access_token: {
         type: Schema.slack.types.oauth2,
         title: "Salesforce Access Token",
