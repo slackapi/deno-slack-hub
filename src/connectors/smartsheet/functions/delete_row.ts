@@ -12,7 +12,11 @@ export default DefineConnector({
         description: "Select a Smartsheet",
         title: "Smartsheet",
       },
-      select_row: { type: Schema.types.string, title: "Select a row" },
+      select_row: {
+        type: Schema.types.string,
+        description: "Enter row ID, or search cell content to find a row",
+        title: "Select a row",
+      },
       smartsheet_access_token: {
         type: Schema.slack.types.oauth2,
         description: "Which account should we use to fetch Smartsheets?",

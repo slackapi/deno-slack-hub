@@ -14,7 +14,7 @@ export default DefineConnector({
       },
       select_row: {
         type: Schema.types.string,
-        description: "Search a row with cell value",
+        description: "Enter row ID, or search cell content to find a row",
         title: "Select a row",
       },
       updated_values: { type: Schema.types.object, title: "Updated values" },
