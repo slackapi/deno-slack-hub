@@ -3,6 +3,7 @@ import AddANote from "./functions/add_a_note.ts";
 import CreateIncident from "./functions/create_incident.ts";
 import EscalateIncident from "./functions/escalate_incident.ts";
 import ResolveIncident from "./functions/resolve_incident.ts";
+import SendStatusUpdate from "./functions/send_status_update.ts";
 
 const Pagerduty = {
   functions: {
@@ -22,6 +23,10 @@ const Pagerduty = {
      * @see The {@link https://api.slack.com/reference/connectors/pagerduty/resolve_incident ResolveIncident} documentation.
      */
     ResolveIncident,
+    /**
+     * @see The {@link https://api.slack.com/reference/connectors/pagerduty/send_status_update SendStatusUpdate} documentation.
+     */
+    SendStatusUpdate,
   },
 } as const;
 
