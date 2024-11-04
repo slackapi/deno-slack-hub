@@ -27,19 +27,7 @@ export default DefineConnector({
   },
   output_parameters: {
     properties: {
-      record: {
-        type: Schema.types.object,
-        title: "Record",
-        properties: {
-          Id: { type: Schema.types.string },
-          Name: { type: Schema.types.string },
-          CreatedById: { type: Schema.types.string },
-          CreatedDate: { type: Schema.types.string },
-          Description: { type: Schema.types.string },
-        },
-        additionalProperties: true,
-        required: ["Id"],
-      },
+      record: { type: Schema.types.object, title: "Record fields" },
       salesforce_object_type: {
         type: Schema.types.string,
         title: "Salesforce Object Type",
