@@ -14,7 +14,7 @@ export default DefineConnector({
         title: "Salesforce object",
       },
       record_id: {
-        type: Schema.types.string,
+        type: undefined,
         description: "Ex: 1000000000Abcd",
         title: "Record ID",
       },
@@ -32,7 +32,7 @@ export default DefineConnector({
   output_parameters: {
     properties: {
       code: { type: Schema.types.integer, title: "Response" },
-      record_id: { type: Schema.types.string, title: "Record ID" },
+      record_id: { type: undefined, title: "Record ID" },
     },
     required: [],
   },
