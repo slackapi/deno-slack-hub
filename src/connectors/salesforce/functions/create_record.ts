@@ -28,7 +28,10 @@ export default DefineConnector({
   output_parameters: {
     properties: {
       success: { type: Schema.types.boolean, title: "Response" },
-      record_id: { type: Schema.types.string, title: "Record ID" },
+      record_id: {
+        type: Schema.slack.types.salesforce_record_id,
+        title: "Record ID",
+      },
       record_url: { type: Schema.types.string, title: "Record URL" },
     },
     required: [],
