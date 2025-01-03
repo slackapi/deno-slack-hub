@@ -34,4 +34,5 @@ jobs:
         if: ${{ matrix.deno-version == 'v1.x' }}
         uses: codecov/codecov-action@v5.0.7
         with:
-          file: ./lcov.info
+          files: ./lcov.info
+          token: ${{ secrets.CODECOV_TOKEN }}
