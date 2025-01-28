@@ -5,7 +5,7 @@ import { Schema } from "../../../deps.ts";
 export default DefineConnector({
   callback_id: "A05Q8KLHEHJ#/functions/create_issue",
   title: "Create an issue",
-  description: "Create a bitbucket cloud issue",
+  description: "Create a Bitbucket Cloud issue",
   input_parameters: {
     properties: {
       workspace: {
@@ -38,7 +38,7 @@ export default DefineConnector({
         type: Schema.types.string,
         description: "Priority of the issue",
         title: "Priority",
-        enum: ["trivial", "minior", "major", "critical", "blocker"],
+        enum: ["trivial", "minor", "major", "critical", "blocker"],
       },
       assignee_uuid: {
         type: Schema.types.string,

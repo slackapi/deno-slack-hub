@@ -3,14 +3,19 @@ import { DefineConnector } from "../../../deps.ts";
 import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
-  callback_id: "A07AYPT9X4P#/functions/get_incident",
-  title: "Get an incident",
+  callback_id: "A07AYPT9X4P#/functions/update_incident",
+  title: "Update an incident",
   input_parameters: {
     properties: {
       incident_number: {
         type: Schema.types.string,
         description: "Search incident",
         title: "Incident number",
+      },
+      metadata: {
+        type: Schema.types.object,
+        description: "Select an field",
+        title: "Name",
       },
       servicenow_access_token: {
         type: Schema.slack.types.oauth2,
@@ -22,37 +27,21 @@ export default DefineConnector({
   },
   output_parameters: {
     properties: {
-      incident_sys_id: {
+      incident_id: {
         type: Schema.types.string,
-        description: "Incident sys_id",
-        title: "Incident sys_id",
+        description: "Incident ID",
+        title: "Incident ID",
       },
-      incident_short_description: {
+      incident_url: {
         type: Schema.types.string,
-        description: "Incident short description",
-        title: "Incident short description",
-      },
-      incident_state: {
-        type: Schema.types.string,
-        description: "Incident state",
-        title: "Incident state",
+        description: "Incident URL",
+        title: "Incident URL",
       },
       incident_number: {
         type: Schema.types.string,
         description: "Incident number",
         title: "Incident number",
       },
-      incident_priority: {
-        type: Schema.types.string,
-        description: "Incident priority",
-        title: "Incident priority",
-      },
-      incident_url: {
-        type: Schema.types.string,
-        description: "Incident url",
-        title: "Incident url",
-      },
-      incident: { type: Schema.types.object, title: "Incident fields" },
       timestamp_started: {
         type: Schema.slack.types.timestamp,
         description: "Time when step started",
@@ -65,12 +54,9 @@ export default DefineConnector({
       },
     },
     required: [
-      "incident_sys_id",
-      "incident_short_description",
-      "incident_state",
-      "incident_number",
-      "incident_priority",
+      "incident_id",
       "incident_url",
+      "incident_number",
       "timestamp_started",
       "timestamp_completed",
     ],

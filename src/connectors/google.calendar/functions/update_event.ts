@@ -3,14 +3,24 @@ import { DefineConnector } from "../../../deps.ts";
 import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
-  callback_id: "A050C90PUF5#/functions/create_event",
-  title: "Create a calendar event",
+  callback_id: "A050C90PUF5#/functions/update_event",
+  title: "Update a calendar event",
   input_parameters: {
     properties: {
       google_access_token: {
         type: Schema.slack.types.oauth2,
-        description: "Google credential to use",
-        title: "Google access token",
+        description: "Google Credential to use",
+        title: "Google Access Token",
+      },
+      calendar_id: {
+        type: Schema.types.string,
+        description: "Select a Google Calendar",
+        title: "Calendar",
+      },
+      event_id: {
+        type: Schema.types.string,
+        description: "Select an event from the chosen calendar",
+        title: "Event",
       },
       start_time: {
         type: Schema.slack.types.timestamp,
@@ -22,22 +32,10 @@ export default DefineConnector({
         description: "End time for event",
         title: "End time",
       },
-      attendees: {
-        type: Schema.types.array,
-        description: "Search all people...",
-        title: "Attendees",
-        items: { type: Schema.slack.types.user_id },
-      },
-      additional_attendees: {
-        type: Schema.types.array,
-        description: "Enter email addresses",
-        title: "Additional attendees",
-        items: { type: Schema.types.string },
-      },
       summary: {
         type: Schema.types.string,
         description: "Event title",
-        title: "Title",
+        title: "Event title",
       },
       location: {
         type: Schema.types.string,
@@ -50,21 +48,20 @@ export default DefineConnector({
         title: "Description",
       },
     },
-    required: ["start_time", "end_time"],
+    required: ["calendar_id", "event_id", "start_time", "end_time"],
   },
   output_parameters: {
     properties: {
-      event_id: {
+      event_summary: {
         type: Schema.types.string,
-        description: "Calendar event ID",
-        title: "Event ID",
+        description: "Title of the event",
+        title: "Event title",
       },
-      event_link: {
+      event_url: {
         type: Schema.types.string,
-        description: "Calendar event link",
-        title: "Event link",
+        description: "URL of the event",
+        title: "Event URL",
       },
-      calendar_id: { type: Schema.types.string, title: "Calendar ID" },
     },
     required: [],
   },
