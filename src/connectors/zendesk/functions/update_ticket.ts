@@ -7,11 +7,7 @@ export default DefineConnector({
   title: "Update a ticket",
   input_parameters: {
     properties: {
-      ticket_id: {
-        type: Schema.types.integer,
-        description: "Enter ticket ID",
-        title: "Ticket ID",
-      },
+      ticket_id: { type: Schema.types.integer, title: "Ticket ID" },
       requester_email: {
         type: Schema.types.string,
         description: "Enter text",
@@ -43,11 +39,7 @@ export default DefineConnector({
         title: "Remove email CCs",
         items: { type: Schema.types.string },
       },
-      subject: {
-        type: Schema.types.string,
-        description: "Enter text",
-        title: "New ticket subject",
-      },
+      subject: { type: Schema.types.string, title: "New ticket subject" },
       type: {
         type: Schema.types.string,
         title: "New ticket type",
@@ -75,7 +67,6 @@ export default DefineConnector({
       },
       zendesk_access_token: {
         type: Schema.slack.types.oauth2,
-        description: "Zendesk Credential to use",
         title: "Zendesk Access Token",
       },
     },
@@ -83,36 +74,16 @@ export default DefineConnector({
   },
   output_parameters: {
     properties: {
-      requester_id: {
-        type: Schema.types.integer,
-        description: "The ticket's requester ID",
-        title: "Requester ID",
-      },
-      requester_email: {
-        type: Schema.types.string,
-        description: "The ticket's requester email",
-        title: "Requester email",
-      },
-      ticket_id: {
-        type: Schema.types.integer,
-        description: "The ticket ID",
-        title: "Ticket ID",
-      },
-      ticket_url: {
-        type: Schema.types.string,
-        description: "The ticket URL",
-        title: "Ticket URL",
-      },
+      requester_id: { type: Schema.types.integer, title: "Requester ID" },
+      requester_email: { type: Schema.types.string, title: "Requester email" },
+      ticket_id: { type: Schema.types.integer, title: "Ticket ID" },
+      ticket_url: { type: Schema.types.string, title: "Ticket URL" },
       assignee_id: {
         type: Schema.types.integer,
         description: "ID for the assigned user",
         title: "Assignee ID",
       },
-      priority: {
-        type: Schema.types.string,
-        description: "Priority of the ticket",
-        title: "Priority",
-      },
+      priority: { type: Schema.types.string, title: "Priority" },
     },
     required: ["ticket_id", "ticket_url"],
   },
