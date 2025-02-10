@@ -5,7 +5,6 @@ import { Schema } from "../../../deps.ts";
 export default DefineConnector({
   callback_id: "A0630UXR0AE#/functions/create_task",
   title: "Create a task",
-  description: " ",
   input_parameters: {
     properties: {
       workast_access_token: {
