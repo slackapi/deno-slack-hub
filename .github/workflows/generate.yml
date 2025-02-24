@@ -4,18 +4,18 @@ on:
   schedule:
     # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
     # Runs every Monday at 00:00
-    - cron:  '0 0 * * 1'
+    - cron: "0 0 * * 1"
   workflow_dispatch:
 
 jobs:
   generate:
     permissions:
-        contents: write
-        pull-requests: write
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     env:
-      # the version of deno used by Run on Slack (v1.31.1)
-      deno-version: v1.31.1 # TODO source this dynamicly from https://api.slack.com/slackcli/metadata.json
+      # the version of deno used by Run on Slack (v1.46.2)
+      deno-version: v1.46.2 # TODO source this dynamicly from https://api.slack.com/slackcli/metadata.json
 
     steps:
       - name: Setup repo
@@ -25,11 +25,11 @@ jobs:
         uses: denoland/setup-deno@v2
         with:
           deno-version: ${{ env.deno-version }}
-      
+
       - name: Setup Git config
         run: |
-            git config user.name github-actions
-            git config user.email ${{ secrets.APPROVED_ACCOUNT }}
+          git config user.name github-actions
+          git config user.email ${{ secrets.APPROVED_ACCOUNT }}
 
       - name: Set BRANCH_NAME
         # example: BRANCH_NAME=generate_2023-07-18_18-09
@@ -37,29 +37,29 @@ jobs:
 
       - name: Run generation script
         run: ./scripts/generate
-      
+
       - name: Commit changes
         id: commit
         continue-on-error: true
         run: |
-            git checkout -b $BRANCH_NAME
-            [[ $(git ls-files --other --modified --exclude-standard) == "src/connectors/mod.ts" ]] && { echo "No real changes. Do not commit."; exit 1; }
-            git add --all
-            git commit -m "Automated commit: Latest generated changes from schedule action"
+          git checkout -b $BRANCH_NAME
+          [[ $(git ls-files --other --modified --exclude-standard) == "src/connectors/mod.ts" ]] && { echo "No real changes. Do not commit."; exit 1; }
+          git add --all
+          git commit -m "Automated commit: Latest generated changes from schedule action"
 
       - name: Create Pull Request
         if: ${{ steps.commit.outcome == 'success' }}
         run: |
-            git push --set-upstream origin $BRANCH_NAME
-            gh pr create --label "enhancement" --title "Latest generated changes" --body \
-            "## 🚀 Automated Pull Request: Coded-Connectors Update
-            This PR brings the latest changes to coded-connectors, fueled by Slack's latest data. Developers can now access the newest features effortlessly.
+          git push --set-upstream origin $BRANCH_NAME
+          gh pr create --label "enhancement" --title "Latest generated changes" --body \
+          "## 🚀 Automated Pull Request: Coded-Connectors Update
+          This PR brings the latest changes to coded-connectors, fueled by Slack's latest data. Developers can now access the newest features effortlessly.
 
-            GitHub prevents [triggering a workflow from a workflow](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow), the **checks** on this pull request will not be triggered automatically :sweat_smile:
-            To trigger the **checks** on this pull request:
-            1. close the pull request
-            2. reopen the pull request
+          GitHub prevents [triggering a workflow from a workflow](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow), the **checks** on this pull request will not be triggered automatically :sweat_smile:
+          To trigger the **checks** on this pull request:
+          1. close the pull request
+          2. reopen the pull request
 
-            *Github-Actions* 🤖"
+          *Github-Actions* 🤖"
         env:
-           GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}

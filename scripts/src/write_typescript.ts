@@ -33,6 +33,10 @@ try {
       }`,
     );
 
+    if (certifiedApp.functions.length == 0) {
+      continue;
+    }
+
     const validFunctions = await certifiedApp.functions.reduce<
       Promise<FunctionRecord[]>
     >(
