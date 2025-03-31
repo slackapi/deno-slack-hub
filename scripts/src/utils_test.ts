@@ -16,7 +16,7 @@ import {
   assertTrue,
   IsExact,
   isHttpError,
-  MockFetch,
+  stub,
 } from "./dev_deps.ts";
 import {
   ArrayProperty,
@@ -24,6 +24,40 @@ import {
   ObjectProperty,
   Property,
 } from "./types.ts";
+
+const stubFetch = (
+  response: Response = new Response(
+    "ok",
+    {
+      status: 200,
+    },
+  ),
+  expected: {
+    url?: string;
+    init?: RequestInit;
+  } = {},
+): Disposable =>
+  stub(
+    globalThis,
+    "fetch",
+    (_url: string | URL | Request, options?: RequestInit) => {
+      if (expected.url) {
+        assertEquals(_url, expected.url);
+      }
+      if (expected.init) {
+        if (expected.init.method) {
+          assertEquals(options?.method, expected.init.method);
+        }
+        if (expected.init.body) {
+          assertEquals(options?.body, expected.init.body);
+        }
+        if (expected.init.headers) {
+          assertEquals(options?.headers, expected.init.headers);
+        }
+      }
+      return Promise.resolve(response);
+    },
+  );
 
 Deno.test("colored text remain consistent", () => {
   assertEquals("\x1b[92mtest\x1b[0m", greenText("test"));
@@ -62,24 +96,25 @@ Deno.test(`${isArrayProperty.name} distinguishes ArrayProperty from Property`, (
 });
 
 Deno.test(`${fetchCertifiedApps.name}`, async (test) => {
-  MockFetch.install();
-
   const expectedCause = "not found";
-  const endpoint = "POST@/api/apps.certified.schema.list";
+  const endpoint = "https://slack.com/api/apps.certified.schema.list";
 
   await test.step("should fetch and return certified apps schemas", async () => {
     const certifiedAppsPayload = await Deno.readTextFile(
       "scripts/src/test/data/apps_certified_schema.json",
     );
-
-    MockFetch.mock(endpoint, () => {
-      return new Response(
+    using _fetchStub = stubFetch(
+      new Response(
         certifiedAppsPayload,
         {
           status: 200,
         },
-      );
-    });
+      ),
+      {
+        url: endpoint,
+        init: { method: "POST" },
+      },
+    );
 
     const actual = await fetchCertifiedApps();
 
@@ -97,14 +132,18 @@ Deno.test(`${fetchCertifiedApps.name}`, async (test) => {
   });
 
   await test.step("should return error when slack response invalid", async () => {
-    MockFetch.mock(endpoint, () => {
-      return new Response(
+    using _fetchStub = stubFetch(
+      new Response(
         JSON.stringify({ ok: false, error: expectedCause }),
         {
           status: 200,
         },
-      );
-    });
+      ),
+      {
+        url: endpoint,
+        init: { method: "POST" },
+      },
+    );
 
     try {
       await fetchCertifiedApps();
@@ -117,14 +156,18 @@ Deno.test(`${fetchCertifiedApps.name}`, async (test) => {
   });
 
   await test.step("should return error when fetch fails", async () => {
-    MockFetch.mock(endpoint, () => {
-      return new Response(
+    using _fetchStub = stubFetch(
+      new Response(
         expectedCause,
         {
           status: 404,
         },
-      );
-    });
+      ),
+      {
+        url: endpoint,
+        init: { method: "POST" },
+      },
+    );
 
     try {
       await fetchCertifiedApps();
