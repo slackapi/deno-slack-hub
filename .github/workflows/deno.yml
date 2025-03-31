@@ -14,6 +14,7 @@ jobs:
         # we test on both most recent stable version of deno (v2.x) as well as
         # the version of deno used by Run on Slack (v1.46.2)
         deno-version:
+          - v1.x
           - v1.46.2
           - v2.x
 
