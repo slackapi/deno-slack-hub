@@ -9,20 +9,22 @@ on:
 
 jobs:
   generate:
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
-    runs-on: ubuntu-latest
     env:
       # the version of deno used by Run on Slack (v1.46.2)
       deno-version: v1.46.2 # TODO source this dynamicly from https://api.slack.com/slackcli/metadata.json
 
     steps:
       - name: Setup repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: true
 
       - name: Setup Deno ${{ env.deno-version }}
-        uses: denoland/setup-deno@v2
+        uses: denoland/setup-deno@e95548e56dfa95d4e1a28d6f422fafe75c4c26fb # v2.0.3
         with:
           deno-version: ${{ env.deno-version }}
 

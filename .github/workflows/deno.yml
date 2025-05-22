@@ -2,9 +2,11 @@ name: Deno
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   deno:
@@ -17,13 +19,16 @@ jobs:
           - v1.x
           - v1.46.2
           - v2.x
-
+    permissions:
+      contents: read
     steps:
       - name: Setup repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
       - name: Setup Deno ${{ matrix.deno-version }}
-        uses: denoland/setup-deno@v2
+        uses: denoland/setup-deno@e95548e56dfa95d4e1a28d6f422fafe75c4c26fb # v2.0.3
         with:
           deno-version: ${{ matrix.deno-version }}
 
@@ -35,7 +40,7 @@ jobs:
 
       - name: Upload coverage to CodeCov
         if: ${{ matrix.deno-version == 'v2.x' }}
-        uses: codecov/codecov-action@v5.4.2
+        uses: codecov/codecov-action@ad3126e916f78f00edff4ed0317cf185271ccc2d # v5.4.2
         with:
           files: ./lcov.info
           token: ${{ secrets.CODECOV_TOKEN }}
