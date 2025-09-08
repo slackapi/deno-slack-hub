@@ -32,4 +32,5 @@ Deno.test("All outputs of Slack function CreateFolder should exist", () => {
   assertExists(step.outputs.id);
   assertExists(step.outputs.name);
   assertExists(step.outputs.path_display);
+  assertExists(step.outputs.url);
 });

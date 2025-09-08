@@ -41,6 +41,11 @@ export default DefineConnector({
         description: "Display path",
         title: "Display path",
       },
+      url: {
+        type: Schema.types.string,
+        description: "URL of the folder",
+        title: "URL",
+      },
     },
     required: [],
   },
