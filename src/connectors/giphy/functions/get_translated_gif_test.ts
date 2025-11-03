@@ -9,11 +9,14 @@ Deno.test("GetTranslatedGif can be used as a Slack function in a workflow step",
     title: "Test GetTranslatedGif",
     description: "This is a generated test to test GetTranslatedGif",
   });
-  testWorkflow.addStep(GetTranslatedGif, { search_term: "test" });
+  testWorkflow.addStep(GetTranslatedGif, {
+    search_term: "test",
+    rating: "test",
+  });
   const actual = testWorkflow.steps[0].export();
 
   assertEquals(actual.function_id, "A04U5QUE5EX#/functions/get_translated_gif");
-  assertEquals(actual.inputs, { search_term: "test" });
+  assertEquals(actual.inputs, { search_term: "test", rating: "test" });
 });
 
 Deno.test("All outputs of Slack function GetTranslatedGif should exist", () => {
@@ -22,7 +25,10 @@ Deno.test("All outputs of Slack function GetTranslatedGif should exist", () => {
     title: "Test GetTranslatedGif",
     description: "This is a generated test to test GetTranslatedGif",
   });
-  const step = testWorkflow.addStep(GetTranslatedGif, { search_term: "test" });
+  const step = testWorkflow.addStep(GetTranslatedGif, {
+    search_term: "test",
+    rating: "test",
+  });
   assertExists(step.outputs.gif_title_url);
   assertExists(step.outputs.search_term);
 });

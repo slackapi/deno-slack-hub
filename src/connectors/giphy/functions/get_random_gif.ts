@@ -4,7 +4,7 @@ import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
   callback_id: "A04U5QUE5EX#/functions/get_random_gif",
-  title: "Random GIF",
+  title: "Get a Random GIF",
   description: "Get a random Giphy GIF",
   input_parameters: {
     properties: {
