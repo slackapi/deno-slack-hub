@@ -19,8 +19,14 @@ export default DefineConnector({
         title: "Weirdness",
         enum: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
       },
+      rating: {
+        type: Schema.types.string,
+        description: "Filter results by a specified rating",
+        title: "Rating",
+        enum: ["g", "pg", "pg-13"],
+      },
     },
-    required: ["search_term"],
+    required: ["search_term", "rating"],
   },
   output_parameters: {
     properties: {
