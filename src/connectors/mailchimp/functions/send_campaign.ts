@@ -4,7 +4,7 @@ import { Schema } from "../../../deps.ts";
 
 export default DefineConnector({
   callback_id: "A05TPV44YKG#/functions/send_campaign",
-  title: "Send a Campaign",
+  title: "Send a campaign",
   input_parameters: {
     properties: {
       mailchimp_access_token: {
