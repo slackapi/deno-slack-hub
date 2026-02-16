@@ -31,12 +31,12 @@ export default DefineConnector({
       recipient_name: {
         type: Schema.types.string,
         description: "Enter text",
-        title: "Recipient Name",
+        title: "Recipient name",
       },
       recipient_email: {
         type: Schema.types.string,
         description: "Enter text",
-        title: "Recipient Email",
+        title: "Recipient email",
       },
       docusign_access_token: {
         type: Schema.slack.types.oauth2,
