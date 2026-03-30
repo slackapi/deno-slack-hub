@@ -12,6 +12,11 @@ export default DefineConnector({
         description: "Enter text",
         title: "Incident name",
       },
+      incident_type_id: {
+        type: Schema.types.string,
+        description: "Select an option",
+        title: "Incident Type",
+      },
       description: {
         type: Schema.types.string,
         description: "Enter text",
@@ -45,6 +50,7 @@ export default DefineConnector({
     properties: {
       incident_id: { type: Schema.types.string, title: "Incident ID" },
       incident_url: { type: Schema.types.string, title: "Incident URL" },
+      incident_type: { type: Schema.types.string, title: "Incident type" },
       incident_description: {
         type: Schema.types.string,
         title: "Incident description",

@@ -25,6 +25,7 @@ Deno.test("All outputs of Slack function CreateIncident should exist", () => {
   const step = testWorkflow.addStep(CreateIncident, { name: "test" });
   assertExists(step.outputs.incident_id);
   assertExists(step.outputs.incident_url);
+  assertExists(step.outputs.incident_type);
   assertExists(step.outputs.incident_description);
   assertExists(step.outputs.priority);
   assertExists(step.outputs.severity);
