@@ -4,6 +4,7 @@ import CreateFeatureFlag from "./functions/create_feature_flag.ts";
 import UpdateFeatureFlagState from "./functions/update_feature_flag_state.ts";
 import UpdateTargetFeatureFlag from "./functions/update_target_feature_flag.ts";
 import UpdateTargetSegment from "./functions/update_target_segment.ts";
+import UpdateTeamMembers from "./functions/update_team_members.ts";
 
 const Launchdarkly = {
   functions: {
@@ -27,6 +28,10 @@ const Launchdarkly = {
      * @see The {@link https://api.slack.com/reference/connectors/launchdarkly/update_target_segment UpdateTargetSegment} documentation.
      */
     UpdateTargetSegment,
+    /**
+     * @see The {@link https://api.slack.com/reference/connectors/launchdarkly/update_team_members UpdateTeamMembers} documentation.
+     */
+    UpdateTeamMembers,
   },
 } as const;
 
