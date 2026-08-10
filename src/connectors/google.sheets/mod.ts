@@ -3,6 +3,7 @@ import AddSpreadsheetRow from "./functions/add_spreadsheet_row.ts";
 import DeleteSpreadsheetRow from "./functions/delete_spreadsheet_row.ts";
 import SelectSheet from "./functions/select_sheet.ts";
 import SelectSpreadsheetRow from "./functions/select_spreadsheet_row.ts";
+import SelectSpreadsheetRows from "./functions/select_spreadsheet_rows.ts";
 import UpdateSpreadsheetRow from "./functions/update_spreadsheet_row.ts";
 
 const GoogleSheets = {
@@ -23,6 +24,10 @@ const GoogleSheets = {
      * @see The {@link https://api.slack.com/reference/connectors/google.sheets/select_spreadsheet_row SelectSpreadsheetRow} documentation.
      */
     SelectSpreadsheetRow,
+    /**
+     * @see The {@link https://api.slack.com/reference/connectors/google.sheets/select_spreadsheet_rows SelectSpreadsheetRows} documentation.
+     */
+    SelectSpreadsheetRows,
     /**
      * @see The {@link https://api.slack.com/reference/connectors/google.sheets/update_spreadsheet_row UpdateSpreadsheetRow} documentation.
      */
